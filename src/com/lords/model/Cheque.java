@@ -1,13 +1,13 @@
 package com.lords.model;
 
-public class cheque {
+public class Cheque {
 
 	int no_cheque=0;
 	String solicitud_cheque=null;
 	String poliza=null;
 	int id_pago=0;
 	
-	public cheque() {
+	public Cheque() {
 
 	}
 	

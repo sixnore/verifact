@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author macbookpro
  */
-public class conexion {
+public class Conexion {
     String bd="usuarios";
     String login="root";
     String pass="";
@@ -33,7 +33,7 @@ public class conexion {
         return conn;
     }
     public static void main(String [] args){
-        conexion obj= new conexion();
+        Conexion obj= new Conexion();
         obj.conectandobd();
     }
     }

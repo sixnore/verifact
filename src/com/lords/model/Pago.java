@@ -1,8 +1,8 @@
 package com.lords.model;
 
-public class pago {
+public class Pago {
 
-	public pago() {
+	public Pago() {
 
 	}
 	

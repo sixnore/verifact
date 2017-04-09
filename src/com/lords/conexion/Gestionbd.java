@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author macbookpro
  */
-public class gestionbd { 
+public class Gestionbd { 
     Connection lineaconexion;
     Statement sentencia;
-    conexion objconexion=new conexion();
+    Conexion objconexion=new Conexion();
     
-    public gestionbd(){
+    public Gestionbd(){
         lineaconexion=objconexion.conectandobd();
     }
     

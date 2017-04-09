@@ -1,8 +1,8 @@
 package com.lords.model;
 
-public class servicio {
+public class Servicio {
 
-	public servicio() {
+	public Servicio() {
 
 	}
 	

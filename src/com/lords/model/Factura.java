@@ -1,8 +1,8 @@
 package com.lords.model;
 
-public class factura {
+public class Factura {
 
-	public factura() {
+	public Factura() {
 
 	}
 	
