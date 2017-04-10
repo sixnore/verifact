@@ -12,6 +12,7 @@ import com.lords.views.Login;
 import com.lords.views.Menu_admin;
 
 public class PrincipalController implements ActionListener{
+	
 	Login log = new Login();
 	Menu_admin menu_admin=new Menu_admin();
 	UsuarioModel usuarioModelo = new UsuarioModel();
@@ -46,6 +47,7 @@ public class PrincipalController implements ActionListener{
 			String mensaje="";
 			usuarioModelo.setUsername(username);
 			usuarioModelo.setPassword(password);
+			usuarioModelo.setRol("");
 			mensaje=usuarioBo.acceder(usuarioModelo);
 			JOptionPane.showMessageDialog(null, mensaje);
 			if(!mensaje.equals("No existe usuario")){
