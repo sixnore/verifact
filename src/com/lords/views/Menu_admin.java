@@ -14,7 +14,12 @@ import java.awt.event.ActionEvent;
 
 public class Menu_admin extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
+	public JButton btnFacturas;
+	public JButton btnServicios;
+	public JButton btnOrdenesDePago;
+	public JButton btnProveedores;
+	public JButton btnUsuarios;
 
 	/**
 	 * Launch the application.
@@ -51,23 +56,23 @@ public class Menu_admin extends JFrame {
 		lblMenu.setBounds(191, 24, 46, 14);
 		panel.add(lblMenu);
 		
-		JButton btnFacturas = new JButton("FACTURAS");
+		btnFacturas = new JButton("FACTURAS");
 		btnFacturas.setBounds(66, 113, 113, 23);
 		panel.add(btnFacturas);
 		
-		JButton btnUsuarios = new JButton("USUARIOS");
+		btnUsuarios = new JButton("USUARIOS");
 		btnUsuarios.setBounds(249, 113, 113, 23);
 		panel.add(btnUsuarios);
 		
-		JButton btnProveedores = new JButton("PROVEEDORES");
+		btnProveedores = new JButton("PROVEEDORES");
 		btnProveedores.setBounds(249, 196, 113, 23);
 		panel.add(btnProveedores);
 		
-		JButton btnServicios = new JButton("SERVICIOS");
+		btnServicios = new JButton("SERVICIOS");
 		btnServicios.setBounds(66, 196, 113, 23);
 		panel.add(btnServicios);
 		
-		JButton btnOrdenesDePago = new JButton("ORDENES DE PAGO");
+		btnOrdenesDePago = new JButton("ORDENES DE PAGO");
 		btnOrdenesDePago.setBounds(147, 267, 140, 23);
 		panel.add(btnOrdenesDePago);
 	}
