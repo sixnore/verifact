@@ -12,10 +12,10 @@ import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField jtfUsuario;
-	private JPasswordField jpfPassword;
-	private JButton btnAcceder;
+	public JPanel contentPane;
+	public JTextField jtfUsuario;
+	public JPasswordField jpfPassword;
+	public JButton btnAcceder;
 
 	/**
 	 * Launch the application.
@@ -61,30 +61,5 @@ public class Login extends JFrame {
 		jpfPassword.setBounds(144, 205, 117, 20);
 		panel.add(jpfPassword);
 	}
-
-	public JTextField getJtfUsuario() {
-		return jtfUsuario;
-	}
-
-	public void setJtfUsuario(JTextField jtfUsuario) {
-		this.jtfUsuario = jtfUsuario;
-	}
-
-	public JPasswordField getJpfPassword() {
-		return jpfPassword;
-	}
-
-	public void setJpfPassword(JPasswordField jpfPassword) {
-		this.jpfPassword = jpfPassword;
-	}
-
-	public JButton getBtnAcceder() {
-		return btnAcceder;
-	}
-
-	public void setBtnAcceder(JButton btnAcceder) {
-		this.btnAcceder = btnAcceder;
-	}
-	
 	
 }

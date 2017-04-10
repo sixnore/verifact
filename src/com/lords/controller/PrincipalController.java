@@ -17,14 +17,14 @@ public class PrincipalController implements ActionListener{
 		super();
 		this.log = log;
 		this.usuarioModelo = usuarioModelo;
-		log.getBtnAcceder().addActionListener(this);
+		this.log.btnAcceder.addActionListener(this);
 	}
 
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(log.getBtnAcceder())){
+		if(e.getSource().equals(log.btnAcceder)){
 			acceder();
 		}
 		
