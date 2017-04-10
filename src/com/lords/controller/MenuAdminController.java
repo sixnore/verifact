@@ -20,15 +20,18 @@ public class MenuAdminController implements ActionListener{
 		this.menuAd.btnFacturas.addActionListener(this);
 		this.menuAd.btnOrdenesDePago.addActionListener(this);
 		this.menuAd.btnProveedores.addActionListener(this);
-		this.menuAd.btnServicios.addActionListener(this);
-		this.menuAd.btnUsuarios.addActionListener(this);
+		this.menuAd.btnFacturas.addActionListener(this);
+		this.menuAd.btnFacturas.addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		JOptionPane.showMessageDialog(null, "Escuchado");
+		if(arg0.getSource().equals(menuAd.btnFacturas)){
+			abrir();
+		}
 	}
 	
-	
-
+	private void abrir(){
+		JOptionPane.showMessageDialog(null, "Escuchado");
+	}
 }

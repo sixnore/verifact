@@ -55,7 +55,7 @@ public class Login extends JFrame {
 		jtfUsuario.setColumns(10);
 		
 		btnAcceder = new JButton("ACCEDER");
-		btnAcceder.setBounds(160, 280, 117, 23);
+		btnAcceder.setBounds(160, 280, 120, 25);
 		panel.add(btnAcceder);
 		
 		jpfPassword = new JPasswordField();

@@ -29,11 +29,9 @@ public class PrincipalController implements ActionListener{
 		
 	}
 
-
-
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(log.btnAcceder)){
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource().equals(log.btnAcceder)){
 			acceder();
 		}
 	}
@@ -55,6 +53,7 @@ public class PrincipalController implements ActionListener{
 			JOptionPane.showMessageDialog(null, mensaje);
 			if(!mensaje.equals("No existe usuario")){
 				if(usuarioModelo.getRol().equals("ROLE_ADMIN")){
+					
 					log.setVisible(false);
 					menu_admin.setVisible(true);
 					menu_admin.setLocationRelativeTo(null);
