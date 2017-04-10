@@ -1,9 +1,12 @@
 package com.lords.verifact;
 
+import com.lords.views.Login;
+
 public class mainVerifact {
 
 	public static void main(String[] args) {
-System.out.println("Hola mundo");
+		Login log = new Login();
+		log.setVisible(true);
 	}
 
 }
