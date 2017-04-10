@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import com.lords.model.FacturaModel;
 import com.lords.views.Captura_facturas;
 
 public class GestionFacturaController implements ActionListener{
 
 	Captura_facturas capturaFac = new Captura_facturas();
+	FacturaModel facturaModel = new FacturaModel();
 	
 	public GestionFacturaController(Captura_facturas capturaFac){
 		this.capturaFac = capturaFac;
@@ -26,6 +28,7 @@ public class GestionFacturaController implements ActionListener{
 	}
 	
 	private void guardar(){
+		String mensaje ="";
 		String folioFactura = capturaFac.txtFolioFactura.getText();
 		String fechaRecepcion = capturaFac.jdcFecha_Recep.getDateFormatString();
 		int proveedor = capturaFac.jcbProveedores.getSelectedIndex();
@@ -33,6 +36,29 @@ public class GestionFacturaController implements ActionListener{
 		float subtotal = Float.parseFloat(capturaFac.txtSubtotal.getText());
 		float iva = Float.parseFloat(capturaFac.txtTotal.getText());
 		float total = Float.parseFloat(capturaFac.txtTotal.getText());
+		
+		if(!folioFactura.equals(null)){
+			if(!fechaRecepcion.equals(null)){
+				if(!(proveedor == 0)){
+					if(!(servicio==0)){
+						if(!(subtotal == 0)){
+							if(!(iva==0)){
+								if(!(total==0)){
+									facturaModel.setNo_factura(folioFactura);
+									facturaModel.setFecha(fechaRecepcion);
+									facturaModel.set
+									facturaModel.setNo_factura(folioFactura);
+									facturaModel.setNo_factura(folioFactura);
+									facturaModel.setNo_factura(folioFactura);
+									facturaModel.setNo_factura(folioFactura);
+									
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		
 		
 	}
