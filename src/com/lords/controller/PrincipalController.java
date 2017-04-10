@@ -33,7 +33,10 @@ public class PrincipalController implements ActionListener{
 	
 	
 	private void acceder() {
-		JOptionPane.showMessageDialog(null, "Llego");
+		String username = log.jtfUsuario.getText();
+		char[] getPass = log.jpfPassword.getPassword();
+		String password = new String(getPass);
 	}
+	
 	
 }
