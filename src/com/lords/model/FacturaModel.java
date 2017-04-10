@@ -1,16 +1,16 @@
 package com.lords.model;
 
-public class Factura {
+public class FacturaModel {
 
-	public Factura() {
+	public FacturaModel() {
 
 	}
 	
-	String no_factura=null;
-	String fecha=null;
-	String quicena=null;
-	String estado=null;
-	int id_pago=0;
+	String no_factura;
+	String fecha;
+	String quicena;
+	String estado;
+	int id_pago;
 	
 	public String getNo_factura() {
 		return no_factura;
@@ -42,8 +42,4 @@ public class Factura {
 	public void setId_pago(int id_pago) {
 		this.id_pago = id_pago;
 	}
-
-	
-	
-
 }
