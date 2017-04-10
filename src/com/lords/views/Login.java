@@ -15,6 +15,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField jtfUsuario;
 	private JPasswordField jpfPassword;
+	private JButton btnAcceder;
 
 	/**
 	 * Launch the application.
@@ -52,7 +53,7 @@ public class Login extends JFrame {
 		panel.add(jtfUsuario);
 		jtfUsuario.setColumns(10);
 		
-		JButton btnAcceder = new JButton("ACCEDER");
+		btnAcceder = new JButton("ACCEDER");
 		btnAcceder.setBounds(159, 277, 89, 23);
 		panel.add(btnAcceder);
 		
@@ -60,4 +61,30 @@ public class Login extends JFrame {
 		jpfPassword.setBounds(144, 205, 117, 20);
 		panel.add(jpfPassword);
 	}
+
+	public JTextField getJtfUsuario() {
+		return jtfUsuario;
+	}
+
+	public void setJtfUsuario(JTextField jtfUsuario) {
+		this.jtfUsuario = jtfUsuario;
+	}
+
+	public JPasswordField getJpfPassword() {
+		return jpfPassword;
+	}
+
+	public void setJpfPassword(JPasswordField jpfPassword) {
+		this.jpfPassword = jpfPassword;
+	}
+
+	public JButton getBtnAcceder() {
+		return btnAcceder;
+	}
+
+	public void setBtnAcceder(JButton btnAcceder) {
+		this.btnAcceder = btnAcceder;
+	}
+	
+	
 }
