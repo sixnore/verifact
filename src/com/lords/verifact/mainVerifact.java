@@ -12,8 +12,7 @@ public class mainVerifact {
 		Login log = new Login();
 		UsuarioModel usuarioModelo=new UsuarioModel();
 		
-		Menu_admin menuAd = new Menu_admin();
-		MenuAdminController adminController = new MenuAdminController(menuAd);
+		
 		
 		PrincipalController controller=new PrincipalController(log, usuarioModelo);
 		

@@ -18,11 +18,15 @@ public class PrincipalController implements ActionListener{
 	UsuarioModel usuarioModelo = new UsuarioModel();
 	UsuarioBo usuarioBo=new UsuarioBo();
 	
+	
+	
+	
 	public PrincipalController(Login log, UsuarioModel usuarioModelo) {
 		super();
 		this.log = log;
 		this.usuarioModelo = usuarioModelo;
 		this.log.btnAcceder.addActionListener(this);
+		
 	}
 
 
