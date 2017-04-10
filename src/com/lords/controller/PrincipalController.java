@@ -32,8 +32,6 @@ public class PrincipalController implements ActionListener{
 			acceder();
 		}
 	}
-
-	
 	
 	private void acceder() {
 		String username = log.jtfUsuario.getText();

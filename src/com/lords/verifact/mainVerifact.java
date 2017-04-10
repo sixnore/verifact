@@ -19,15 +19,12 @@ public class mainVerifact {
 		
 		GestionFacturaController gestionFac = new GestionFacturaController(capturaFac);
 		
-		
 		MenuAdminController menuAdmin = new MenuAdminController(mA);
 		
 		PrincipalController controller=new PrincipalController(log, usuarioModelo);
 		
 		log.setVisible(true);
 		log.setLocationRelativeTo(null);
-		
-		
 	}
 
 }
