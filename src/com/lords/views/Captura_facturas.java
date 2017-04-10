@@ -24,13 +24,14 @@ public class Captura_facturas extends JFrame {
 	public JTextField txtIva;
 	public JTextField txtTotal;
 	public JButton btnGuardar;
-	public JButton btnAgregar;
+	public JButton btnAgregarServ;
 	public JButton btnExaminar;
 	public JComboBox jcbProveedores;
 	public JComboBox jcbServicios;
 	public JComboBox jcbMetodo_pago;
 	public JPanel jpImg_factura;
 	public JDateChooser jdcFecha_Recep;
+	private JLabel lblEstado;
 
 	/**
 	 * Launch the application.
@@ -54,7 +55,7 @@ public class Captura_facturas extends JFrame {
 	public Captura_facturas() {
 		setTitle("Gestion de facturas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 480, 414);
+		setBounds(100, 100, 480, 453);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -64,7 +65,7 @@ public class Captura_facturas extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblCampturaDeFacturas = new JLabel("Camptura de facturas");
+		JLabel lblCampturaDeFacturas = new JLabel("Captura de facturas");
 		lblCampturaDeFacturas.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCampturaDeFacturas.setBounds(156, 11, 143, 14);
 		panel.add(lblCampturaDeFacturas);
@@ -92,7 +93,7 @@ public class Captura_facturas extends JFrame {
 		
 		jcbProveedores = new JComboBox();
 		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
-		jcbProveedores.setBounds(113, 99, 327, 20);
+		jcbProveedores.setBounds(113, 99, 228, 20);
 		panel.add(jcbProveedores);
 		
 		JLabel lblServicio = new JLabel("Servicio");
@@ -104,9 +105,9 @@ public class Captura_facturas extends JFrame {
 		jcbServicios.setBounds(113, 145, 228, 20);
 		panel.add(jcbServicios);
 		
-		btnAgregar = new JButton("AGREGAR");
-		btnAgregar.setBounds(351, 144, 89, 23);
-		panel.add(btnAgregar);
+		btnAgregarServ = new JButton("AGREGAR");
+		btnAgregarServ.setBounds(351, 144, 89, 23);
+		panel.add(btnAgregarServ);
 		
 		JLabel lblSubtotal = new JLabel("Subtotal");
 		lblSubtotal.setBounds(21, 193, 46, 14);
@@ -136,29 +137,51 @@ public class Captura_facturas extends JFrame {
 		txtTotal.setColumns(10);
 		
 		JLabel lblMtodoDePago = new JLabel("M\u00E9todo de pago");
-		lblMtodoDePago.setBounds(21, 236, 82, 14);
+		lblMtodoDePago.setBounds(21, 275, 82, 14);
 		panel.add(lblMtodoDePago);
 		
 		jcbMetodo_pago = new JComboBox();
 		jcbMetodo_pago.setModel(new DefaultComboBoxModel(new String[] {"Pago...", "TRANSFERENCIA BANCARIA", "V\u00CDA CHEQUE", "EN EFECTIVO"}));
-		jcbMetodo_pago.setBounds(113, 233, 166, 20);
+		jcbMetodo_pago.setBounds(113, 272, 166, 20);
 		panel.add(jcbMetodo_pago);
 		
 		JLabel lblAgregarDocumentoEscaneado = new JLabel("Agregar documento escaneado");
-		lblAgregarDocumentoEscaneado.setBounds(21, 275, 163, 14);
+		lblAgregarDocumentoEscaneado.setBounds(21, 314, 163, 14);
 		panel.add(lblAgregarDocumentoEscaneado);
 		
 		btnExaminar = new JButton("EXAMINAR...");
-		btnExaminar.setBounds(178, 271, 101, 23);
+		btnExaminar.setBounds(178, 310, 101, 23);
 		panel.add(btnExaminar);
 		
 		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setBounds(21, 313, 89, 23);
+		btnGuardar.setBounds(21, 352, 89, 23);
 		panel.add(btnGuardar);
 		
 		jpImg_factura = new JPanel();
 		jpImg_factura.setBorder(new TitledBorder(null, "Imagen de la factura", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		jpImg_factura.setBounds(300, 221, 140, 133);
+		jpImg_factura.setBounds(300, 260, 140, 133);
 		panel.add(jpImg_factura);
+		
+		lblEstado = new JLabel("Estado");
+		lblEstado.setBounds(21, 234, 46, 14);
+		panel.add(lblEstado);
+		
+		JComboBox jcbEstado = new JComboBox();
+		jcbEstado.setModel(new DefaultComboBoxModel(new String[] {"Estado...", "EN ESPERA", "ENTREGADA", "FALLO"}));
+		jcbEstado.setBounds(113, 231, 71, 20);
+		panel.add(jcbEstado);
+		
+		JLabel lblQuincena = new JLabel("Quincena");
+		lblQuincena.setBounds(253, 234, 46, 14);
+		panel.add(lblQuincena);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1ERA", "2DA"}));
+		comboBox.setBounds(327, 229, 113, 20);
+		panel.add(comboBox);
+		
+		JButton btnAgregarProv = new JButton("AGREGAR");
+		btnAgregarProv.setBounds(351, 98, 89, 23);
+		panel.add(btnAgregarProv);
 	}
 }
