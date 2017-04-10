@@ -58,8 +58,9 @@ public class Login extends JFrame {
 		panel.add(jtfUsuario);
 		jtfUsuario.setColumns(10);
 		
-		btnAcceder = new JButton("ACCEDER");
-		btnAcceder.setBounds(115, 363, 120, 25);
+		btnAcceder = new JButton("");
+		btnAcceder.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/boton-LOGIN.png")));
+		btnAcceder.setBounds(115, 339, 124, 39);
 		panel.add(btnAcceder);
 		
 		jpfPassword = new JPasswordField();
@@ -69,11 +70,12 @@ public class Login extends JFrame {
 		JLabel lblUsuario = new JLabel("USUARIO");
 		lblUsuario.setFont(new Font("Futura Md BT", Font.BOLD, 15));
 		lblUsuario.setForeground(Color.BLACK);
-		lblUsuario.setBounds(139, 200, 83, 14);
+		lblUsuario.setBounds(135, 211, 83, 14);
 		panel.add(lblUsuario);
 		
 		JLabel lblPassword = new JLabel("PASSWORD");
-		lblPassword.setBounds(139, 272, 93, 14);
+		lblPassword.setFont(new Font("Futura Md BT", Font.BOLD, 15));
+		lblPassword.setBounds(125, 272, 93, 14);
 		panel.add(lblPassword);
 		
 		JLabel lblImagenUser = new JLabel("");
