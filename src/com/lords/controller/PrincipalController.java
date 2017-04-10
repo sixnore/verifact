@@ -5,13 +5,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import com.lords.bo.UsuarioBo;
+import com.lords.conexion.Conexion;
 import com.lords.model.UsuarioModel;
 import com.lords.views.Login;
 
 public class PrincipalController implements ActionListener{
-
 	Login log = new Login();
 	UsuarioModel usuarioModelo = new UsuarioModel();
+	UsuarioBo usuarioBo=new UsuarioBo();
 	
 	public PrincipalController(Login log, UsuarioModel usuarioModelo) {
 		super();
@@ -39,9 +41,14 @@ public class PrincipalController implements ActionListener{
 		if(username.equals(null)|| password.equals(null)|| password.equals("")|| username.equals("")){
 			JOptionPane.showMessageDialog(null, "Usuario/Contraseña vacíos");
 		}else{
-			
+			String mensaje="";
+			usuarioModelo.setUsername(username);
+			usuarioModelo.setPassword(password);
+			mensaje=usuarioBo.acceder(usuarioModelo);
+			JOptionPane.showMessageDialog(null, mensaje);
 		}
 	}
 	
 	
 }
+
