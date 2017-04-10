@@ -18,14 +18,19 @@ import java.awt.Font;
 
 public class Captura_facturas extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtFolioFactura;
-	private JTextField txtSubtotal;
-	private JTextField txtIva;
-	private JTextField txtTotal;
+	public JPanel contentPane;
+	public JTextField txtFolioFactura;
+	public JTextField txtSubtotal;
+	public JTextField txtIva;
+	public JTextField txtTotal;
 	public JButton btnGuardar;
 	public JButton btnAgregar;
 	public JButton btnExaminar;
+	public JComboBox jcbProveedores;
+	public JComboBox jcbServicios;
+	public JComboBox jcbMetodo_pago;
+	public JPanel jpImg_factura;
+	public JDateChooser jdcFecha_Recep;
 
 	/**
 	 * Launch the application.
@@ -77,7 +82,7 @@ public class Captura_facturas extends JFrame {
 		lblFechaDeRecepcin.setBounds(221, 56, 101, 14);
 		panel.add(lblFechaDeRecepcin);
 		
-		JDateChooser jdcFecha_Recep = new JDateChooser();
+		jdcFecha_Recep = new JDateChooser();
 		jdcFecha_Recep.setBounds(327, 50, 113, 20);
 		panel.add(jdcFecha_Recep);
 		
@@ -85,7 +90,7 @@ public class Captura_facturas extends JFrame {
 		lblProveedor.setBounds(21, 102, 66, 14);
 		panel.add(lblProveedor);
 		
-		JComboBox jcbProveedores = new JComboBox();
+		jcbProveedores = new JComboBox();
 		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
 		jcbProveedores.setBounds(113, 99, 327, 20);
 		panel.add(jcbProveedores);
@@ -94,7 +99,7 @@ public class Captura_facturas extends JFrame {
 		lblServicio.setBounds(21, 148, 46, 14);
 		panel.add(lblServicio);
 		
-		JComboBox jcbServicios = new JComboBox();
+		jcbServicios = new JComboBox();
 		jcbServicios.setModel(new DefaultComboBoxModel(new String[] {"Servicios..."}));
 		jcbServicios.setBounds(113, 145, 228, 20);
 		panel.add(jcbServicios);
@@ -134,7 +139,7 @@ public class Captura_facturas extends JFrame {
 		lblMtodoDePago.setBounds(21, 236, 82, 14);
 		panel.add(lblMtodoDePago);
 		
-		JComboBox jcbMetodo_pago = new JComboBox();
+		jcbMetodo_pago = new JComboBox();
 		jcbMetodo_pago.setModel(new DefaultComboBoxModel(new String[] {"Pago...", "TRANSFERENCIA BANCARIA", "V\u00CDA CHEQUE", "EN EFECTIVO"}));
 		jcbMetodo_pago.setBounds(113, 233, 166, 20);
 		panel.add(jcbMetodo_pago);
@@ -151,7 +156,7 @@ public class Captura_facturas extends JFrame {
 		btnGuardar.setBounds(21, 313, 89, 23);
 		panel.add(btnGuardar);
 		
-		JPanel jpImg_factura = new JPanel();
+		jpImg_factura = new JPanel();
 		jpImg_factura.setBorder(new TitledBorder(null, "Imagen de la factura", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		jpImg_factura.setBounds(300, 221, 140, 133);
 		panel.add(jpImg_factura);

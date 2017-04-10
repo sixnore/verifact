@@ -26,7 +26,15 @@ public class GestionFacturaController implements ActionListener{
 	}
 	
 	private void guardar(){
-		JOptionPane.showMessageDialog(null, "Escuchado");
+		String folioFactura = capturaFac.txtFolioFactura.getText();
+		String fechaRecepcion = capturaFac.jdcFecha_Recep.getDateFormatString();
+		int proveedor = capturaFac.jcbProveedores.getSelectedIndex();
+		int servicio = capturaFac.jcbServicios.getSelectedIndex();
+		float subtotal = Float.parseFloat(capturaFac.txtSubtotal.getText());
+		float iva = Float.parseFloat(capturaFac.txtTotal.getText());
+		float total = Float.parseFloat(capturaFac.txtTotal.getText());
+		
+		
 	}
 
 }
