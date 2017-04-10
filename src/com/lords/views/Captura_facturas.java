@@ -23,6 +23,9 @@ public class Captura_facturas extends JFrame {
 	private JTextField txtSubtotal;
 	private JTextField txtIva;
 	private JTextField txtTotal;
+	public JButton btnGuardar;
+	public JButton btnAgregar;
+	public JButton btnExaminar;
 
 	/**
 	 * Launch the application.
@@ -96,7 +99,7 @@ public class Captura_facturas extends JFrame {
 		jcbServicios.setBounds(113, 145, 228, 20);
 		panel.add(jcbServicios);
 		
-		JButton btnAgregar = new JButton("AGREGAR");
+		btnAgregar = new JButton("AGREGAR");
 		btnAgregar.setBounds(351, 144, 89, 23);
 		panel.add(btnAgregar);
 		
@@ -140,11 +143,11 @@ public class Captura_facturas extends JFrame {
 		lblAgregarDocumentoEscaneado.setBounds(21, 275, 163, 14);
 		panel.add(lblAgregarDocumentoEscaneado);
 		
-		JButton btnExaminar = new JButton("EXAMINAR...");
+		btnExaminar = new JButton("EXAMINAR...");
 		btnExaminar.setBounds(178, 271, 101, 23);
 		panel.add(btnExaminar);
 		
-		JButton btnGuardar = new JButton("GUARDAR");
+		btnGuardar = new JButton("GUARDAR");
 		btnGuardar.setBounds(21, 313, 89, 23);
 		panel.add(btnGuardar);
 		
