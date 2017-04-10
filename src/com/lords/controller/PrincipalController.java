@@ -36,6 +36,11 @@ public class PrincipalController implements ActionListener{
 		String username = log.jtfUsuario.getText();
 		char[] getPass = log.jpfPassword.getPassword();
 		String password = new String(getPass);
+		if(username.equals(null)|| password.equals(null)|| password.equals("")|| username.equals("")){
+			JOptionPane.showMessageDialog(null, "Usuario/Contraseña vacíos");
+		}else{
+			
+		}
 	}
 	
 	
