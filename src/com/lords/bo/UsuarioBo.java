@@ -14,9 +14,12 @@ public class UsuarioBo {
 		String password = usuarioModelo.getPassword();
 		
 		
-		if(!(username.length()>6&&username.length()<20||password.length()>8&&password.length()<20)){
-			JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
-			
+		if(!(username.length()>=6&&username.length()<=20)){
+			mensaje = "No se cumple condiciones de usuario\n";
+		}else{
+			if(!(password.length()>=8&&password.length()<=20)){
+				mensaje = "No se cumple condiciones de contraseña";
+			}
 		}
 		
 		return mensaje;
