@@ -16,12 +16,8 @@ public class MenuAdminController implements ActionListener{
 	
 	public MenuAdminController(Menu_admin menuAd) {
 		super();
-		
-		menuAd.btnFacturas.addActionListener(this);;
-		menuAd.btnOrdenesDePago.addActionListener(this);
-		menuAd.btnProveedores.addActionListener(this);
-		menuAd.btnUsuarios.addActionListener(this);
 		this.menuAd = menuAd;
+		
 	}
 	
 	@Override
