@@ -32,6 +32,9 @@ public class Captura_facturas extends JFrame {
 	public JPanel jpImg_factura;
 	public JDateChooser jdcFecha_Recep;
 	private JLabel lblEstado;
+	public JComboBox jcbQuincena;
+	public JComboBox jcbEstado;
+	public JButton btnAgregarProv;
 
 	/**
 	 * Launch the application.
@@ -166,7 +169,7 @@ public class Captura_facturas extends JFrame {
 		lblEstado.setBounds(21, 234, 46, 14);
 		panel.add(lblEstado);
 		
-		JComboBox jcbEstado = new JComboBox();
+		jcbEstado = new JComboBox();
 		jcbEstado.setModel(new DefaultComboBoxModel(new String[] {"Estado...", "EN ESPERA", "ENTREGADA", "FALLO"}));
 		jcbEstado.setBounds(113, 231, 71, 20);
 		panel.add(jcbEstado);
@@ -175,12 +178,12 @@ public class Captura_facturas extends JFrame {
 		lblQuincena.setBounds(253, 234, 46, 14);
 		panel.add(lblQuincena);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1ERA", "2DA"}));
-		comboBox.setBounds(327, 229, 113, 20);
-		panel.add(comboBox);
+		jcbQuincena = new JComboBox();
+		jcbQuincena.setModel(new DefaultComboBoxModel(new String[] {"1ERA", "2DA"}));
+		jcbQuincena.setBounds(327, 229, 113, 20);
+		panel.add(jcbQuincena);
 		
-		JButton btnAgregarProv = new JButton("AGREGAR");
+		btnAgregarProv = new JButton("AGREGAR");
 		btnAgregarProv.setBounds(351, 98, 89, 23);
 		panel.add(btnAgregarProv);
 	}

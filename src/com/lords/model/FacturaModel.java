@@ -1,22 +1,25 @@
 package com.lords.model;
 
+import java.awt.Image;
+
 public class FacturaModel {
 
 	public FacturaModel() {
 
 	}
 	
-	String no_factura;
+	String folioFact;
 	String fecha;
 	String quicena;
 	String estado;
-	int id_pago;
+	Image factura;
 	
-	public String getNo_factura() {
-		return no_factura;
+	
+	public String getFolioFact() {
+		return folioFact;
 	}
-	public void setNo_factura(String no_factura) {
-		this.no_factura = no_factura;
+	public void setFolioFact(String folioFact) {
+		this.folioFact = folioFact;
 	}
 	public String getFecha() {
 		return fecha;
@@ -36,10 +39,12 @@ public class FacturaModel {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public int getId_pago() {
-		return id_pago;
+	public Image getFactura() {
+		return factura;
 	}
-	public void setId_pago(int id_pago) {
-		this.id_pago = id_pago;
+	public void setFactura(Image factura) {
+		this.factura = factura;
 	}
+	
+	
 }
