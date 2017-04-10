@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author macbookpro
  */
 public class Conexion {
-    String bd="usuarios";
+    String bd="verifact";
     String login="root";
     String pass="";
     String url="jdbc:mysql://localhost/"+bd;

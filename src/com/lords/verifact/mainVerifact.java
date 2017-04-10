@@ -11,6 +11,7 @@ public class mainVerifact {
 		UsuarioModel usuarioModelo=new UsuarioModel();
 		PrincipalController controller=new PrincipalController(log, usuarioModelo);
 		log.setVisible(true);
+		log.setLocationRelativeTo(null);
 	}
 
 }

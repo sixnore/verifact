@@ -9,9 +9,11 @@ import com.lords.bo.UsuarioBo;
 import com.lords.conexion.Conexion;
 import com.lords.model.UsuarioModel;
 import com.lords.views.Login;
+import com.lords.views.Menu_admin;
 
 public class PrincipalController implements ActionListener{
 	Login log = new Login();
+	Menu_admin menu_admin=new Menu_admin();
 	UsuarioModel usuarioModelo = new UsuarioModel();
 	UsuarioBo usuarioBo=new UsuarioBo();
 	
@@ -46,6 +48,17 @@ public class PrincipalController implements ActionListener{
 			usuarioModelo.setPassword(password);
 			mensaje=usuarioBo.acceder(usuarioModelo);
 			JOptionPane.showMessageDialog(null, mensaje);
+			if(!mensaje.equals("No existe usuario")){
+				if(usuarioModelo.getRol().equals("ROLE_ADMIN")){
+					log.setVisible(false);
+					menu_admin.setVisible(true);
+					menu_admin.setLocationRelativeTo(null);
+				}else if(usuarioModelo.getRol().equals("ROLE_USER")){
+					
+				}else{
+					
+				}
+			}
 		}
 	}
 	
