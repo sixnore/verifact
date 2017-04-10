@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import javax.swing.JLabel;
 
 public class Login extends JFrame {
 
@@ -49,17 +50,24 @@ public class Login extends JFrame {
 		panel.setLayout(null);
 		
 		jtfUsuario = new JTextField();
-		jtfUsuario.setBounds(144, 150, 117, 20);
+		jtfUsuario.setBounds(160, 148, 117, 20);
 		panel.add(jtfUsuario);
 		jtfUsuario.setColumns(10);
 		
 		btnAcceder = new JButton("ACCEDER");
-		btnAcceder.setBounds(159, 277, 89, 23);
+		btnAcceder.setBounds(160, 280, 117, 23);
 		panel.add(btnAcceder);
 		
 		jpfPassword = new JPasswordField();
-		jpfPassword.setBounds(144, 205, 117, 20);
+		jpfPassword.setBounds(160, 205, 117, 20);
 		panel.add(jpfPassword);
+		
+		JLabel lblUsuario = new JLabel("USUARIO");
+		lblUsuario.setBounds(189, 115, 46, 14);
+		panel.add(lblUsuario);
+		
+		JLabel lblPassword = new JLabel("PASSWORD");
+		lblPassword.setBounds(184, 180, 77, 14);
+		panel.add(lblPassword);
 	}
-	
 }
