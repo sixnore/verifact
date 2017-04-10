@@ -32,7 +32,6 @@ public class PrincipalController implements ActionListener{
 		if(e.getSource().equals(log.btnAcceder)){
 			acceder();
 		}
-		
 	}
 
 	
