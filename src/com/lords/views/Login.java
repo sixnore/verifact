@@ -6,13 +6,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.lords.bo.UsuarioBo;
+import com.lords.model.UsuarioModel;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -20,6 +27,10 @@ public class Login extends JFrame {
 	public JTextField jtfUsuario;
 	public JPasswordField jpfPassword;
 	public JButton btnAcceder;
+	
+	UsuarioModel usuarioModelo = new UsuarioModel();
+	UsuarioBo usuarioBo = new UsuarioBo();
+	Menu_admin menu_admin = new Menu_admin();
 
 	/**
 	 * Launch the application.
@@ -59,6 +70,11 @@ public class Login extends JFrame {
 		jtfUsuario.setColumns(10);
 		
 		btnAcceder = new JButton("");
+		btnAcceder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				acceder();
+			}
+		});
 		btnAcceder.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/boton-LOGIN.png")));
 		btnAcceder.setBounds(115, 339, 124, 39);
 		panel.add(btnAcceder);
@@ -87,5 +103,33 @@ public class Login extends JFrame {
 		label.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
 		label.setBounds(0, 0, 336, 416);
 		panel.add(label);
+	}
+	
+	private void acceder() {
+		String username = jtfUsuario.getText();
+		char[] getPass = jpfPassword.getPassword();
+		String password = new String(getPass);
+		if(username.equals(null)|| password.equals(null)|| password.equals("")|| username.equals("")){
+			JOptionPane.showMessageDialog(null, "Usuario/Contraseña vacíos");
+		}else{
+			String mensaje="";
+			usuarioModelo.setUsername(username);
+			usuarioModelo.setPassword(password);
+			usuarioModelo.setRol("");
+			mensaje=usuarioBo.acceder(usuarioModelo);
+			JOptionPane.showMessageDialog(null, mensaje);
+			if(!mensaje.equals("No existe usuario")){
+				if(usuarioModelo.getRol().equals("ROLE_ADMIN")){
+					
+					this.setVisible(false);
+					menu_admin.setVisible(true);
+					menu_admin.setLocationRelativeTo(null);
+				}else if(usuarioModelo.getRol().equals("ROLE_USER")){
+					
+				}else{
+					
+				}
+			}
+		}
 	}
 }

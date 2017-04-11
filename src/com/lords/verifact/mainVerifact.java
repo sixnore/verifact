@@ -15,6 +15,7 @@ public class mainVerifact {
 		UsuarioModel usuarioModelo=new UsuarioModel();
 		
 		Menu_admin mA = new Menu_admin();
+		
 		Captura_facturas capturaFac = new Captura_facturas();
 		
 		GestionFacturaController gestionFac = new GestionFacturaController(capturaFac);
