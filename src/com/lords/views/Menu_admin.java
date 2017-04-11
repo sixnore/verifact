@@ -7,6 +7,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.lords.model.UsuarioModel;
+import com.mysql.jdbc.PreparedStatement;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -93,6 +97,11 @@ public class Menu_admin extends JFrame {
 		panel.add(btnOrdenesPago);
 		
 		btnSalir = new JButton("");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salir();
+			}
+		});
 		btnSalir.setBackground(Color.WHITE);
 		btnSalir.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
 		btnSalir.setBounds(239, 430, 166, 170);
@@ -102,6 +111,16 @@ public class Menu_admin extends JFrame {
 		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
 		label.setBounds(0, 0, 447, 636);
 		panel.add(label);
+	}
+	
+	private void salir(){
+		UsuarioModel usuarioModel = new UsuarioModel();
+		usuarioModel.setUsername(null);
+		usuarioModel.setPassword(null);
+		Login log = new Login();
+		log.setLocationRelativeTo(null);
+		log.setVisible(true);
+		this.dispose();
 	}
 
 }
