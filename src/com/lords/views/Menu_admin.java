@@ -47,7 +47,7 @@ public class Menu_admin extends JFrame {
 	 */
 	public Menu_admin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 685);
+		setBounds(100, 100, 473, 685);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -58,8 +58,8 @@ public class Menu_admin extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblMenu = new JLabel("MENU");
-		lblMenu.setFont(new Font("Futura Md BT", Font.BOLD, 20));
-		lblMenu.setBounds(179, 11, 75, 23);
+		lblMenu.setFont(new Font("Futura Md BT", Font.BOLD, 30));
+		lblMenu.setBounds(179, 11, 114, 23);
 		panel.add(lblMenu);
 		
 		btnFacturas = new JButton("");
@@ -75,28 +75,32 @@ public class Menu_admin extends JFrame {
 		panel.add(btnUsuarios);
 		
 		btnServicios = new JButton("");
+		btnServicios.setBackground(Color.WHITE);
 		btnServicios.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SERVICIOS.png")));
 		btnServicios.setBounds(39, 249, 166, 170);
 		panel.add(btnServicios);
 		
 		btnProveedores = new JButton("");
+		btnProveedores.setBackground(Color.WHITE);
 		btnProveedores.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-PROVEEDORES.png")));
 		btnProveedores.setBounds(239, 248, 166, 171);
 		panel.add(btnProveedores);
 		
 		btnOrdenesPago = new JButton("");
+		btnOrdenesPago.setBackground(Color.WHITE);
 		btnOrdenesPago.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-ORDENES_PAGO.png")));
 		btnOrdenesPago.setBounds(39, 430, 166, 170);
 		panel.add(btnOrdenesPago);
 		
 		btnSalir = new JButton("");
+		btnSalir.setBackground(Color.WHITE);
 		btnSalir.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
 		btnSalir.setBounds(239, 430, 166, 170);
 		panel.add(btnSalir);
 		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
-		label.setBounds(0, 0, 424, 636);
+		label.setBounds(0, 0, 447, 636);
 		panel.add(label);
 	}
 
