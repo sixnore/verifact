@@ -7,14 +7,31 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
+import com.lords.conexion.Conexion;
+import com.lords.conexion2.GestionBD;
+import com.lords.model.FacturaModel;
+import com.lords.model.OrdenPagoModel;
+import com.lords.model.ProveedorModel;
+import com.lords.model.ServicioModel;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Captura_facturas extends JFrame {
 
@@ -26,8 +43,8 @@ public class Captura_facturas extends JFrame {
 	public JButton btnGuardar;
 	public JButton btnAgregarServ;
 	public JButton btnExaminar;
-	public JComboBox jcbProveedores;
-	public JComboBox jcbServicios;
+	public static JComboBox jcbProveedores;
+	public static JComboBox jcbServicios;
 	public JComboBox jcbMetodo_pago;
 	public JPanel jpImg_factura;
 	public JDateChooser jdcFecha_Recep;
@@ -56,6 +73,12 @@ public class Captura_facturas extends JFrame {
 	 * Create the frame.
 	 */
 	public Captura_facturas() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				llenarCombos();
+			}
+		});
 		setTitle("Gestion de facturas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 453);
@@ -157,6 +180,11 @@ public class Captura_facturas extends JFrame {
 		panel.add(btnExaminar);
 		
 		btnGuardar = new JButton("GUARDAR");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				validacionCampos();
+			}
+		});
 		btnGuardar.setBounds(21, 352, 89, 23);
 		panel.add(btnGuardar);
 		
@@ -186,5 +214,58 @@ public class Captura_facturas extends JFrame {
 		btnAgregarProv = new JButton("AGREGAR");
 		btnAgregarProv.setBounds(351, 98, 89, 23);
 		panel.add(btnAgregarProv);
+	}
+	
+	private void validacionCampos(){
+		String folioFact = txtFolioFactura.getText();
+		String fecha = jdcFecha_Recep.getDateFormatString();
+		String quincena = (String) jcbQuincena.getSelectedItem();
+		String estado = (String) jcbEstado.getSelectedItem();
+		
+		float subtotal = Float.parseFloat( txtSubtotal.getText() );
+		float iva = Float.parseFloat( txtIva.getText() );
+		float total = Float.parseFloat( txtTotal.getText() );
+		
+		int proveedor = jcbProveedores.getSelectedIndex();
+		int servicio = jcbServicios.getSelectedIndex();
+		
+		int metodoPago = jcbMetodo_pago.getSelectedIndex();
+		
+		if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() || subtotal == 0 || iva == 0 || total==0|| estado.equals("Estado. . .") || proveedor ==0 || servicio==0 || metodoPago ==0){
+			JOptionPane.showMessageDialog(null, "Algun campo se encuentra vacio o no selecciona algo");
+		}else{
+			FacturaModel facturaModel = new FacturaModel();
+			OrdenPagoModel ordenPago = new OrdenPagoModel();
+			ProveedorModel proveedorModel = new ProveedorModel();
+			ServicioModel servicioModel = new ServicioModel();
+			
+			facturaModel.setFolioFactura(folioFact);
+			facturaModel.setFechaRecep(fecha);
+			facturaModel.setQuicena(quincena);
+			facturaModel.setEstadoFactura(estado);
+		}
+	}
+		
+	
+	private static void llenarCombos(){
+		GestionBD con = new GestionBD();
+		String instruccionBD = "SELECT proveedor.proveedor FROM proveedor";
+		ResultSet cdr = con.consultas(instruccionBD);
+		try {
+			while (cdr.next()){
+			    jcbProveedores.addItem(cdr.getString(1));
+			}
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error obtniendo datos");
+		}
+		instruccionBD = "SELECT servicio.servicio FROM servicio";
+		cdr = con.consultas(instruccionBD);
+		try {
+			while (cdr.next()){
+			    jcbServicios.addItem(cdr.getString(1));
+			}
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error obtniendo datos");
+		}
 	}
 }
