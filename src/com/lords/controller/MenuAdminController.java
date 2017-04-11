@@ -20,13 +20,21 @@ public class MenuAdminController implements ActionListener{
 		this.menuAd.btnFacturas.addActionListener(this);
 		this.menuAd.btnOrdenesDePago.addActionListener(this);
 		this.menuAd.btnProveedores.addActionListener(this);
-		this.menuAd.btnFacturas.addActionListener(this);
-		this.menuAd.btnFacturas.addActionListener(this);
+		this.menuAd.btnServicios.addActionListener(this);
+		this.menuAd.btnUsuarios.addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource().equals(menuAd.btnFacturas)){
+			abrir();
+		}else if(arg0.getSource().equals(menuAd.btnOrdenesDePago)){
+			abrir();
+		}else if(arg0.getSource().equals(menuAd.btnProveedores)){
+			abrir();
+		}else if(arg0.getSource().equals(menuAd.btnServicios)){
+			abrir();
+		}else if(arg0.getSource().equals(menuAd.btnUsuarios)){
 			abrir();
 		}
 	}
