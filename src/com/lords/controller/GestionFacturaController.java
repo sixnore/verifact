@@ -65,17 +65,37 @@ public class GestionFacturaController implements ActionListener{
 										pagoModel.setSubtotal(subtotal);
 										pagoModel.setIva(iva);
 										pagoModel.setTotal(total);
-										
+									}else{
+										JOptionPane.showMessageDialog(null, "Llena todos los campos");
 									}
 								}
+								else{
+									JOptionPane.showMessageDialog(null, "Llena todos los campos");
+								}
+							}
+							else{
+								JOptionPane.showMessageDialog(null, "Llena todos los campos");
 							}
 						}
+						else{
+							JOptionPane.showMessageDialog(null, "Llena todos los campos");
+						}
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Llena todos los campos");
 					}
 				}
+				else{
+					JOptionPane.showMessageDialog(null, "Llena todos los campos");
+				}
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Llena todos los campos");
 			}
 		}
-		
-		
+		else{
+			JOptionPane.showMessageDialog(null, "Llena todos los campos");
+		}
 	}
 
 }
