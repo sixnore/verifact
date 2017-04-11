@@ -1,36 +1,3 @@
--- CREACIÓN DE LA BASE DE DATOS
-
-CREATE DATABASE lines01 CHARACTER SET 'UTF8';
-USE lines01;
-
--- CREACIÓN DE TABLAS
-
--- TABLA PROVEEDOR
-
-CREATE TABLE proveedor(
-id_proveedor INT(5) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-proveedor VARCHAR(100) NOT NULL
-)Engine=Innodb;
-
--- TABLA SERVICIO
-
-CREATE TABLE servicio(
-id_servicio INT(5) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-servicio VARCHAR(100) NOT NULL,
-importe_num FLOAT(8,2) NOT NULL,
-id_proveedor INT(5),
-FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor)
-)Engine=Innodb;
-
--- TABLA PAGO
-
-CREATE TABLE pago(
-id_pago INT(5) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-folio_cheque INT(5),
-status_pago VARCHAR(15),
-subtotal FLOAT(8,2),
-iva FLOAT(8,2),
-total FLOAT(8,2),
 -- Crecion de la base de datos: INFINITELINES03
 -- 17/03/2017
 -- Burgueño Sanchez Ivan Samuel
@@ -215,7 +182,21 @@ NULL,
 'admon'
 );
 
+-- ______________________________________________________________________________
+-- DESCRIPCION DE TABLAS
+
+DESC servicio;
+DESC pago;
+DESC factura;
+DESC cheque;
+
+-- ______________________________________________________________________________
+-- VISUALIZACION DE TODOS LOS REGISTROS
+
+SELECT * FROM servicio;
+SELECT * FROM pago;
+SELECT * FROM factura;
+SELECT * FROM cheque;
 
  
-
 
