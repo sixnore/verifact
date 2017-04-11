@@ -8,24 +8,26 @@ public class FacturaModel {
 
 	}
 	
-	String folioFact;
-	String fecha;
+	String folioFactura;
+	String fechaRecep;
 	String quicena;
-	String estado;
-	Image factura;
+	String estadoFactura;
+	Image facturaImg;
+	float subtotal;
+	float iva;
+	float total;
 	
-	
-	public String getFolioFact() {
-		return folioFact;
+	public String getFolioFactura() {
+		return folioFactura;
 	}
-	public void setFolioFact(String folioFact) {
-		this.folioFact = folioFact;
+	public void setFolioFactura(String folioFactura) {
+		this.folioFactura = folioFactura;
 	}
-	public String getFecha() {
-		return fecha;
+	public String getFechaRecep() {
+		return fechaRecep;
 	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFechaRecep(String fechaRecep) {
+		this.fechaRecep = fechaRecep;
 	}
 	public String getQuicena() {
 		return quicena;
@@ -33,18 +35,34 @@ public class FacturaModel {
 	public void setQuicena(String quicena) {
 		this.quicena = quicena;
 	}
-	public String getEstado() {
-		return estado;
+	public String getEstadoFactura() {
+		return estadoFactura;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEstadoFactura(String estadoFactura) {
+		this.estadoFactura = estadoFactura;
 	}
-	public Image getFactura() {
-		return factura;
+	public Image getFacturaImg() {
+		return facturaImg;
 	}
-	public void setFactura(Image factura) {
-		this.factura = factura;
+	public void setFacturaImg(Image facturaImg) {
+		this.facturaImg = facturaImg;
 	}
-	
-	
+	public float getSubtotal() {
+		return subtotal;
+	}
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}
+	public float getIva() {
+		return iva;
+	}
+	public void setIva(float iva) {
+		this.iva = iva;
+	}
+	public float getTotal() {
+		return total;
+	}
+	public void setTotal(float total) {
+		this.total = total;
+	}
 }

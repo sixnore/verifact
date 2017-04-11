@@ -7,14 +7,10 @@ public class PagoModel {
 	}
 	
 	int id_pago;
-	String folio_cheque;
-	String status_pago;
-	float subtotal;
-	float iva;
-	float total;
-	String metodo_pago;
-	int id_servicio;
-	String folio_factura;
+	int noOrdenPago;
+	String estadoPago;
+	int idServicio;
+	String folioFactura;
 	
 	public int getId_pago() {
 		return id_pago;
@@ -22,52 +18,28 @@ public class PagoModel {
 	public void setId_pago(int id_pago) {
 		this.id_pago = id_pago;
 	}
-	public String getFolio_cheque() {
-		return folio_cheque;
+	public int getNoOrdenPago() {
+		return noOrdenPago;
 	}
-	public void setFolio_cheque(String folio_cheque) {
-		this.folio_cheque = folio_cheque;
+	public void setNoOrdenPago(int noOrdenPago) {
+		this.noOrdenPago = noOrdenPago;
 	}
-	public String getStatus_pago() {
-		return status_pago;
+	public String getEstadoPago() {
+		return estadoPago;
 	}
-	public void setStatus_pago(String status_pago) {
-		this.status_pago = status_pago;
+	public void setEstadoPago(String estadoPago) {
+		this.estadoPago = estadoPago;
 	}
-	public float getSubtotal() {
-		return subtotal;
+	public int getIdServicio() {
+		return idServicio;
 	}
-	public void setSubtotal(float subtotal) {
-		this.subtotal = subtotal;
+	public void setIdServicio(int idServicio) {
+		this.idServicio = idServicio;
 	}
-	public float getIva() {
-		return iva;
+	public String getFolioFactura() {
+		return folioFactura;
 	}
-	public void setIva(float iva) {
-		this.iva = iva;
-	}
-	public float getTotal() {
-		return total;
-	}
-	public void setTotal(float total) {
-		this.total = total;
-	}
-	public String getMetodo_pago() {
-		return metodo_pago;
-	}
-	public void setMetodo_pago(String metodo_pago) {
-		this.metodo_pago = metodo_pago;
-	}
-	public int getId_servicio() {
-		return id_servicio;
-	}
-	public void setId_servicio(int id_servicio) {
-		this.id_servicio = id_servicio;
-	}
-	public String getFolio_factura() {
-		return folio_factura;
-	}
-	public void setFolio_factura(String folio_factura) {
-		this.folio_factura = folio_factura;
+	public void setFolioFactura(String folioFactura) {
+		this.folioFactura = folioFactura;
 	}
 }
