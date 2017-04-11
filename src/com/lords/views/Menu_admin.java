@@ -11,15 +11,20 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Menu_admin extends JFrame {
 
 	public JPanel contentPane;
 	public JButton btnFacturas;
 	public JButton btnServicios;
-	public JButton btnOrdenesDePago;
-	public JButton btnProveedores;
 	public JButton btnUsuarios;
+	private JLabel label;
+	private JButton btnProveedores;
+	private JButton btnOrdenesPago;
+	private JButton btnSalir;
 
 	/**
 	 * Launch the application.
@@ -42,7 +47,7 @@ public class Menu_admin extends JFrame {
 	 */
 	public Menu_admin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 415);
+		setBounds(100, 100, 450, 685);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -53,28 +58,46 @@ public class Menu_admin extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblMenu = new JLabel("MENU");
-		lblMenu.setBounds(191, 24, 46, 14);
+		lblMenu.setFont(new Font("Futura Md BT", Font.BOLD, 20));
+		lblMenu.setBounds(179, 11, 75, 23);
 		panel.add(lblMenu);
 		
-		btnFacturas = new JButton("FACTURAS");
-		btnFacturas.setBounds(66, 113, 113, 23);
+		btnFacturas = new JButton("");
+		btnFacturas.setBackground(Color.WHITE);
+		btnFacturas.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-FACTURA.png")));
+		btnFacturas.setBounds(39, 45, 166, 193);
 		panel.add(btnFacturas);
 		
-		btnUsuarios = new JButton("USUARIOS");
-		btnUsuarios.setBounds(249, 113, 113, 23);
+		btnUsuarios = new JButton("");
+		btnUsuarios.setBackground(Color.WHITE);
+		btnUsuarios.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-USUARIOS.png")));
+		btnUsuarios.setBounds(239, 45, 175, 193);
 		panel.add(btnUsuarios);
 		
-		btnProveedores = new JButton("PROVEEDORES");
-		btnProveedores.setBounds(249, 196, 113, 23);
-		panel.add(btnProveedores);
-		
-		btnServicios = new JButton("SERVICIOS");
-		btnServicios.setBounds(66, 196, 113, 23);
+		btnServicios = new JButton("");
+		btnServicios.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SERVICIOS.png")));
+		btnServicios.setBounds(39, 249, 166, 170);
 		panel.add(btnServicios);
 		
-		btnOrdenesDePago = new JButton("ORDENES DE PAGO");
-		btnOrdenesDePago.setBounds(147, 267, 140, 23);
-		panel.add(btnOrdenesDePago);
+		btnProveedores = new JButton("");
+		btnProveedores.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-PROVEEDORES.png")));
+		btnProveedores.setBounds(239, 248, 166, 171);
+		panel.add(btnProveedores);
+		
+		btnOrdenesPago = new JButton("");
+		btnOrdenesPago.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-ORDENES_PAGO.png")));
+		btnOrdenesPago.setBounds(39, 430, 166, 170);
+		panel.add(btnOrdenesPago);
+		
+		btnSalir = new JButton("");
+		btnSalir.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
+		btnSalir.setBounds(239, 430, 166, 170);
+		panel.add(btnSalir);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
+		label.setBounds(0, 0, 424, 636);
+		panel.add(label);
 	}
 
 }
