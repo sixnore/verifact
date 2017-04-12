@@ -90,8 +90,8 @@ public class Captura_facturas extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-			llenarServicios();
-			//llenarProveedores();
+			//llenarServicios();
+			llenarProveedores();
 			}
 		});
 		setTitle("Gestion de facturas");
@@ -273,18 +273,32 @@ public class Captura_facturas extends JFrame {
 	
 	
 	private void seleccionServicios(){
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbServicios.getModel();
 		if(!(jcbProveedores.equals("Proveedores..."))){
+			modelo.removeAllElements();
+			modelo.addElement("Servicios...");
 			Connection accesodb = (Connection) conexion.conectandobd();
+			
+			String proveedor = (String) jcbProveedores.getSelectedItem();
+			
 			try {
-
-				
+				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(" select servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
+				ps.setString(1, proveedor);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					modelo.addElement(rs.getObject(1));
+				}
+				jcbServicios.setModel(modelo);
 			} catch (Exception e) {
 				
 			}
+		}else{
+			
 		}
 		
 	}
 	
+	/*
 	private static void llenarServicios(){
 		Connection accesodb = (Connection) conexion.conectandobd();
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbServicios.getModel();
@@ -301,8 +315,9 @@ public class Captura_facturas extends JFrame {
 			JOptionPane.showMessageDialog(null, "Error cargando datos");
 		}
 	}
+	*/
 	
-	/*
+	
 	private static void llenarProveedores(){
 		Connection accesodb = (Connection) conexion.conectandobd();
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbProveedores.getModel();
@@ -319,5 +334,4 @@ public class Captura_facturas extends JFrame {
 			JOptionPane.showMessageDialog(null, "Error cargando datos");
 		}
 	}
-	*/
 }
