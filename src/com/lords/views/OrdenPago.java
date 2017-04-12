@@ -46,7 +46,7 @@ public class OrdenPago extends JFrame {
 	 */
 	public OrdenPago() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 585, 558);
+		setBounds(100, 100, 585, 608);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -211,7 +211,7 @@ public class OrdenPago extends JFrame {
 		lblTitulo.setBounds(110, 47, 324, 55);
 		panel.add(lblTitulo);
 		
-		JLabel lblFechaDeElaboracin = new JLabel("FECHA DE ELABORACI\u00D3N");
+		JLabel lblFechaDeElaboracin = new JLabel("FECHA DE ");
 		lblFechaDeElaboracin.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblFechaDeElaboracin.setBounds(444, 47, 105, 14);
 		panel.add(lblFechaDeElaboracin);
@@ -220,5 +220,20 @@ public class OrdenPago extends JFrame {
 		lblLogo.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/logo.png")));
 		lblLogo.setBounds(23, 47, 55, 55);
 		panel.add(lblLogo);
+		
+		JLabel lblElaboracin = new JLabel("ELABORACI\u00D3N");
+		lblElaboracin.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblElaboracin.setBounds(444, 60, 95, 14);
+		panel.add(lblElaboracin);
+		
+		JButton btnSalir = new JButton("");
+		btnSalir.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
+		btnSalir.setBounds(62, 509, 117, 36);
+		panel.add(btnSalir);
+		
+		JButton btnGuardar = new JButton("");
+		btnGuardar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
+		btnGuardar.setBounds(365, 509, 117, 36);
+		panel.add(btnGuardar);
 	}
 }
