@@ -41,10 +41,12 @@ public class mainVerifact {
 		
 		//Controladores
 		GestionFacturaController gestionFacturaController=new GestionFacturaController();
-		MenuAdminController menuAdminController=new MenuAdminController();
+		MenuAdminController menuAdminController=new MenuAdminController(vistaMenuAdmin);
 		
 		vistaLogin.setVisible(true);
 		PrincipalController principalController=new PrincipalController(usuarioModel, vistaLogin, usuarioBo);
+		
+		
 //		vistaCapFac.setVisible(true);
 //		vistaMenuAdmin.setVisible(true);
 //		vistaOrdenPago.setVisible(true);

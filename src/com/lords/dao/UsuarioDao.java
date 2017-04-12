@@ -21,7 +21,7 @@ public class UsuarioDao {
 		try {
 
 			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(
-					"select usuario.username, usuario.password,rolusuario.rol from usuario inner join rolusuario on rolusuario.idUsuario=usuario.idUsuario where usuario.username=? and password=?");
+					"select usuario.username, usuario.password,rollusuario.roll from usuario inner join rollusuario on rollusuario.id_usuario=usuario.id_usuario where usuario.username=? and password=?");
 			ps.setString(1, usuarioModelo.getUsername());
 			ps.setString(2, usuarioModelo.getPassword());
 

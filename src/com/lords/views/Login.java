@@ -114,12 +114,12 @@ public class Login extends JFrame {
 			mensaje=usuarioBo.acceder(usuarioModelo);
 			JOptionPane.showMessageDialog(null, mensaje);
 			if(!mensaje.equals("No existe usuario")){
-				if(usuarioModelo.getRol().equals("ROLE_ADMIN")){
+				if(usuarioModelo.getRol().equals("admon")){
 					
 					this.setVisible(false);
 					menu_admin.setVisible(true);
 					menu_admin.setLocationRelativeTo(null);
-				}else if(usuarioModelo.getRol().equals("ROLE_USER")){
+				}else if(usuarioModelo.getRol().equals("secretary")){
 					
 				}else{
 					
