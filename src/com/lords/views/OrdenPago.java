@@ -16,6 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class OrdenPago extends JFrame {
 
@@ -44,18 +46,19 @@ public class OrdenPago extends JFrame {
 	 */
 	public OrdenPago() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 585, 491);
+		setBounds(100, 100, 585, 558);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(415, 11, 134, 20);
+		dateChooser.setBounds(444, 82, 105, 20);
 		panel.add(dateChooser);
 		
 		JLabel lblOrdenDePago = new JLabel("ORDEN DE PAGO");
@@ -64,8 +67,9 @@ public class OrdenPago extends JFrame {
 		panel.add(lblOrdenDePago);
 		
 		JPanel jpSolicitudCheque = new JPanel();
+		jpSolicitudCheque.setBackground(Color.WHITE);
 		jpSolicitudCheque.setBorder(new TitledBorder(null, "SOLICITUD DE CHEQUE", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		jpSolicitudCheque.setBounds(10, 54, 539, 219);
+		jpSolicitudCheque.setBounds(10, 113, 539, 219);
 		panel.add(jpSolicitudCheque);
 		jpSolicitudCheque.setLayout(null);
 		
@@ -142,8 +146,9 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblConstante2);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBorder(new TitledBorder(null, "PARA USO DE CONTABILIDAD", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel_1.setBounds(10, 284, 539, 63);
+		panel_1.setBounds(10, 343, 539, 63);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -157,8 +162,9 @@ public class OrdenPago extends JFrame {
 		panel_1.add(comboBox_2);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
 		panel_2.setBorder(new TitledBorder(null, "SOLICIT\u00D3", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel_2.setBounds(10, 358, 245, 47);
+		panel_2.setBounds(10, 417, 245, 47);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -173,8 +179,9 @@ public class OrdenPago extends JFrame {
 		panel_2.add(lblGerenteDerea);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.WHITE);
 		panel_3.setBorder(new TitledBorder(null, "AUTORIZ\u00D3", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel_3.setBounds(287, 358, 262, 47);
+		panel_3.setBounds(287, 417, 262, 47);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
@@ -191,12 +198,27 @@ public class OrdenPago extends JFrame {
 		JLabel lblNotaEnCaso = new JLabel("NOTA: EN CASO DE NO EFECTUAR LA COMPROBACI\u00D3N DENTRO DE LOS 15 D\u00CDAS POSTERIORES SE PROCEDER\u00C1 ");
 		lblNotaEnCaso.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblNotaEnCaso.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNotaEnCaso.setBounds(10, 404, 539, 20);
+		lblNotaEnCaso.setBounds(10, 463, 539, 20);
 		panel.add(lblNotaEnCaso);
 		
 		JLabel lblSeProcederA = new JLabel("A APLICAR EN LA QUINCENA INMEDIATA EL DESCUENTO CONRRESPONDIENTE POR VIA N\u00D3MINA.");
 		lblSeProcederA.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblSeProcederA.setBounds(10, 425, 529, 14);
+		lblSeProcederA.setBounds(10, 484, 529, 14);
 		panel.add(lblSeProcederA);
+		
+		JLabel lblTitulo = new JLabel("");
+		lblTitulo.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/titulo-CRUZAZUL.png")));
+		lblTitulo.setBounds(110, 47, 324, 55);
+		panel.add(lblTitulo);
+		
+		JLabel lblFechaDeElaboracin = new JLabel("FECHA DE ELABORACI\u00D3N");
+		lblFechaDeElaboracin.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblFechaDeElaboracin.setBounds(444, 47, 105, 14);
+		panel.add(lblFechaDeElaboracin);
+		
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/logo.png")));
+		lblLogo.setBounds(23, 47, 55, 55);
+		panel.add(lblLogo);
 	}
 }
