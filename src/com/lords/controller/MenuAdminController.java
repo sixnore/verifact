@@ -38,9 +38,5 @@ public class MenuAdminController implements ActionListener{
 		}else if(arg0.getSource().equals(menuAd.btnSalir)){
 			JOptionPane.showMessageDialog(null, "Salida");
 		}
-		
 	}
-	
-	
-
 }

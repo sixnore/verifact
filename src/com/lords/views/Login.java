@@ -28,6 +28,7 @@ public class Login extends JFrame {
 	public JTextField jtfUsuario;
 	public JPasswordField jpfPassword;
 	public JButton btnAcceder;
+	public JButton btnSalir;
 	
 	UsuarioModel usuarioModelo = new UsuarioModel();
 	UsuarioBo usuarioBo = new UsuarioBo();
@@ -98,7 +99,7 @@ public class Login extends JFrame {
 		lblImagenUser.setBounds(114, 11, 137, 164);
 		panel.add(lblImagenUser);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -138,6 +139,8 @@ public class Login extends JFrame {
 				}else{
 					
 				}
+			}else{
+				JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrectos");
 			}
 		}
 	}

@@ -22,6 +22,7 @@ public class PrincipalController implements ActionListener{
 		this.usuarioModel=usuarioModel;
 		this.vistaLogin=vistaLogin;
 		vistaLogin.btnAcceder.addActionListener(this);
+		vistaLogin.btnSalir.addActionListener(this);
 	}
 	
 	@Override
@@ -41,6 +42,8 @@ public class PrincipalController implements ActionListener{
 					vistaMenu.setLocationRelativeTo(null);
 				}
 			}
+		}else if(e.getSource().equals(vistaLogin.btnSalir)){
+			System.exit(0);
 		}
 	}
 }
