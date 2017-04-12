@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 import com.lords.conexion.Conexion;
+import com.lords.dao.FacturaDao;
 import com.lords.model.FacturaModel;
 import com.lords.model.OrdenPagoModel;
 import com.lords.model.ProveedorModel;
@@ -31,6 +32,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Captura_facturas extends JFrame {
 
@@ -44,7 +47,7 @@ public class Captura_facturas extends JFrame {
 	public JButton btnExaminar;
 	public static JComboBox jcbProveedores;
 	public static JComboBox jcbServicios;
-	public JComboBox jcbMetodo_pago;
+	public JComboBox jcbMetodoPago;
 	public JPanel jpImg_factura;
 	public JDateChooser jdcFecha_Recep;
 	private JLabel lblEstado;
@@ -52,6 +55,14 @@ public class Captura_facturas extends JFrame {
 	public JComboBox jcbEstado;
 	public JButton btnAgregarProv;
 
+	static Conexion conexion;
+	FacturaModel facturaModel = new FacturaModel();
+	OrdenPagoModel ordenPago = new OrdenPagoModel();
+	ProveedorModel proveedorModel = new ProveedorModel();
+	ServicioModel servicioModel = new ServicioModel();
+	
+	FacturaDao facturaDao = new FacturaDao();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -72,10 +83,14 @@ public class Captura_facturas extends JFrame {
 	 * Create the frame.
 	 */
 	public Captura_facturas() {
+		
+		conexion = new Conexion();
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				llenarCombos();
+			llenarServicios();
+			//llenarProveedores();
 			}
 		});
 		setTitle("Gestion de facturas");
@@ -117,6 +132,11 @@ public class Captura_facturas extends JFrame {
 		panel.add(lblProveedor);
 		
 		jcbProveedores = new JComboBox();
+		jcbProveedores.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				seleccionServicios();
+			}
+		});
 		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
 		jcbProveedores.setBounds(113, 99, 228, 20);
 		panel.add(jcbProveedores);
@@ -165,10 +185,10 @@ public class Captura_facturas extends JFrame {
 		lblMtodoDePago.setBounds(21, 275, 82, 14);
 		panel.add(lblMtodoDePago);
 		
-		jcbMetodo_pago = new JComboBox();
-		jcbMetodo_pago.setModel(new DefaultComboBoxModel(new String[] {"Pago...", "TRANSFERENCIA BANCARIA", "V\u00CDA CHEQUE", "EN EFECTIVO"}));
-		jcbMetodo_pago.setBounds(113, 272, 166, 20);
-		panel.add(jcbMetodo_pago);
+		jcbMetodoPago = new JComboBox();
+		jcbMetodoPago.setModel(new DefaultComboBoxModel(new String[] {"Pago...", "TRANSFERENCIA BANCARIA", "V\u00CDA CHEQUE", "EN EFECTIVO"}));
+		jcbMetodoPago.setBounds(113, 272, 166, 20);
+		panel.add(jcbMetodoPago);
 		
 		JLabel lblAgregarDocumentoEscaneado = new JLabel("Agregar documento escaneado");
 		lblAgregarDocumentoEscaneado.setBounds(21, 314, 163, 14);
@@ -221,50 +241,80 @@ public class Captura_facturas extends JFrame {
 		String quincena = (String) jcbQuincena.getSelectedItem();
 		String estado = (String) jcbEstado.getSelectedItem();
 		
-		float subtotal = Float.parseFloat( txtSubtotal.getText() );
-		float iva = Float.parseFloat( txtIva.getText() );
-		float total = Float.parseFloat( txtTotal.getText() );
+		String proveedor = (String) jcbProveedores.getSelectedItem();
+		String servicio = (String) jcbServicios.getSelectedItem();
 		
-		int proveedor = jcbProveedores.getSelectedIndex();
-		int servicio = jcbServicios.getSelectedIndex();
+		String pago = (String) jcbMetodoPago.getSelectedItem();
 		
-		int metodoPago = jcbMetodo_pago.getSelectedIndex();
-		
-		if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() || subtotal == 0 || iva == 0 || total==0|| estado.equals("Estado. . .") || proveedor ==0 || servicio==0 || metodoPago ==0){
+		if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() || txtSubtotal.getText().isEmpty() || txtIva.getText().isEmpty() || txtTotal.getText().isEmpty() || estado.equals("Estado...") || proveedor.equals("Proveedores...") || servicio.equals("Servicios...") || pago.equals("Pago...")){
 			JOptionPane.showMessageDialog(null, "Algun campo se encuentra vacio o no selecciona algo");
 		}else{
-			FacturaModel facturaModel = new FacturaModel();
-			OrdenPagoModel ordenPago = new OrdenPagoModel();
-			ProveedorModel proveedorModel = new ProveedorModel();
-			ServicioModel servicioModel = new ServicioModel();
+			float subtotal = Float.parseFloat( txtSubtotal.getText() );
+			float iva = Float.parseFloat( txtIva.getText() );
+			float total = Float.parseFloat( txtTotal.getText() );
 			
 			facturaModel.setFolioFactura(folioFact);
 			facturaModel.setFechaRecep(fecha);
 			facturaModel.setQuicena(quincena);
 			facturaModel.setEstadoFactura(estado);
+			
+			proveedorModel.setProveedor(proveedor);
+			servicioModel.setServicio(servicio);
+			
+			ordenPago.setTipoPago(pago);
+			
+			String mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel );
 		}
 	}
 		
 	
-	private static void llenarCombos(){
-//		GestionBD con = new GestionBD();
-//		String instruccionBD = "SELECT proveedor.proveedor FROM proveedor";
-//		ResultSet cdr = con.consultas(instruccionBD);
-//		try {
-//			while (cdr.next()){
-//			    jcbProveedores.addItem(cdr.getString(1));
-//			}
-//		} catch (SQLException e) {
-//			JOptionPane.showMessageDialog(null, "Error obtniendo datos");
-//		}
-//		instruccionBD = "SELECT servicio.servicio FROM servicio";
-//		cdr = con.consultas(instruccionBD);
-//		try {
-//			while (cdr.next()){
-//			    jcbServicios.addItem(cdr.getString(1));
-//			}
-//		} catch (SQLException e) {
-//			JOptionPane.showMessageDialog(null, "Error obtniendo datos");
-//		}
+	
+	private void seleccionServicios(){
+		if(!(jcbProveedores.equals("Proveedores..."))){
+			Connection accesodb = (Connection) conexion.conectandobd();
+			try {
+
+				
+			} catch (Exception e) {
+				
+			}
+		}
+		
 	}
+	
+	private static void llenarServicios(){
+		Connection accesodb = (Connection) conexion.conectandobd();
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbServicios.getModel();
+		try {
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("select servicio from servicio");
+			ResultSet rs = ps.executeQuery();
+			jcbServicios.setModel(modelo);
+			while(rs.next()){
+				modelo.addElement(rs.getObject(1));
+				jcbServicios.setModel(modelo);
+			}
+			ps.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error cargando datos");
+		}
+	}
+	
+	/*
+	private static void llenarProveedores(){
+		Connection accesodb = (Connection) conexion.conectandobd();
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbProveedores.getModel();
+		try {
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("select proveedor from proveedor");
+			ResultSet rs = ps.executeQuery();
+			jcbProveedores.setModel(modelo);
+			while(rs.next()){
+				modelo.addElement(rs.getObject(1));
+				jcbProveedores.setModel(modelo);
+			}
+			ps.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error cargando datos");
+		}
+	}
+	*/
 }

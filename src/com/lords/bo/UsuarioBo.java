@@ -7,6 +7,7 @@ import com.lords.model.UsuarioModel;
 
 public class UsuarioBo {
 	UsuarioDao usuarioDao=new UsuarioDao();
+	
 	public String acceder(UsuarioModel usuarioModelo) {
 		String mensaje="";
 		mensaje=usuarioModelo.getUsername()+" "+usuarioModelo.getPassword();

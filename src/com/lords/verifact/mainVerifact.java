@@ -18,6 +18,8 @@ import com.lords.views.Proveedores;
 
 public class mainVerifact {
 
+	UsuarioModel usuarioModel = new UsuarioModel();
+	
 	public static void main(String[] args) {
 		//Vistas 
 		Login vistaLogin = new Login();
@@ -40,12 +42,11 @@ public class mainVerifact {
 		UsuarioModel usuarioModel=new UsuarioModel();
 		
 		//Controladores
-		GestionFacturaController gestionFacturaController=new GestionFacturaController();
+		GestionFacturaController gestionFacturaController=new GestionFacturaController(vistaCapFac, facturaModel, pagoModel, proveedorModel, servicioModel);
 		MenuAdminController menuAdminController=new MenuAdminController(vistaMenuAdmin);
 		
 		
 		PrincipalController principalController=new PrincipalController(usuarioModel, vistaLogin, usuarioBo);
-		
 		
 //		vistaCapFac.setVisible(true);
 //		vistaMenuAdmin.setVisible(true);
@@ -55,6 +56,9 @@ public class mainVerifact {
             vistaLogin.setLocationRelativeTo(null);
 			vistaLogin.setUndecorated(true);
 			vistaLogin.setVisible(true);
+			usuarioModel.setRol("");
+			usuarioModel.setUsername("");
+			usuarioModel.setPassword("");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}//CATCH

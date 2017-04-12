@@ -21,14 +21,39 @@ import java.awt.Color;
 
 public class Menu_admin extends JFrame {
 
+	private JLabel label;
 	public JPanel contentPane;
 	public JButton btnFacturas;
 	public JButton btnServicios;
 	public JButton btnUsuarios;
-	private JLabel label;
 	public JButton btnProveedores;
 	public JButton btnOrdenesPago;
 	public JButton btnSalir;
+	
+	
+	public JButton getBtnFacturas() {
+		return btnFacturas;
+	}
+
+	public JButton getBtnServicios() {
+		return btnServicios;
+	}
+
+	public JButton getBtnUsuarios() {
+		return btnUsuarios;
+	}
+
+	public JButton getBtnProveedores() {
+		return btnProveedores;
+	}
+
+	public JButton getBtnOrdenesPago() {
+		return btnOrdenesPago;
+	}
+
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
 
 	/**
 	 * Launch the application.
@@ -101,7 +126,6 @@ public class Menu_admin extends JFrame {
 		btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-            salir();
 			}
 		});
 		btnSalir.setBackground(Color.WHITE);
@@ -113,17 +137,5 @@ public class Menu_admin extends JFrame {
 		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
 		label.setBounds(0, 0, 460, 650);
 		panel.add(label);
-	}
-	
-	private void salir(){
-		Login vistaLogin = new Login();
-		this.setVisible(false);
-		try {
-            vistaLogin.setLocationRelativeTo(null);
-			vistaLogin.setUndecorated(true);
-			vistaLogin.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}//CATCH
 	}
 }

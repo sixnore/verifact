@@ -29,12 +29,16 @@ public class PrincipalController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(vistaLogin.btnAcceder)) {
 			String resultado="";
-			if(vistaLogin.jtfUsuario.getText().isEmpty()||vistaLogin.jpfPassword.getText().isEmpty()){
+			char[] getPass = vistaLogin.jpfPassword.getPassword();
+			String password = String.valueOf(getPass);
+			if(vistaLogin.jtfUsuario.getText().isEmpty()|| password.isEmpty()){
 				resultado="Completa los campos";
 			}else{
 				usuarioModel.setUsername(vistaLogin.jtfUsuario.getText());
-				usuarioModel.setPassword(vistaLogin.jpfPassword.getText());
+				usuarioModel.setPassword(password);
+				
 				resultado=usuarioBo.acceder(usuarioModel);
+				
 				JOptionPane.showMessageDialog(null, resultado);
 				if(!(resultado=="No existe usuario")){
 					vistaLogin.setVisible(false);

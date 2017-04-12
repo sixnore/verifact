@@ -6,37 +6,55 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import com.lords.views.Captura_facturas;
+import com.lords.views.Login;
 import com.lords.views.Menu_admin;
 
 public class MenuAdminController implements ActionListener{
 
-	Menu_admin menuAd = new Menu_admin();
+	private Menu_admin view;
 	
 	Captura_facturas capturaFact = new Captura_facturas();
+	
 	public MenuAdminController(Menu_admin menuAd){
-		this.menuAd = menuAd;
-		menuAd.btnFacturas.addActionListener(this);
-		menuAd.btnOrdenesPago.addActionListener(this);
-		menuAd.btnProveedores.addActionListener(this);
-		menuAd.btnProveedores.addActionListener(this);
-		menuAd.btnSalir.addActionListener(this);
-		menuAd.btnUsuarios.addActionListener(this);
+		this.view = menuAd;
+		addListener();
+	}
+	
+	private void addListener(){
+		view.btnFacturas.addActionListener(this);
+		view.btnOrdenesPago.addActionListener(this);
+		view.btnProveedores.addActionListener(this);
+		view.btnServicios.addActionListener(this);
+		view.btnUsuarios.addActionListener(this);
+		view.btnSalir.addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource().equals(menuAd.btnFacturas)){
-			JOptionPane.showMessageDialog(null, "Escuchado Facturas");
-		}else if(arg0.getSource().equals(menuAd.btnServicios)){
-			JOptionPane.showMessageDialog(null, "Escuchado Servicios");
-		}else if(arg0.getSource().equals(menuAd.btnUsuarios)){
-			JOptionPane.showMessageDialog(null, "Escuchado Usuario");
-		}else if(arg0.getSource().equals(menuAd.btnOrdenesPago)){
-			JOptionPane.showMessageDialog(null, "Escuchado Ordenes");
-		}else if(arg0.getSource().equals(menuAd.btnProveedores)){
-			JOptionPane.showMessageDialog(null, "Escuchado Proveedores");
-		}else if(arg0.getSource().equals(menuAd.btnSalir)){
-			JOptionPane.showMessageDialog(null, "Salida");
+		if(arg0.getSource() == view.btnFacturas){
+			view.dispose();
+			capturaFact.setLocationRelativeTo(null);
+			capturaFact.setVisible(true);
+			return;
+		}
+		if(arg0.getSource() == view.btnOrdenesPago){
+			return;
+		}
+		if(arg0.getSource() == view.btnProveedores){
+			return;
+		}
+		if(arg0.getSource() == view.btnServicios){
+			return;
+		}
+		if(arg0.getSource() == view.btnUsuarios){
+			return;
+		}
+		if(arg0.getSource() == view.btnSalir){
+			Login log = new Login();
+			view.dispose();
+			log.setLocationRelativeTo(null);
+			log.setVisible(true);
+			return;
 		}
 	}
 }
