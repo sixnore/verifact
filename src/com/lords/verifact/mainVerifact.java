@@ -43,7 +43,7 @@ public class mainVerifact {
 		GestionFacturaController gestionFacturaController=new GestionFacturaController();
 		MenuAdminController menuAdminController=new MenuAdminController(vistaMenuAdmin);
 		
-		vistaLogin.setVisible(true);
+		
 		PrincipalController principalController=new PrincipalController(usuarioModel, vistaLogin, usuarioBo);
 		
 		
@@ -51,7 +51,12 @@ public class mainVerifact {
 //		vistaMenuAdmin.setVisible(true);
 //		vistaOrdenPago.setVisible(true);
 //		vistaProv.setVisible(true);
-		vistaLogin.setLocationRelativeTo(null);
+		try {
+            vistaLogin.setLocationRelativeTo(null);
+			vistaLogin.setUndecorated(true);
+			vistaLogin.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}//CATCH
 	}
-
 }
