@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
 
@@ -40,6 +41,8 @@ public class Login extends JFrame {
 			public void run() {
 				try {
 					Login frame = new Login();
+                    frame.setLocationRelativeTo(null);
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,9 +56,8 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 362, 465);
+		setBounds(100, 100, 370, 476);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
@@ -65,38 +67,50 @@ public class Login extends JFrame {
 		panel.setLayout(null);
 		
 		jtfUsuario = new JTextField();
-		jtfUsuario.setBounds(115, 236, 117, 20);
+		jtfUsuario.setBounds(134, 211, 117, 20);
 		panel.add(jtfUsuario);
 		jtfUsuario.setColumns(10);
 		
 		btnAcceder = new JButton("");
 		btnAcceder.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/boton-LOGIN.png")));
-		btnAcceder.setBounds(115, 339, 124, 39);
+		btnAcceder.setBounds(134, 303, 117, 39);
 		panel.add(btnAcceder);
 		
 		jpfPassword = new JPasswordField();
-		jpfPassword.setBounds(115, 297, 117, 20);
+		jpfPassword.setBounds(134, 272, 117, 20);
 		panel.add(jpfPassword);
 		
 		JLabel lblUsuario = new JLabel("USUARIO");
-		lblUsuario.setFont(new Font("Futura Md BT", Font.BOLD, 15));
+		lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsuario.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
 		lblUsuario.setForeground(Color.BLACK);
-		lblUsuario.setBounds(135, 211, 83, 14);
+		lblUsuario.setBounds(134, 186, 117, 14);
 		panel.add(lblUsuario);
 		
 		JLabel lblPassword = new JLabel("PASSWORD");
-		lblPassword.setFont(new Font("Futura Md BT", Font.BOLD, 15));
-		lblPassword.setBounds(125, 272, 93, 14);
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
+		lblPassword.setBounds(134, 247, 117, 14);
 		panel.add(lblPassword);
 		
 		JLabel lblImagenUser = new JLabel("");
 		lblImagenUser.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/Usuario_1.png")));
-		lblImagenUser.setBounds(95, 25, 137, 164);
+		lblImagenUser.setBounds(114, 11, 137, 164);
 		panel.add(lblImagenUser);
+		
+		JButton btnSalir = new JButton("");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
+		btnSalir.setBounds(132, 357, 119, 34);
+		panel.add(btnSalir);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
-		label.setBounds(0, 0, 336, 416);
+		label.setBounds(0, 0, 376, 476);
 		panel.add(label);
 	}
 	
