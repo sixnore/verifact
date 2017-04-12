@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,6 +81,8 @@ public class Captura_facturas extends JFrame {
 		});
 		setTitle("Gestion de facturas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
+        this.setIconImage(icono); 
 		setBounds(100, 100, 480, 453);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
