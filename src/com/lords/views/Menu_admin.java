@@ -84,7 +84,7 @@ public class Menu_admin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 460, 650);
+		setBounds(100, 100, 460, 278);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -101,31 +101,31 @@ public class Menu_admin extends JFrame {
 		btnFacturas = new JButton("");
 		btnFacturas.setBackground(Color.WHITE);
 		btnFacturas.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-FACTURA.png")));
-		btnFacturas.setBounds(39, 45, 166, 193);
+		btnFacturas.setBounds(10, 45, 194, 38);
 		panel.add(btnFacturas);
 		
 		btnUsuarios = new JButton("");
 		btnUsuarios.setBackground(Color.WHITE);
 		btnUsuarios.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-USUARIOS.png")));
-		btnUsuarios.setBounds(239, 45, 175, 193);
+		btnUsuarios.setBounds(239, 45, 194, 38);
 		panel.add(btnUsuarios);
 		
 		btnServicios = new JButton("");
 		btnServicios.setBackground(Color.WHITE);
 		btnServicios.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SERVICIOS.png")));
-		btnServicios.setBounds(39, 249, 166, 170);
+		btnServicios.setBounds(10, 103, 194, 38);
 		panel.add(btnServicios);
 		
 		btnProveedores = new JButton("");
 		btnProveedores.setBackground(Color.WHITE);
 		btnProveedores.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-PROVEEDORES.png")));
-		btnProveedores.setBounds(239, 248, 166, 171);
+		btnProveedores.setBounds(239, 103, 194, 38);
 		panel.add(btnProveedores);
 		
 		btnOrdenesPago = new JButton("");
 		btnOrdenesPago.setBackground(Color.WHITE);
 		btnOrdenesPago.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-ORDENES_PAGO.png")));
-		btnOrdenesPago.setBounds(39, 430, 166, 170);
+		btnOrdenesPago.setBounds(10, 161, 194, 38);
 		panel.add(btnOrdenesPago);
 		
 		btnSalir = new JButton("");
@@ -135,12 +135,12 @@ public class Menu_admin extends JFrame {
 		});
 		btnSalir.setBackground(Color.WHITE);
 		btnSalir.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
-		btnSalir.setBounds(239, 430, 166, 170);
+		btnSalir.setBounds(239, 162, 194, 38);
 		panel.add(btnSalir);
 		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
-		label.setBounds(0, 0, 460, 650);
+		label.setBounds(0, 0, 460, 239);
 		panel.add(label);
 	}
 }
