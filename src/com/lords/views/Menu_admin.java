@@ -39,6 +39,8 @@ public class Menu_admin extends JFrame {
 			public void run() {
 				try {
 					Menu_admin frame = new Menu_admin();
+                    frame.setLocationRelativeTo(null);
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,9 +54,8 @@ public class Menu_admin extends JFrame {
 	 */
 	public Menu_admin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 473, 685);
+		setBounds(100, 100, 460, 650);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
@@ -98,6 +99,11 @@ public class Menu_admin extends JFrame {
 		panel.add(btnOrdenesPago);
 		
 		btnSalir = new JButton("");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+            salir();
+			}
+		});
 		btnSalir.setBackground(Color.WHITE);
 		btnSalir.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
 		btnSalir.setBounds(239, 430, 166, 170);
@@ -105,7 +111,19 @@ public class Menu_admin extends JFrame {
 		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
-		label.setBounds(0, 0, 447, 636);
+		label.setBounds(0, 0, 460, 650);
 		panel.add(label);
+	}
+	
+	private void salir(){
+		Login vistaLogin = new Login();
+		this.setVisible(false);
+		try {
+            vistaLogin.setLocationRelativeTo(null);
+			vistaLogin.setUndecorated(true);
+			vistaLogin.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}//CATCH
 	}
 }
