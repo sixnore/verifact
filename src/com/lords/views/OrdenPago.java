@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -33,10 +36,12 @@ public class OrdenPago extends JFrame {
 			public void run() {
 				try {
 					OrdenPago frame = new OrdenPago();
+                    frame.setLocationRelativeTo(null);
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}//catch
 			}
 		});
 	}
@@ -46,9 +51,10 @@ public class OrdenPago extends JFrame {
 	 */
 	public OrdenPago() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
+        this.setIconImage(icono); 
 		setBounds(100, 100, 585, 608);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		

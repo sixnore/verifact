@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Proveedores extends JFrame {
 
@@ -29,11 +31,13 @@ public class Proveedores extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Proveedores frame = new Proveedores();
+				Proveedores frame = new Proveedores();
+                    frame.setLocationRelativeTo(null);
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}//catch
 			}
 		});
 	}
@@ -43,9 +47,10 @@ public class Proveedores extends JFrame {
 	 */
 	public Proveedores() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
+        this.setIconImage(icono); 
 		setBounds(100, 100, 471, 485);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		

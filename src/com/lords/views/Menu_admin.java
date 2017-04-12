@@ -16,6 +16,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
@@ -79,6 +82,8 @@ public class Menu_admin extends JFrame {
 	 */
 	public Menu_admin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
+        this.setIconImage(icono); 
 		setBounds(100, 100, 460, 650);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));

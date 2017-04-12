@@ -22,6 +22,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
+
 public class Login extends JFrame {
 
 	public JPanel contentPane;
@@ -47,7 +51,7 @@ public class Login extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}//catch
 			}
 		});
 	}
@@ -57,6 +61,8 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
+        this.setIconImage(icono); 
 		setBounds(100, 100, 370, 476);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
