@@ -95,7 +95,8 @@ public class Menu_admin extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblMenu = new JLabel("MENU");
-		lblMenu.setForeground(Color.WHITE);
+		lblMenu.setBackground(new Color(0, 0, 0));
+		lblMenu.setForeground(new Color(0, 0, 0));
 		lblMenu.setFont(new Font("Futura Md BT", Font.BOLD, 30));
 		lblMenu.setBounds(179, 11, 114, 23);
 		panel.add(lblMenu);
@@ -138,7 +139,7 @@ public class Menu_admin extends JFrame {
 		
 		label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/simple_blue__black_wallpaper-wallpaper-1920x1080.jpg")));
+		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/fondo1.jpg")));
 		label.setBounds(0, 0, 444, 239);
 		panel.add(label);
 	}
