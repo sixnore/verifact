@@ -272,19 +272,24 @@ public class Captura_facturas extends JFrame {
 				} catch(NullPointerException ex) { 
 					JOptionPane.showMessageDialog(this, "Fecha no valida", "Error", JOptionPane.INFORMATION_MESSAGE); 
 				}
-			float subtotal = Float.parseFloat(  txtSubtotal.getText() );
-			float iva = Float.parseFloat(  txtIva.getText() );
-			float total = Float.parseFloat(  txtTotal.getText() );
-			
+			float subtotal = Float.parseFloat(txtSubtotal.getText() );
+			float iva = Float.parseFloat(txtIva.getText());
+			float total = Float.parseFloat(txtTotal.getText());
 			facturaModel.setFolioFactura(folioFact);
 			facturaModel.setFechaRecep(fechaS);
 			facturaModel.setQuicena(quincena);
 			facturaModel.setEstadoFactura(estado);
+			facturaModel.setSubtotal(subtotal);
+			facturaModel.setIva(iva);
+			facturaModel.setTotal(total);
 			
 			proveedorModel.setProveedor(proveedor);
 			servicioModel.setServicio(servicio);
 			
 			ordenPago.setTipoPago(pago);
+			
+			String mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
+			JOptionPane.showMessageDialog(null, mensaje);
 		}
 	}
 		
