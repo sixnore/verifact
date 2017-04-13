@@ -233,7 +233,7 @@ public class OrdenPago extends JFrame {
 		panel.add(lblElaboracin);
 		
 		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
+		btnSalir.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-REGRESAR.png")));
 		btnSalir.setBounds(62, 509, 117, 36);
 		panel.add(btnSalir);
 		
