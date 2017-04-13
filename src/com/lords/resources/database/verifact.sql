@@ -198,5 +198,25 @@ SELECT * FROM pago;
 SELECT * FROM factura;
 SELECT * FROM cheque;
 
- 
+-- ______________________________________________________________________________
+-- INSERCCION DATOS
+
+insert into proveedor values(1,'APASCO');
+insert into proveedor values(2,'PIPAS ENRIQUE');
+insert into proveedor values(3,'SERVICIO DE COMIDA RAPIDA TOMMY`S');
+insert into proveedor values(4,'COCA-COLA');
+insert into proveedor values(5,'LIMPIEZA ZERO');
+
+insert into servicio values(null,'PALAS',1);
+insert into servicio values(null,'PICOS',1);
+insert into servicio values(null,'AGUA PARA BAÑOS',2);
+insert into servicio values(null,'AGUA POTABLE',2);
+insert into servicio values(null,'HAMBURGUESAS',3);
+insert into servicio values(null,'QUESADILLAS',3);
+insert into servicio values(null,'LOTE DE REFRESCOS EN LATA',4);
+insert into servicio values(null,'LOTE DE REFRESCOS EN ENVASE DE VIDRIO',4);
+insert into servicio values(null,'LIMPIEZA DE LA CANCHA',5);
+insert into servicio values(null,'LIMPIEZA DE BAÑOS',5);
+
+insert into factura values('12042017FAC1','2017-04-01','1ERA',NULL,3500.42,500.01,4000.43);
 
