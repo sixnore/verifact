@@ -14,6 +14,7 @@ public class MenuAdminController implements ActionListener{
 	private Menu_admin view;
 	
 	Captura_facturas capturaFact = new Captura_facturas();
+	Menu_admin menu = new Menu_admin();
 	
 	public MenuAdminController(Menu_admin menuAd){
 		this.view = menuAd;
@@ -30,31 +31,36 @@ public class MenuAdminController implements ActionListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource() == view.btnFacturas){
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == view.btnFacturas){
 			view.dispose();
 			capturaFact.setLocationRelativeTo(null);
 			capturaFact.setVisible(true);
 			return;
 		}
-		if(arg0.getSource() == view.btnOrdenesPago){
+		if(e.getSource() == view.btnOrdenesPago){
 			return;
 		}
-		if(arg0.getSource() == view.btnProveedores){
+		if(e.getSource() == view.btnProveedores){
 			return;
 		}
-		if(arg0.getSource() == view.btnServicios){
+		if(e.getSource() == view.btnServicios){
 			return;
 		}
-		if(arg0.getSource() == view.btnUsuarios){
+		if(e.getSource() == view.btnUsuarios){
 			return;
 		}
-		if(arg0.getSource() == view.btnSalir){
+		if(e.getSource() == view.btnSalir){
 			Login log = new Login();
 			view.dispose();
-			log.setLocationRelativeTo(null);
-			log.setVisible(true);
-			return;
+			menu.setVisible(false);
+			try {
+	            log.setLocationRelativeTo(null);
+				log.setUndecorated(true);
+				log.setVisible(true);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}//CATCH
 		}
 	}
 }
