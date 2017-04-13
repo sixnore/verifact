@@ -1,6 +1,7 @@
 package com.lords.dao;
 
 import java.sql.ResultSet;
+import java.util.Date;
 
 import com.lords.conexion.Conexion;
 import com.lords.model.FacturaModel;
@@ -29,16 +30,18 @@ public class FacturaDao {
 		String mensaje = "";
 		
 		try {
-
-			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(
-					"");
-			
-
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT * FROM factura WHERE folio=?");
+			ps.setString(1, facturaModel.getFolioFactura());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				String folioBase = rs.getString(1);
+				String fecha = rs.getString(2);
+				String quincena = rs.getString(3);
+				String 
+				
 				return mensaje = "Ok";
 			}else{
-				mensaje="No existe usuario";
+				mensaje="Ya registrado";
 			}
 		} catch (Exception e) {
 			mensaje="Error con la base "+e;

@@ -30,6 +30,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -125,6 +128,7 @@ public class Captura_facturas extends JFrame {
 		JLabel lblFechaDeRecepcin = new JLabel("Fecha de recepci\u00F3n");
 		lblFechaDeRecepcin.setBounds(221, 56, 101, 14);
 		panel.add(lblFechaDeRecepcin);
+		
 		
 		jdcFecha_Recep = new JDateChooser();
 		jdcFecha_Recep.setBounds(327, 50, 113, 20);
@@ -239,25 +243,41 @@ public class Captura_facturas extends JFrame {
 	}
 	
 	private void validacionCampos(){
-		String folioFact = txtFolioFactura.getText();
-		String fecha = jdcFecha_Recep.getDateFormatString();
-		String quincena = (String) jcbQuincena.getSelectedItem();
-		String estado = (String) jcbEstado.getSelectedItem();
+		String folioFact =  txtFolioFactura.getText();
+		String fecha =  jdcFecha_Recep.getDateFormatString();
+		String quincena = (String)  jcbQuincena.getSelectedItem();
+		String estado = (String)  jcbEstado.getSelectedItem();
 		
-		String proveedor = (String) jcbProveedores.getSelectedItem();
-		String servicio = (String) jcbServicios.getSelectedItem();
+		String proveedor = (String)  jcbProveedores.getSelectedItem();
+		String servicio = (String)  jcbServicios.getSelectedItem();
 		
-		String pago = (String) jcbMetodoPago.getSelectedItem();
+		String pago = (String)  jcbMetodoPago.getSelectedItem();
 		
-		if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() || txtSubtotal.getText().isEmpty() || txtIva.getText().isEmpty() || txtTotal.getText().isEmpty() || estado.equals("Estado...") || proveedor.equals("Proveedores...") || servicio.equals("Servicios...") || pago.equals("Pago...")){
+		if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() ||  txtSubtotal.getText().isEmpty() ||  txtIva.getText().isEmpty() ||  txtTotal.getText().isEmpty() || estado.equals("Estado...") || proveedor.equals("Proveedores...") || servicio.equals("Servicios...") || pago.equals("Pago...")){
 			JOptionPane.showMessageDialog(null, "Algun campo se encuentra vacio o no selecciona algo");
 		}else{
-			float subtotal = Float.parseFloat( txtSubtotal.getText() );
-			float iva = Float.parseFloat( txtIva.getText() );
-			float total = Float.parseFloat( txtTotal.getText() );
+			String fechaS = null;
+			try { 
+				Date date = jdcFecha_Recep.getDate(); 
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+				fechaS = String.valueOf(sdf.format(date));
+				
+				Date actual = new Date();
+				
+				
+				if(date.after(actual)){
+					throw new NullPointerException();
+				}
+				
+				} catch(NullPointerException ex) { 
+					JOptionPane.showMessageDialog(this, "Fecha no valida", "Error", JOptionPane.INFORMATION_MESSAGE); 
+				}
+			float subtotal = Float.parseFloat(  txtSubtotal.getText() );
+			float iva = Float.parseFloat(  txtIva.getText() );
+			float total = Float.parseFloat(  txtTotal.getText() );
 			
 			facturaModel.setFolioFactura(folioFact);
-			facturaModel.setFechaRecep(fecha);
+			facturaModel.setFechaRecep(fechaS);
 			facturaModel.setQuicena(quincena);
 			facturaModel.setEstadoFactura(estado);
 			
@@ -265,8 +285,6 @@ public class Captura_facturas extends JFrame {
 			servicioModel.setServicio(servicio);
 			
 			ordenPago.setTipoPago(pago);
-			
-			String mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel );
 		}
 	}
 		

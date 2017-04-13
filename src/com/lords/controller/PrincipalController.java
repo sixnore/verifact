@@ -12,8 +12,9 @@ import com.lords.views.Menu_admin;
 
 public class PrincipalController implements ActionListener{
 
-	UsuarioModel usuarioModel=new UsuarioModel();
 	Login vistaLogin=new Login();
+	
+	UsuarioModel usuarioModel=new UsuarioModel();
 	Menu_admin vistaMenu=new Menu_admin();
 	UsuarioBo usuarioBo=new UsuarioBo();
 	

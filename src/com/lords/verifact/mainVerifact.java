@@ -5,6 +5,7 @@ import com.lords.controller.GestionFacturaController;
 import com.lords.controller.MenuAdminController;
 import com.lords.controller.PrincipalController;
 import com.lords.model.FacturaModel;
+import com.lords.model.OrdenPagoModel;
 import com.lords.model.PagoModel;
 import com.lords.model.ProveedorModel;
 import com.lords.model.RollUsuarioModel;
@@ -36,13 +37,14 @@ public class mainVerifact {
 		UsuarioModel usuarioModelo=new UsuarioModel();
 		FacturaModel facturaModel=new FacturaModel();
 		PagoModel pagoModel=new PagoModel();
+		OrdenPagoModel ordenPagoModel = new OrdenPagoModel();
 		ProveedorModel proveedorModel=new ProveedorModel();
 		RollUsuarioModel rollUsuarioModel=new RollUsuarioModel();
 		ServicioModel servicioModel=new ServicioModel();
 		UsuarioModel usuarioModel=new UsuarioModel();
 		
 		//Controladores
-		GestionFacturaController gestionFacturaController=new GestionFacturaController(vistaCapFac, facturaModel, pagoModel, proveedorModel, servicioModel);
+		GestionFacturaController gestionFacturaController=new GestionFacturaController(vistaCapFac, facturaModel, ordenPagoModel, proveedorModel, servicioModel);
 		MenuAdminController menuAdminController=new MenuAdminController(vistaMenuAdmin);
 		
 		
