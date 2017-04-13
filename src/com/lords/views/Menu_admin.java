@@ -21,6 +21,7 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class Menu_admin extends JFrame {
 
@@ -84,7 +85,7 @@ public class Menu_admin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 460, 278);
+		setBounds(100, 100, 444, 239);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -94,6 +95,7 @@ public class Menu_admin extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblMenu = new JLabel("MENU");
+		lblMenu.setForeground(Color.WHITE);
 		lblMenu.setFont(new Font("Futura Md BT", Font.BOLD, 30));
 		lblMenu.setBounds(179, 11, 114, 23);
 		panel.add(lblMenu);
@@ -139,8 +141,9 @@ public class Menu_admin extends JFrame {
 		panel.add(btnSalir);
 		
 		label = new JLabel("");
-		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/blue_and_white-wallpaper-1920x1080.jpg")));
-		label.setBounds(0, 0, 460, 239);
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/simple_blue__black_wallpaper-wallpaper-1920x1080.jpg")));
+		label.setBounds(0, 0, 444, 239);
 		panel.add(label);
 	}
 }
