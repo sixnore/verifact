@@ -19,7 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
 
-public class Control_Usuarios extends JFrame {
+public class ControlUsuarios extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -35,7 +35,7 @@ public class Control_Usuarios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Control_Usuarios frame = new Control_Usuarios();
+					ControlUsuarios frame = new ControlUsuarios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class Control_Usuarios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Control_Usuarios() {
+	public ControlUsuarios() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 594, 434);
 		contentPane = new JPanel();
@@ -116,17 +116,17 @@ public class Control_Usuarios extends JFrame {
 		jpOpciones.setLayout(null);
 		
 		JButton btnBuscar = new JButton("");
-		btnBuscar.setIcon(new ImageIcon(Control_Usuarios.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
+		btnBuscar.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
 		btnBuscar.setBounds(20, 23, 105, 20);
 		jpOpciones.add(btnBuscar);
 		
 		JButton btnAgregar = new JButton("");
-		btnAgregar.setIcon(new ImageIcon(Control_Usuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregar.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnAgregar.setBounds(20, 81, 105, 20);
 		jpOpciones.add(btnAgregar);
 		
 		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(Control_Usuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
+		btnSalir.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
 		btnSalir.setBounds(20, 143, 105, 20);
 		jpOpciones.add(btnSalir);
 		
@@ -141,7 +141,7 @@ public class Control_Usuarios extends JFrame {
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblFondo.setIcon(new ImageIcon(Control_Usuarios.class.getResource("/com/lords/resources/img/fondo1.jpg")));
+		lblFondo.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/fondo1.jpg")));
 		lblFondo.setBounds(0, 0, 577, 395);
 		jpPrincipal.add(lblFondo);
 	}

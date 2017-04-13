@@ -35,7 +35,7 @@ public class Login extends JFrame {
 	
 	UsuarioModel usuarioModelo = new UsuarioModel();
 	UsuarioBo usuarioBo = new UsuarioBo();
-	Menu_admin menu_admin = new Menu_admin();
+	MenuAdmin menu_admin = new MenuAdmin();
 
 	/**
 	 * Launch the application.

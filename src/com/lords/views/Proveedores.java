@@ -22,17 +22,17 @@ import javax.swing.UIManager;
 
 public class Proveedores extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTable table;
-	private JButton btnAgregar;
-	private JButton btnConsultar;
-	private JButton btnModificar;
-	private JButton btnAgregar_1;
-	private JButton btnConsultar_1;
-	private JButton btnModificar_1;
-	private JButton btnElimanar;
-	private JButton btnSalir;
+	public JPanel contentPane;
+	public JTextField textField;
+	public JTable table;
+	public JButton btnAgregar;
+	public JButton btnConsultar;
+	public JButton btnModificar;
+	public JButton btnAgregar_1;
+	public JButton btnConsultar_1;
+	public JButton btnModificar_1;
+	public JButton btnElimanar;
+	public JButton btnSalir;
 
 	/**
 	 * Launch the application.

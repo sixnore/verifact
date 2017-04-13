@@ -8,14 +8,16 @@ import javax.swing.JOptionPane;
 import com.lords.bo.UsuarioBo;
 import com.lords.model.UsuarioModel;
 import com.lords.views.Login;
-import com.lords.views.Menu_admin;
+import com.lords.views.MenuAdmin;
 
 public class PrincipalController implements ActionListener {
 
 	Login vistaLogin = new Login();
+	
+	MenuAdmin vistaMenu;
 	MenuAdminController menuController;
+	
 	UsuarioModel usuarioModel = new UsuarioModel();
-	Menu_admin vistaMenu;
 	UsuarioBo usuarioBo = new UsuarioBo();
 
 	public PrincipalController(UsuarioModel usuarioModel, Login vistaLogin, UsuarioBo usuarioBo) {
@@ -23,9 +25,11 @@ public class PrincipalController implements ActionListener {
 		this.usuarioBo = usuarioBo;
 		this.usuarioModel = usuarioModel;
 		this.vistaLogin = vistaLogin;
+		
 		vistaLogin.btnAcceder.addActionListener(this);
 		vistaLogin.btnSalir.addActionListener(this);
-		vistaMenu = new Menu_admin();
+		
+		vistaMenu = new MenuAdmin();
 		menuController = new MenuAdminController(vistaMenu);
 	}
 
@@ -34,7 +38,7 @@ public class PrincipalController implements ActionListener {
 		this.vistaLogin = vistaLogin;
 		vistaLogin.btnAcceder.addActionListener(this);
 		vistaLogin.btnSalir.addActionListener(this);
-		vistaMenu = new Menu_admin();
+		vistaMenu = new MenuAdmin();
 		menuController = new MenuAdminController(vistaMenu);
 	}
 
@@ -59,7 +63,7 @@ public class PrincipalController implements ActionListener {
 						vistaMenu.setVisible(true);
 					} catch (Exception ex) {
 						ex.printStackTrace();
-					} // CATCH
+					}
 				}
 			}
 			JOptionPane.showMessageDialog(null, resultado+" "+usuarioModel.getUsername());

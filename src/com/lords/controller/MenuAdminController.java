@@ -5,25 +5,36 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import com.lords.model.UsuarioModel;
-import com.lords.views.Captura_facturas;
-import com.lords.views.Login;
-import com.lords.views.Menu_admin;
+import com.lords.model.*;
+import com.lords.views.*;
 
 public class MenuAdminController implements ActionListener{
 
+	MenuAdmin menu = new MenuAdmin();
+	
 	//Inicializacion de objetos
-	private Menu_admin vistaMenu;
+	MenuAdmin vistaMenu;
+	
+	CapturaFacturas vistaFacturas;
+	RegistroUsuarios vistaUsuarios;
+	Proveedores vistaProveedores;
+	OrdenPago vistaPago;
 	Login log;
+	
+	FacturaModel facturaModel;
 	UsuarioModel usuarioModel;
-	PrincipalController controlerLogin;
+	OrdenPagoModel pagoModel;
+	ProveedorModel proveedorModel;
+	ServicioModel servicioModel;
+	
+	PrincipalController controllerLogin;
+	GestionFacturaController controllerFactura;
+	ProvController controllerProveedor;
+	OrdenesPagoController controllerPago;
+	UsuariosController controllerUsuario;
 
-	
-	Captura_facturas capturaFact = new Captura_facturas();
-	Menu_admin menu = new Menu_admin();
-	
-	public MenuAdminController(Menu_admin menuAd){
-		this.vistaMenu = menuAd;
+	public MenuAdminController(MenuAdmin vistaMenu){
+		this.vistaMenu = vistaMenu;
 		vistaMenu.btnFacturas.addActionListener(this);
 		vistaMenu.btnOrdenesPago.addActionListener(this);
 		vistaMenu.btnProveedores.addActionListener(this);
@@ -35,23 +46,57 @@ public class MenuAdminController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(vistaMenu.btnFacturas)){
 			vistaMenu.dispose();
-			capturaFact.setLocationRelativeTo(null);
-			capturaFact.setVisible(true);
-			return;
+			menu.setVisible(false);
+			try{
+				vistaFacturas = new CapturaFacturas();
+				vistaFacturas.setLocationRelativeTo(null);
+				vistaFacturas.setUndecorated(true);
+				vistaFacturas.setVisible(true);
+				controllerFactura = new GestionFacturaController(vistaFacturas, facturaModel, pagoModel, proveedorModel, servicioModel);
+			}catch(Exception ex){
+				
+			}
 		}
-		if(e.getSource() == vistaMenu.btnOrdenesPago){
-			return;
+		if(e.getSource().equals(vistaMenu.btnOrdenesPago)){
+			vistaMenu.dispose();
+			menu.setVisible(false);
+			try{
+				vistaPago = new OrdenPago();
+				vistaPago.setLocationRelativeTo(null);
+				vistaPago.setUndecorated(true);
+				vistaPago.setVisible(true);
+				controllerPago = new OrdenesPagoController(vistaPago);
+			}catch(Exception ex){
+				
+			}
 		}
-		if(e.getSource() == vistaMenu.btnProveedores){
-			return;
+		if(e.getSource().equals(vistaMenu.btnProveedores)){
+			vistaMenu.dispose();
+			menu.setVisible(false);
+			try{
+				vistaProveedores = new Proveedores();
+				vistaProveedores.setLocationRelativeTo(null);
+				vistaProveedores.setUndecorated(true);
+				vistaProveedores.setVisible(true);
+				controllerProveedor = new ProvController(vistaProveedores);
+			}catch(Exception ex){
+				
+			}
 		}
-		if(e.getSource() == vistaMenu.btnServicios){
-			return;
+		if(e.getSource().equals(vistaMenu.btnUsuarios)){
+			vistaMenu.dispose();
+			menu.setVisible(false);
+			try{
+				vistaUsuarios = new RegistroUsuarios();
+				vistaUsuarios.setLocationRelativeTo(null);
+				vistaUsuarios.setUndecorated(true);
+				vistaUsuarios.setVisible(true);
+				controllerUsuario = new UsuariosController(vistaUsuarios);
+			}catch(Exception ex){
+				
+			}
 		}
-		if(e.getSource() == vistaMenu.btnUsuarios){
-			return;
-		}
-		if(e.getSource() == vistaMenu.btnSalir){
+		if(e.getSource().equals(vistaMenu.btnSalir)){
 			vistaMenu.dispose();
 			menu.setVisible(false);
 			try {
@@ -60,7 +105,7 @@ public class MenuAdminController implements ActionListener{
 	            log.setLocationRelativeTo(null);
 				log.setUndecorated(true);
 				log.setVisible(true);
-				controlerLogin=new PrincipalController(usuarioModel, log);
+				controllerLogin =new PrincipalController(usuarioModel, log);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}//CATCH

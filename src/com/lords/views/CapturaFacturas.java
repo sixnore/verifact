@@ -41,7 +41,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
-public class Captura_facturas extends JFrame {
+public class CapturaFacturas extends JFrame {
 
 	public JPanel contentPane;
 	public JTextField txtFolioFactura;
@@ -77,7 +77,7 @@ public class Captura_facturas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Captura_facturas frame = new Captura_facturas();
+					CapturaFacturas frame = new CapturaFacturas();
                     frame.setLocationRelativeTo(null);
 					frame.setUndecorated(true);
 					frame.setVisible(true);
@@ -91,7 +91,7 @@ public class Captura_facturas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Captura_facturas() {
+	public CapturaFacturas() {
 		
 		conexion = new Conexion();
 		
@@ -166,7 +166,7 @@ public class Captura_facturas extends JFrame {
 		panel.add(jcbServicios);
 		
 		btnAgregarServ = new JButton("");
-		btnAgregarServ.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregarServ.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnAgregarServ.setBounds(340, 220, 105, 20);
 		panel.add(btnAgregarServ);
 		
@@ -215,12 +215,12 @@ public class Captura_facturas extends JFrame {
 		panel.add(lblAgregarDocumentoEscaneado);
 		
 		btnExaminar = new JButton("");
-		btnExaminar.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-EXAMINAR.png")));
+		btnExaminar.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-EXAMINAR.png")));
 		btnExaminar.setBounds(167, 386, 105, 20);
 		panel.add(btnExaminar);
 		
 		btnGuardar = new JButton("");
-		btnGuardar.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
+		btnGuardar.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				validacionCampos();
@@ -255,28 +255,28 @@ public class Captura_facturas extends JFrame {
 		panel.add(jcbQuincena);
 		
 		btnAgregarProv = new JButton("");
-		btnAgregarProv.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregarProv.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnAgregarProv.setBounds(340, 174, 105, 20);
 		panel.add(btnAgregarProv);
 		
 		btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
+		btnSalir.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
 		btnSalir.setBounds(10, 431, 117, 36);
 		panel.add(btnSalir);
 		
 		JLabel lblTitulo = new JLabel("");
-		lblTitulo.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/titulo-CRUZAZUL.png")));
+		lblTitulo.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/titulo-CRUZAZUL.png")));
 		lblTitulo.setBounds(88, 42, 324, 51);
 		panel.add(lblTitulo);
 		
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/logo.png")));
+		lblLogo.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/logo.png")));
 		lblLogo.setBounds(10, 38, 55, 55);
 		panel.add(lblLogo);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblFondo.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/fondo1.jpg")));
+		lblFondo.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/fondo1.jpg")));
 		lblFondo.setBounds(0, 0, 454, 481);
 		panel.add(lblFondo);
 	}

@@ -16,11 +16,11 @@ import com.lords.model.OrdenPagoModel;
 import com.lords.model.PagoModel;
 import com.lords.model.ProveedorModel;
 import com.lords.model.ServicioModel;
-import com.lords.views.Captura_facturas;
+import com.lords.views.CapturaFacturas;
 
 public class GestionFacturaController implements ActionListener, KeyListener{
 
-	private Captura_facturas view;
+	private CapturaFacturas view;
 	
 	FacturaModel facturaModel = new FacturaModel();
 	OrdenPagoModel ordenPago = new OrdenPagoModel();
@@ -30,7 +30,7 @@ public class GestionFacturaController implements ActionListener, KeyListener{
 	
 	FacturaDao facturaDao = new FacturaDao();
 	
-	public GestionFacturaController(Captura_facturas capturaFacturas, FacturaModel facturaModel, OrdenPagoModel pagoModel, ProveedorModel proveedorModel, ServicioModel servicioModel){
+	public GestionFacturaController(CapturaFacturas capturaFacturas, FacturaModel facturaModel, OrdenPagoModel pagoModel, ProveedorModel proveedorModel, ServicioModel servicioModel){
 	this.view = capturaFacturas;
 	this.facturaModel = facturaModel;
 	this.ordenPago = pagoModel;

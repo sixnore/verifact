@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-public class Registro_Usuarios extends JFrame {
+public class RegistroUsuarios extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -34,7 +34,7 @@ public class Registro_Usuarios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registro_Usuarios frame = new Registro_Usuarios();
+					RegistroUsuarios frame = new RegistroUsuarios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class Registro_Usuarios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Registro_Usuarios() {
+	public RegistroUsuarios() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 357, 419);
 		contentPane = new JPanel();
@@ -136,18 +136,18 @@ public class Registro_Usuarios extends JFrame {
 		panel.add(jcbRoll);
 		
 		JButton btnRegistrar = new JButton("");
-		btnRegistrar.setIcon(new ImageIcon(Registro_Usuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnRegistrar.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnRegistrar.setBounds(119, 304, 105, 20);
 		panel.add(btnRegistrar);
 		
 		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(Registro_Usuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
+		btnSalir.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
 		btnSalir.setBounds(119, 336, 105, 20);
 		panel.add(btnSalir);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFondo.setIcon(new ImageIcon(Registro_Usuarios.class.getResource("/com/lords/resources/img/fondo2.jpg")));
+		lblFondo.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/fondo2.jpg")));
 		lblFondo.setBounds(0, 0, 331, 370);
 		panel.add(lblFondo);
 	}
