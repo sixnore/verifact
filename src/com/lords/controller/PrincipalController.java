@@ -42,8 +42,13 @@ public class PrincipalController implements ActionListener{
 				JOptionPane.showMessageDialog(null, resultado);
 				if(!(resultado=="No existe usuario")){
 					vistaLogin.setVisible(false);
-					vistaMenu.setVisible(true);
-					vistaMenu.setLocationRelativeTo(null);
+					try {
+			            vistaMenu.setLocationRelativeTo(null);
+						vistaMenu.setUndecorated(true);
+						vistaMenu.setVisible(true);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}//CATCH
 				}
 			}
 		}else if(e.getSource().equals(vistaLogin.btnSalir)){
