@@ -68,6 +68,7 @@ public class OrdenPago extends JFrame {
 		panel.add(dateChooser);
 		
 		JLabel lblOrdenDePago = new JLabel("ORDEN DE PAGO");
+		lblOrdenDePago.setForeground(Color.WHITE);
 		lblOrdenDePago.setFont(new Font("Futura Md BT", Font.BOLD, 20));
 		lblOrdenDePago.setBounds(187, 11, 189, 25);
 		panel.add(lblOrdenDePago);
@@ -135,12 +136,14 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JButton btnAgregar = new JButton("AGREGAR");
-		btnAgregar.setBounds(440, 125, 89, 23);
+		JButton btnAgregar = new JButton("");
+		btnAgregar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregar.setBounds(424, 126, 105, 20);
 		jpSolicitudCheque.add(btnAgregar);
 		
-		JButton btnAgregar_1 = new JButton("AGREGAR");
-		btnAgregar_1.setBounds(440, 186, 89, 23);
+		JButton btnAgregar_1 = new JButton("");
+		btnAgregar_1.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregar_1.setBounds(425, 184, 105, 20);
 		jpSolicitudCheque.add(btnAgregar_1);
 		
 		JLabel lblConstante1 = new JLabel("C.P. Armando Mendoza Delgado");
@@ -202,12 +205,14 @@ public class OrdenPago extends JFrame {
 		panel_3.add(lblDireccinDerea);
 		
 		JLabel lblNotaEnCaso = new JLabel("NOTA: EN CASO DE NO EFECTUAR LA COMPROBACI\u00D3N DENTRO DE LOS 15 D\u00CDAS POSTERIORES SE PROCEDER\u00C1 ");
+		lblNotaEnCaso.setForeground(Color.WHITE);
 		lblNotaEnCaso.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblNotaEnCaso.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNotaEnCaso.setBounds(10, 463, 539, 20);
 		panel.add(lblNotaEnCaso);
 		
 		JLabel lblSeProcederA = new JLabel("A APLICAR EN LA QUINCENA INMEDIATA EL DESCUENTO CONRRESPONDIENTE POR VIA N\u00D3MINA.");
+		lblSeProcederA.setForeground(Color.WHITE);
 		lblSeProcederA.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblSeProcederA.setBounds(10, 484, 529, 14);
 		panel.add(lblSeProcederA);
@@ -241,5 +246,10 @@ public class OrdenPago extends JFrame {
 		btnGuardar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
 		btnGuardar.setBounds(365, 509, 117, 36);
 		panel.add(btnGuardar);
+		
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/lineas_azules1360x710CLogos.png")));
+		lblFondo.setBounds(0, 0, 569, 569);
+		panel.add(lblFondo);
 	}
 }
