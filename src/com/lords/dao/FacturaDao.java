@@ -12,10 +12,12 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 public class FacturaDao {
+	
 	FacturaModel facturaModel = new FacturaModel();
 	OrdenPagoModel ordenPago = new OrdenPagoModel();
 	ProveedorModel proveedorModel = new ProveedorModel();
 	ServicioModel servicioModel = new ServicioModel();
+	
 	Conexion conexion;
 
 	public FacturaDao() {
@@ -24,12 +26,12 @@ public class FacturaDao {
 	
 	public String registrarFact(OrdenPagoModel ordenPago, FacturaModel facturaModel, ProveedorModel proveedorModel, ServicioModel servicioModel) {
 		Connection accesodb = (Connection) conexion.conectandobd();
-
 		String mensaje = "";
+		
 		try {
 
 			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(
-					"select usuario.username, usuario.password,rollusuario.roll from usuario inner join rollusuario on rollusuario.id_usuario=usuario.id_usuario where usuario.username=? and password=?");
+					"");
 			
 
 			ResultSet rs = ps.executeQuery();
