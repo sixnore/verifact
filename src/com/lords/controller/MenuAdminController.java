@@ -5,14 +5,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import com.lords.model.UsuarioModel;
 import com.lords.views.Captura_facturas;
 import com.lords.views.Login;
 import com.lords.views.Menu_admin;
 
 public class MenuAdminController implements ActionListener{
 
+	//Inicializacion de objetos
 	private Menu_admin vistaMenu;
-	
+	Login log;
+	UsuarioModel usuarioModel;
+	PrincipalController controlerLogin;
+
 	
 	Captura_facturas capturaFact = new Captura_facturas();
 	Menu_admin menu = new Menu_admin();
@@ -29,7 +34,6 @@ public class MenuAdminController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(vistaMenu.btnFacturas)){
-			System.out.println("Entro");
 			vistaMenu.dispose();
 			capturaFact.setLocationRelativeTo(null);
 			capturaFact.setVisible(true);
@@ -48,13 +52,15 @@ public class MenuAdminController implements ActionListener{
 			return;
 		}
 		if(e.getSource() == vistaMenu.btnSalir){
-			Login log = new Login();
 			vistaMenu.dispose();
 			menu.setVisible(false);
 			try {
+				log=new Login();
+				usuarioModel=new UsuarioModel();
 	            log.setLocationRelativeTo(null);
 				log.setUndecorated(true);
 				log.setVisible(true);
+				controlerLogin=new PrincipalController(usuarioModel, log);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}//CATCH

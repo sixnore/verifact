@@ -34,6 +34,8 @@ public class UsuarioDao {
 						+ usuarioModelo.getRol();
 			}else{
 				mensaje="No existe usuario";
+				usuarioModelo.setUsername("");
+				
 			}
 		} catch (Exception e) {
 			mensaje="Error con la base "+e;
