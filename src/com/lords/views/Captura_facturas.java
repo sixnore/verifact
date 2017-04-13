@@ -68,6 +68,7 @@ public class Captura_facturas extends JFrame {
 	ServicioModel servicioModel = new ServicioModel();
 	
 	FacturaDao facturaDao = new FacturaDao();
+	private JButton btnSalir;
 	
 	/**
 	 * Launch the application.
@@ -258,7 +259,7 @@ public class Captura_facturas extends JFrame {
 		btnAgregarProv.setBounds(340, 174, 105, 20);
 		panel.add(btnAgregarProv);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
 		btnSalir.setBounds(10, 431, 117, 36);
 		panel.add(btnSalir);

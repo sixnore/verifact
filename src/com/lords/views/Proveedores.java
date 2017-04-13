@@ -25,6 +25,14 @@ public class Proveedores extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
+	private JButton btnAgregar;
+	private JButton btnConsultar;
+	private JButton btnModificar;
+	private JButton btnAgregar_1;
+	private JButton btnConsultar_1;
+	private JButton btnModificar_1;
+	private JButton btnElimanar;
+	private JButton btnSalir;
 
 	/**
 	 * Launch the application.
@@ -78,17 +86,17 @@ public class Proveedores extends JFrame {
 		lblProveedor.setBounds(10, 21, 72, 14);
 		panel_1.add(lblProveedor);
 		
-		JButton btnAgregar = new JButton("");
+		btnAgregar = new JButton("");
 		btnAgregar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnAgregar.setBounds(96, 54, 105, 20);
 		panel_1.add(btnAgregar);
 		
-		JButton btnConsultar = new JButton("");
+		btnConsultar = new JButton("");
 		btnConsultar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
 		btnConsultar.setBounds(215, 54, 105, 20);
 		panel_1.add(btnConsultar);
 		
-		JButton btnModificar = new JButton("");
+		btnModificar = new JButton("");
 		btnModificar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-CAMBIOS.png")));
 		btnModificar.setBounds(333, 54, 105, 20);
 		panel_1.add(btnModificar);
@@ -119,22 +127,22 @@ public class Proveedores extends JFrame {
 		table.setBounds(10, 23, 428, 94);
 		panel_2.add(table);
 		
-		JButton btnAgregar_1 = new JButton("");
+		btnAgregar_1 = new JButton("");
 		btnAgregar_1.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnAgregar_1.setBounds(10, 128, 105, 20);
 		panel_2.add(btnAgregar_1);
 		
-		JButton btnConsultar_1 = new JButton("");
+		btnConsultar_1 = new JButton("");
 		btnConsultar_1.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
 		btnConsultar_1.setBounds(115, 128, 105, 20);
 		panel_2.add(btnConsultar_1);
 		
-		JButton btnModificar_1 = new JButton("");
+		btnModificar_1 = new JButton("");
 		btnModificar_1.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-CAMBIOS.png")));
 		btnModificar_1.setBounds(229, 128, 105, 20);
 		panel_2.add(btnModificar_1);
 		
-		JButton btnElimanar = new JButton("");
+		btnElimanar = new JButton("");
 		btnElimanar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-ELIMINAR.png")));
 		btnElimanar.setBounds(333, 128, 105, 20);
 		panel_2.add(btnElimanar);
@@ -149,7 +157,7 @@ public class Proveedores extends JFrame {
 		lblTitulo.setBounds(134, 48, 324, 48);
 		panel.add(lblTitulo);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
 		btnSalir.setBounds(10, 393, 117, 36);
 		panel.add(btnSalir);

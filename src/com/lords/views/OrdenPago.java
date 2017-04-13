@@ -28,6 +28,10 @@ public class OrdenPago extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JButton btnAgregar;
+	private JPanel jpSolicitudCheque;
+	private JButton btnSalir;
+	private JButton btnGuardar;
 
 	/**
 	 * Launch the application.
@@ -75,7 +79,7 @@ public class OrdenPago extends JFrame {
 		lblOrdenDePago.setBounds(187, 11, 189, 25);
 		panel.add(lblOrdenDePago);
 		
-		JPanel jpSolicitudCheque = new JPanel();
+		jpSolicitudCheque = new JPanel();
 		jpSolicitudCheque.setBackground(new Color(173, 216, 230));
 		jpSolicitudCheque.setBorder(new TitledBorder(null, "SOLICITUD DE CHEQUE", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		jpSolicitudCheque.setBounds(10, 113, 539, 219);
@@ -144,7 +148,7 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JButton btnAgregar = new JButton("");
+		btnAgregar = new JButton("");
 		btnAgregar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnAgregar.setBounds(424, 126, 105, 20);
 		jpSolicitudCheque.add(btnAgregar);
@@ -248,12 +252,12 @@ public class OrdenPago extends JFrame {
 		lblElaboracin.setBounds(444, 60, 95, 14);
 		panel.add(lblElaboracin);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-REGRESAR.png")));
 		btnSalir.setBounds(62, 509, 117, 36);
 		panel.add(btnSalir);
 		
-		JButton btnGuardar = new JButton("");
+		btnGuardar = new JButton("");
 		btnGuardar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
 		btnGuardar.setBounds(365, 509, 117, 36);
 		panel.add(btnGuardar);
