@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
@@ -38,6 +37,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class Captura_facturas extends JFrame {
 
@@ -75,10 +77,12 @@ public class Captura_facturas extends JFrame {
 			public void run() {
 				try {
 					Captura_facturas frame = new Captura_facturas();
+                    frame.setLocationRelativeTo(null);
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}//catch
 			}
 		});
 	}
@@ -101,9 +105,8 @@ public class Captura_facturas extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 480, 453);
+		setBounds(100, 100, 454, 481);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
@@ -111,135 +114,170 @@ public class Captura_facturas extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblCampturaDeFacturas = new JLabel("Captura de facturas");
-		lblCampturaDeFacturas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCampturaDeFacturas.setBounds(156, 11, 143, 14);
+		JLabel lblCampturaDeFacturas = new JLabel("CAPTURA DE FACTURAS");
+		lblCampturaDeFacturas.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 20));
+		lblCampturaDeFacturas.setBounds(88, 11, 305, 20);
 		panel.add(lblCampturaDeFacturas);
 		
 		JLabel lblFolioDeFactura = new JLabel("Folio de factura");
-		lblFolioDeFactura.setBounds(21, 56, 82, 14);
+		lblFolioDeFactura.setBounds(10, 132, 82, 14);
 		panel.add(lblFolioDeFactura);
 		
 		txtFolioFactura = new JTextField();
-		txtFolioFactura.setBounds(113, 53, 86, 20);
+		txtFolioFactura.setBackground(new Color(173, 216, 230));
+		txtFolioFactura.setBounds(102, 129, 86, 20);
 		panel.add(txtFolioFactura);
 		txtFolioFactura.setColumns(10);
 		
 		JLabel lblFechaDeRecepcin = new JLabel("Fecha de recepci\u00F3n");
-		lblFechaDeRecepcin.setBounds(221, 56, 101, 14);
+		lblFechaDeRecepcin.setBounds(210, 132, 120, 14);
 		panel.add(lblFechaDeRecepcin);
 		
 		
 		jdcFecha_Recep = new JDateChooser();
-		jdcFecha_Recep.setBounds(327, 50, 113, 20);
+		jdcFecha_Recep.setBackground(new Color(173, 216, 230));
+		jdcFecha_Recep.setBounds(340, 126, 105, 20);
 		panel.add(jdcFecha_Recep);
 		
 		JLabel lblProveedor = new JLabel("Proveedor");
-		lblProveedor.setBounds(21, 102, 66, 14);
+		lblProveedor.setBounds(10, 178, 66, 14);
 		panel.add(lblProveedor);
 		
 		jcbProveedores = new JComboBox();
+		jcbProveedores.setBackground(new Color(173, 216, 230));
 		jcbProveedores.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				seleccionServicios();
 			}
 		});
 		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
-		jcbProveedores.setBounds(113, 99, 228, 20);
+		jcbProveedores.setBounds(102, 175, 228, 20);
 		panel.add(jcbProveedores);
 		
 		JLabel lblServicio = new JLabel("Servicio");
-		lblServicio.setBounds(21, 148, 46, 14);
+		lblServicio.setBounds(10, 224, 46, 14);
 		panel.add(lblServicio);
 		
 		jcbServicios = new JComboBox();
+		jcbServicios.setBackground(new Color(173, 216, 230));
 		jcbServicios.setModel(new DefaultComboBoxModel(new String[] {"Servicios..."}));
-		jcbServicios.setBounds(113, 145, 228, 20);
+		jcbServicios.setBounds(102, 221, 228, 20);
 		panel.add(jcbServicios);
 		
-		btnAgregarServ = new JButton("AGREGAR");
-		btnAgregarServ.setBounds(351, 144, 89, 23);
+		btnAgregarServ = new JButton("");
+		btnAgregarServ.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregarServ.setBounds(340, 220, 105, 20);
 		panel.add(btnAgregarServ);
 		
 		JLabel lblSubtotal = new JLabel("Subtotal");
-		lblSubtotal.setBounds(21, 193, 46, 14);
+		lblSubtotal.setBounds(10, 269, 66, 14);
 		panel.add(lblSubtotal);
 		
 		txtSubtotal = new JTextField();
-		txtSubtotal.setBounds(113, 190, 75, 20);
+		txtSubtotal.setBackground(new Color(173, 216, 230));
+		txtSubtotal.setBounds(102, 266, 75, 20);
 		panel.add(txtSubtotal);
 		txtSubtotal.setColumns(10);
 		
 		JLabel lblIva = new JLabel("Iva");
-		lblIva.setBounds(198, 193, 33, 14);
+		lblIva.setBounds(187, 269, 33, 14);
 		panel.add(lblIva);
 		
 		txtIva = new JTextField();
-		txtIva.setBounds(237, 190, 75, 20);
+		txtIva.setBackground(new Color(173, 216, 230));
+		txtIva.setBounds(226, 266, 75, 20);
 		panel.add(txtIva);
 		txtIva.setColumns(10);
 		
 		JLabel lblTotal = new JLabel("Total");
-		lblTotal.setBounds(322, 193, 33, 14);
+		lblTotal.setBounds(311, 269, 33, 14);
 		panel.add(lblTotal);
 		
 		txtTotal = new JTextField();
-		txtTotal.setBounds(365, 190, 75, 20);
+		txtTotal.setBackground(new Color(173, 216, 230));
+		txtTotal.setBounds(354, 266, 91, 20);
 		panel.add(txtTotal);
 		txtTotal.setColumns(10);
 		
 		JLabel lblMtodoDePago = new JLabel("M\u00E9todo de pago");
-		lblMtodoDePago.setBounds(21, 275, 82, 14);
+		lblMtodoDePago.setBounds(10, 351, 82, 14);
 		panel.add(lblMtodoDePago);
 		
 		jcbMetodoPago = new JComboBox();
+		jcbMetodoPago.setBackground(new Color(173, 216, 230));
 		jcbMetodoPago.setModel(new DefaultComboBoxModel(new String[] {"Pago...", "TRANSFERENCIA BANCARIA", "V\u00CDA CHEQUE", "EN EFECTIVO"}));
-		jcbMetodoPago.setBounds(113, 272, 166, 20);
+		jcbMetodoPago.setBounds(102, 348, 166, 20);
 		panel.add(jcbMetodoPago);
 		
 		JLabel lblAgregarDocumentoEscaneado = new JLabel("Agregar documento escaneado");
-		lblAgregarDocumentoEscaneado.setBounds(21, 314, 163, 14);
+		lblAgregarDocumentoEscaneado.setBounds(10, 390, 163, 14);
 		panel.add(lblAgregarDocumentoEscaneado);
 		
-		btnExaminar = new JButton("EXAMINAR...");
-		btnExaminar.setBounds(178, 310, 101, 23);
+		btnExaminar = new JButton("");
+		btnExaminar.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-EXAMINAR.png")));
+		btnExaminar.setBounds(167, 386, 105, 20);
 		panel.add(btnExaminar);
 		
-		btnGuardar = new JButton("GUARDAR");
+		btnGuardar = new JButton("");
+		btnGuardar.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				validacionCampos();
 			}
 		});
-		btnGuardar.setBounds(21, 352, 89, 23);
+		btnGuardar.setBounds(150, 431, 117, 36);
 		panel.add(btnGuardar);
 		
 		jpImg_factura = new JPanel();
 		jpImg_factura.setBorder(new TitledBorder(null, "Imagen de la factura", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		jpImg_factura.setBounds(300, 260, 140, 133);
+		jpImg_factura.setBounds(289, 336, 156, 133);
 		panel.add(jpImg_factura);
 		
 		lblEstado = new JLabel("Estado");
-		lblEstado.setBounds(21, 234, 46, 14);
+		lblEstado.setBounds(10, 310, 46, 14);
 		panel.add(lblEstado);
 		
 		jcbEstado = new JComboBox();
+		jcbEstado.setBackground(new Color(173, 216, 230));
 		jcbEstado.setModel(new DefaultComboBoxModel(new String[] {"Estado...", "EN ESPERA", "ENTREGADA", "FALLO"}));
-		jcbEstado.setBounds(113, 231, 71, 20);
+		jcbEstado.setBounds(102, 307, 71, 20);
 		panel.add(jcbEstado);
 		
 		JLabel lblQuincena = new JLabel("Quincena");
-		lblQuincena.setBounds(253, 234, 46, 14);
+		lblQuincena.setBounds(242, 310, 46, 14);
 		panel.add(lblQuincena);
 		
 		jcbQuincena = new JComboBox();
+		jcbQuincena.setBackground(new Color(173, 216, 230));
 		jcbQuincena.setModel(new DefaultComboBoxModel(new String[] {"1ERA", "2DA"}));
-		jcbQuincena.setBounds(327, 229, 113, 20);
+		jcbQuincena.setBounds(316, 305, 129, 20);
 		panel.add(jcbQuincena);
 		
-		btnAgregarProv = new JButton("AGREGAR");
-		btnAgregarProv.setBounds(351, 98, 89, 23);
+		btnAgregarProv = new JButton("");
+		btnAgregarProv.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregarProv.setBounds(340, 174, 105, 20);
 		panel.add(btnAgregarProv);
+		
+		JButton btnSalir = new JButton("");
+		btnSalir.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
+		btnSalir.setBounds(10, 431, 117, 36);
+		panel.add(btnSalir);
+		
+		JLabel lblTitulo = new JLabel("");
+		lblTitulo.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/titulo-CRUZAZUL.png")));
+		lblTitulo.setBounds(88, 42, 324, 51);
+		panel.add(lblTitulo);
+		
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/logo.png")));
+		lblLogo.setBounds(10, 38, 55, 55);
+		panel.add(lblLogo);
+		
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblFondo.setIcon(new ImageIcon(Captura_facturas.class.getResource("/com/lords/resources/img/fondo1.jpg")));
+		lblFondo.setBounds(0, 0, 454, 481);
+		panel.add(lblFondo);
 	}
 	
 	private void validacionCampos(){

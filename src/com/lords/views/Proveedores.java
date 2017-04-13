@@ -51,7 +51,7 @@ public class Proveedores extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 484, 485);
+		setBounds(100, 100, 468, 446);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -62,13 +62,13 @@ public class Proveedores extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblControlDeProveedores = new JLabel("CONTROL DE PROVEEDORES");
-		lblControlDeProveedores.setForeground(Color.WHITE);
+		lblControlDeProveedores.setForeground(Color.BLACK);
 		lblControlDeProveedores.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 20));
 		lblControlDeProveedores.setBounds(72, 11, 337, 14);
 		panel.add(lblControlDeProveedores);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBackground(new Color(173, 216, 230));
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proveedores", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(10, 120, 448, 85);
 		panel.add(panel_1);
@@ -94,18 +94,20 @@ public class Proveedores extends JFrame {
 		panel_1.add(btnModificar);
 		
 		textField = new JTextField();
+		textField.setBackground(new Color(135, 206, 250));
 		textField.setBounds(96, 18, 342, 20);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.WHITE);
+		panel_2.setBackground(new Color(173, 216, 230));
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Servicios", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_2.setBounds(10, 216, 448, 166);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		table = new JTable();
+		table.setBackground(new Color(255, 255, 224));
 		table.setBorder(new TitledBorder(null, "Servicios que brinda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -153,8 +155,8 @@ public class Proveedores extends JFrame {
 		panel.add(btnSalir);
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblFondo.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/lineas_azules1360x710CLogos.png")));
+		lblFondo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFondo.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/fondo2.jpg")));
 		lblFondo.setBounds(0, 0, 468, 446);
 		panel.add(lblFondo);
 	}

@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -21,6 +20,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class OrdenPago extends JFrame {
 
@@ -53,7 +54,7 @@ public class OrdenPago extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 585, 608);
+		setBounds(100, 100, 569, 569);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -64,24 +65,25 @@ public class OrdenPago extends JFrame {
 		panel.setLayout(null);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBackground(new Color(135, 206, 250));
 		dateChooser.setBounds(444, 82, 105, 20);
 		panel.add(dateChooser);
 		
 		JLabel lblOrdenDePago = new JLabel("ORDEN DE PAGO");
-		lblOrdenDePago.setForeground(Color.WHITE);
+		lblOrdenDePago.setForeground(Color.BLACK);
 		lblOrdenDePago.setFont(new Font("Futura Md BT", Font.BOLD, 20));
 		lblOrdenDePago.setBounds(187, 11, 189, 25);
 		panel.add(lblOrdenDePago);
 		
 		JPanel jpSolicitudCheque = new JPanel();
-		jpSolicitudCheque.setBackground(Color.WHITE);
+		jpSolicitudCheque.setBackground(new Color(173, 216, 230));
 		jpSolicitudCheque.setBorder(new TitledBorder(null, "SOLICITUD DE CHEQUE", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		jpSolicitudCheque.setBounds(10, 113, 539, 219);
 		panel.add(jpSolicitudCheque);
 		jpSolicitudCheque.setLayout(null);
 		
 		JLabel lblSolicitante = new JLabel("SOLICITANTE:");
-		lblSolicitante.setBounds(10, 35, 76, 14);
+		lblSolicitante.setBounds(10, 35, 101, 14);
 		jpSolicitudCheque.add(lblSolicitante);
 		
 		JLabel lblDepartamento = new JLabel("DEPARTAMENTO:");
@@ -89,14 +91,16 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblDepartamento);
 		
 		JLabel lblTipoDeSalida = new JLabel("TIPO DE SALIDA DE EFECTIVO:");
-		lblTipoDeSalida.setBounds(10, 96, 157, 14);
+		lblTipoDeSalida.setBounds(10, 96, 172, 14);
 		jpSolicitudCheque.add(lblTipoDeSalida);
 		
 		JCheckBox chckbxCheque = new JCheckBox("CHEQUE");
+		chckbxCheque.setBackground(new Color(173, 216, 230));
 		chckbxCheque.setBounds(188, 92, 97, 23);
 		jpSolicitudCheque.add(chckbxCheque);
 		
 		JCheckBox chckbxTransferencia = new JCheckBox("TRANSFERENCIA");
+		chckbxTransferencia.setBackground(new Color(173, 216, 230));
 		chckbxTransferencia.setBounds(293, 92, 122, 23);
 		jpSolicitudCheque.add(chckbxTransferencia);
 		
@@ -105,6 +109,7 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblChequeANombrede);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(new Color(135, 206, 250));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Proveedores.."}));
 		comboBox.setBounds(162, 126, 253, 20);
 		jpSolicitudCheque.add(comboBox);
@@ -114,6 +119,7 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblPorConceptoDe);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBackground(new Color(135, 206, 250));
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Servicios..."}));
 		comboBox_1.setBounds(162, 187, 253, 20);
 		jpSolicitudCheque.add(comboBox_1);
@@ -123,6 +129,7 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblPorElImporte);
 		
 		textField_2 = new JTextField();
+		textField_2.setBackground(new Color(135, 206, 250));
 		textField_2.setBounds(161, 156, 44, 20);
 		jpSolicitudCheque.add(textField_2);
 		textField_2.setColumns(10);
@@ -132,6 +139,7 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblImporteletra);
 		
 		textField_3 = new JTextField();
+		textField_3.setBackground(new Color(135, 206, 250));
 		textField_3.setBounds(339, 156, 190, 20);
 		jpSolicitudCheque.add(textField_3);
 		textField_3.setColumns(10);
@@ -155,7 +163,7 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblConstante2);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
+		panel_1.setBackground(new Color(173, 216, 230));
 		panel_1.setBorder(new TitledBorder(null, "PARA USO DE CONTABILIDAD", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 343, 539, 63);
 		panel.add(panel_1);
@@ -166,12 +174,13 @@ public class OrdenPago extends JFrame {
 		panel_1.add(lblAplicacinContable);
 		
 		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBackground(new Color(135, 206, 250));
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"...", "FAVOR DE PAGAR ANTES DEL D\u00CDA X", "SE ANEXA EL ESTADO BANCARIO DE LA CUENTA PARA SU PAGO"}));
 		comboBox_2.setBounds(164, 24, 365, 20);
 		panel_1.add(comboBox_2);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.WHITE);
+		panel_2.setBackground(new Color(173, 216, 230));
 		panel_2.setBorder(new TitledBorder(null, "SOLICIT\u00D3", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panel_2.setBounds(10, 417, 245, 47);
 		panel.add(panel_2);
@@ -188,7 +197,7 @@ public class OrdenPago extends JFrame {
 		panel_2.add(lblGerenteDerea);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.WHITE);
+		panel_3.setBackground(new Color(173, 216, 230));
 		panel_3.setBorder(new TitledBorder(null, "AUTORIZ\u00D3", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panel_3.setBounds(287, 417, 262, 47);
 		panel.add(panel_3);
@@ -205,14 +214,14 @@ public class OrdenPago extends JFrame {
 		panel_3.add(lblDireccinDerea);
 		
 		JLabel lblNotaEnCaso = new JLabel("NOTA: EN CASO DE NO EFECTUAR LA COMPROBACI\u00D3N DENTRO DE LOS 15 D\u00CDAS POSTERIORES SE PROCEDER\u00C1 ");
-		lblNotaEnCaso.setForeground(Color.WHITE);
+		lblNotaEnCaso.setForeground(Color.BLACK);
 		lblNotaEnCaso.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblNotaEnCaso.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNotaEnCaso.setBounds(10, 463, 539, 20);
 		panel.add(lblNotaEnCaso);
 		
 		JLabel lblSeProcederA = new JLabel("A APLICAR EN LA QUINCENA INMEDIATA EL DESCUENTO CONRRESPONDIENTE POR VIA N\u00D3MINA.");
-		lblSeProcederA.setForeground(Color.WHITE);
+		lblSeProcederA.setForeground(Color.BLACK);
 		lblSeProcederA.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblSeProcederA.setBounds(10, 484, 529, 14);
 		panel.add(lblSeProcederA);
@@ -223,6 +232,7 @@ public class OrdenPago extends JFrame {
 		panel.add(lblTitulo);
 		
 		JLabel lblFechaDeElaboracin = new JLabel("FECHA DE ");
+		lblFechaDeElaboracin.setForeground(Color.BLACK);
 		lblFechaDeElaboracin.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblFechaDeElaboracin.setBounds(444, 47, 105, 14);
 		panel.add(lblFechaDeElaboracin);
@@ -233,6 +243,7 @@ public class OrdenPago extends JFrame {
 		panel.add(lblLogo);
 		
 		JLabel lblElaboracin = new JLabel("ELABORACI\u00D3N");
+		lblElaboracin.setForeground(Color.BLACK);
 		lblElaboracin.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblElaboracin.setBounds(444, 60, 95, 14);
 		panel.add(lblElaboracin);
@@ -248,7 +259,8 @@ public class OrdenPago extends JFrame {
 		panel.add(btnGuardar);
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/lineas_azules1360x710CLogos.png")));
+		lblFondo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblFondo.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/fondo2.jpg")));
 		lblFondo.setBounds(0, 0, 569, 569);
 		panel.add(lblFondo);
 	}
