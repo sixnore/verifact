@@ -24,43 +24,24 @@ public class mainVerifact {
 	public static void main(String[] args) {
 		//Vistas 
 		Login vistaLogin = new Login();
-		Menu_admin vistaMenuAdmin = new Menu_admin();
-		Captura_facturas vistaCapFac = new Captura_facturas();
-		OrdenPago vistaOrdenPago=new OrdenPago();
-		Proveedores vistaProv=new Proveedores();
 
 		//BoS
 		UsuarioBo usuarioBo=new UsuarioBo();
 
 		
 		//Modelos
-		UsuarioModel usuarioModelo=new UsuarioModel();
-		FacturaModel facturaModel=new FacturaModel();
-		PagoModel pagoModel=new PagoModel();
-		OrdenPagoModel ordenPagoModel = new OrdenPagoModel();
-		ProveedorModel proveedorModel=new ProveedorModel();
-		RollUsuarioModel rollUsuarioModel=new RollUsuarioModel();
-		ServicioModel servicioModel=new ServicioModel();
 		UsuarioModel usuarioModel=new UsuarioModel();
 		
 		//Controladores
-		GestionFacturaController gestionFacturaController=new GestionFacturaController(vistaCapFac, facturaModel, ordenPagoModel, proveedorModel, servicioModel);
-		MenuAdminController menuAdminController=new MenuAdminController(vistaMenuAdmin);
-		
-		
 		PrincipalController principalController=new PrincipalController(usuarioModel, vistaLogin, usuarioBo);
 		
-//		vistaCapFac.setVisible(true);
-//		vistaMenuAdmin.setVisible(true);
-//		vistaOrdenPago.setVisible(true);
-//		vistaProv.setVisible(true);
 		try {
             vistaLogin.setLocationRelativeTo(null);
 			vistaLogin.setUndecorated(true);
 			vistaLogin.setVisible(true);
-			usuarioModel.setRol("");
-			usuarioModel.setUsername("");
-			usuarioModel.setPassword("");
+			usuarioModel.setRol(null);
+			usuarioModel.setUsername(null);
+			usuarioModel.setPassword(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}//CATCH

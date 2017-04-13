@@ -13,18 +13,21 @@ import com.lords.views.Menu_admin;
 public class PrincipalController implements ActionListener{
 
 	Login vistaLogin=new Login();
-	
+	MenuAdminController menuController;
 	UsuarioModel usuarioModel=new UsuarioModel();
-	Menu_admin vistaMenu=new Menu_admin();
+	Menu_admin vistaMenu;
 	UsuarioBo usuarioBo=new UsuarioBo();
 	
 	public PrincipalController(UsuarioModel usuarioModel,Login vistaLogin,UsuarioBo usuarioBo) {
+		
 		this.usuarioBo=usuarioBo;
 		this.usuarioModel=usuarioModel;
 		this.vistaLogin=vistaLogin;
 		vistaLogin.btnAcceder.addActionListener(this);
 		vistaLogin.btnSalir.addActionListener(this);
-	}
+		vistaMenu=new Menu_admin();
+		menuController=new MenuAdminController(vistaMenu);
+}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -32,10 +35,12 @@ public class PrincipalController implements ActionListener{
 			String resultado="";
 			char[] getPass = vistaLogin.jpfPassword.getPassword();
 			String password = String.valueOf(getPass);
-			if(vistaLogin.jtfUsuario.getText().isEmpty()|| password.isEmpty()){
+			String usuario=vistaLogin.jtfUsuario.getText();
+			System.out.println(password+" "+ usuario);
+			if(usuario=="" || password==""){
 				resultado="Completa los campos";
 			}else{
-				usuarioModel.setUsername(vistaLogin.jtfUsuario.getText());
+				usuarioModel.setUsername(usuario);
 				usuarioModel.setPassword(password);
 				
 				resultado=usuarioBo.acceder(usuarioModel);
@@ -53,6 +58,7 @@ public class PrincipalController implements ActionListener{
 				}
 			}
 		}else if(e.getSource().equals(vistaLogin.btnSalir)){
+			System.out.println("Entro");
 			System.exit(0);
 		}
 	}

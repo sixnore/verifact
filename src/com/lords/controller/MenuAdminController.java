@@ -11,48 +11,45 @@ import com.lords.views.Menu_admin;
 
 public class MenuAdminController implements ActionListener{
 
-	private Menu_admin view;
+	private Menu_admin vistaMenu;
+	
 	
 	Captura_facturas capturaFact = new Captura_facturas();
 	Menu_admin menu = new Menu_admin();
 	
 	public MenuAdminController(Menu_admin menuAd){
-		this.view = menuAd;
-		addListener();
+		this.vistaMenu = menuAd;
+		vistaMenu.btnFacturas.addActionListener(this);
+		vistaMenu.btnOrdenesPago.addActionListener(this);
+		vistaMenu.btnProveedores.addActionListener(this);
+		vistaMenu.btnServicios.addActionListener(this);
+		vistaMenu.btnUsuarios.addActionListener(this);
+		vistaMenu.btnSalir.addActionListener(this);
 	}
-	
-	private void addListener(){
-		view.btnFacturas.addActionListener(this);
-		view.btnOrdenesPago.addActionListener(this);
-		view.btnProveedores.addActionListener(this);
-		view.btnServicios.addActionListener(this);
-		view.btnUsuarios.addActionListener(this);
-		view.btnSalir.addActionListener(this);
-	}
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == view.btnFacturas){
-			view.dispose();
+		if(e.getSource().equals(vistaMenu.btnFacturas)){
+			System.out.println("Entro");
+			vistaMenu.dispose();
 			capturaFact.setLocationRelativeTo(null);
 			capturaFact.setVisible(true);
 			return;
 		}
-		if(e.getSource() == view.btnOrdenesPago){
+		if(e.getSource() == vistaMenu.btnOrdenesPago){
 			return;
 		}
-		if(e.getSource() == view.btnProveedores){
+		if(e.getSource() == vistaMenu.btnProveedores){
 			return;
 		}
-		if(e.getSource() == view.btnServicios){
+		if(e.getSource() == vistaMenu.btnServicios){
 			return;
 		}
-		if(e.getSource() == view.btnUsuarios){
+		if(e.getSource() == vistaMenu.btnUsuarios){
 			return;
 		}
-		if(e.getSource() == view.btnSalir){
+		if(e.getSource() == vistaMenu.btnSalir){
 			Login log = new Login();
-			view.dispose();
+			vistaMenu.dispose();
 			menu.setVisible(false);
 			try {
 	            log.setLocationRelativeTo(null);

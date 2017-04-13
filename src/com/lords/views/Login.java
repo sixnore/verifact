@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import com.lords.bo.UsuarioBo;
 import com.lords.model.UsuarioModel;
@@ -106,11 +105,6 @@ public class Login extends JFrame {
 		panel.add(lblImagenUser);
 		
 		btnSalir = new JButton("");
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
 		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
 		btnSalir.setBounds(132, 357, 119, 34);
 		panel.add(btnSalir);
@@ -121,33 +115,33 @@ public class Login extends JFrame {
 		panel.add(label);
 	}
 	
-	private void acceder() {
-		String username = jtfUsuario.getText();
-		char[] getPass = jpfPassword.getPassword();
-		String password = new String(getPass);
-		if(username.equals(null)|| password.equals(null)|| password.equals("")|| username.equals("")){
-			JOptionPane.showMessageDialog(null, "Usuario/Contraseña vacíos");
-		}else{
-			String mensaje="";
-			usuarioModelo.setUsername(username);
-			usuarioModelo.setPassword(password);
-			usuarioModelo.setRol("");
-			mensaje=usuarioBo.acceder(usuarioModelo);
-			JOptionPane.showMessageDialog(null, mensaje);
-			if(!mensaje.equals("No existe usuario")){
-				if(usuarioModelo.getRol().equals("admon")){
-					
-					this.setVisible(false);
-					menu_admin.setVisible(true);
-					menu_admin.setLocationRelativeTo(null);
-				}else if(usuarioModelo.getRol().equals("secretary")){
-					
-				}else{
-					
-				}
-			}else{
-				JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrectos");
-			}
-		}
-	}
+//	private void acceder() {
+//		String username = jtfUsuario.getText();
+//		char[] getPass = jpfPassword.getPassword();
+//		String password = new String(getPass);
+//		if(username.equals(null)|| password.equals(null)|| password.equals("")|| username.equals("")){
+//			JOptionPane.showMessageDialog(null, "Usuario/Contraseña vacíos");
+//		}else{
+//			String mensaje="";
+//			usuarioModelo.setUsername(username);
+//			usuarioModelo.setPassword(password);
+//			usuarioModelo.setRol("");
+//			mensaje=usuarioBo.acceder(usuarioModelo);
+//			JOptionPane.showMessageDialog(null, mensaje);
+//			if(!mensaje.equals("No existe usuario")){
+//				if(usuarioModelo.getRol().equals("admon")){
+//					
+//					this.setVisible(false);
+//					menu_admin.setVisible(true);
+//					menu_admin.setLocationRelativeTo(null);
+//				}else if(usuarioModelo.getRol().equals("secretary")){
+//					
+//				}else{
+//					
+//				}
+//			}else{
+//				JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrectos");
+//			}
+//		}
+//	}
 }

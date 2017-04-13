@@ -25,7 +25,7 @@ import javax.swing.SwingConstants;
 
 public class Menu_admin extends JFrame {
 
-	private JLabel label;
+	public JLabel label;
 	public JPanel contentPane;
 	public JButton btnFacturas;
 	public JButton btnServicios;
@@ -131,10 +131,6 @@ public class Menu_admin extends JFrame {
 		panel.add(btnOrdenesPago);
 		
 		btnSalir = new JButton("");
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnSalir.setBackground(Color.WHITE);
 		btnSalir.setIcon(new ImageIcon(Menu_admin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
 		btnSalir.setBounds(239, 162, 194, 38);
