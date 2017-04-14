@@ -30,6 +30,9 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	
 	private Conexion conexion = null;
 	
+	
+	
+	
 	public OrdenesPagoController(OrdenPago vistaPago){
 		this.pagoView = vistaPago;
 		
@@ -39,7 +42,6 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 		vistaPago.jcbProveedores.addItemListener(this);
 		vistaPago.txtImporte.addKeyListener(this);
 		vistaPago.txtImporteLetra.addKeyListener(this);
-		
 	}
 
 	@Override

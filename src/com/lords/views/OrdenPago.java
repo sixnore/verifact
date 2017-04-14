@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
@@ -33,7 +35,8 @@ public class OrdenPago extends JFrame {
 	public JButton btnGuardar;
 	public JComboBox jcbServicios;
 	public JComboBox jcbProveedores;
-
+	public JDateChooser dateChooser;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -66,7 +69,10 @@ public class OrdenPago extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JDateChooser dateChooser = new JDateChooser();
+		dateChooser = new JDateChooser();
+		dateChooser.setEnabled(false);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
 		dateChooser.setBackground(new Color(135, 206, 250));
 		dateChooser.setBounds(444, 82, 105, 20);
 		panel.add(dateChooser);
