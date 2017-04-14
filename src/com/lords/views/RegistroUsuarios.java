@@ -31,7 +31,7 @@ public class RegistroUsuarios extends JFrame {
 	public JTextField txtPassword;
 	public JButton btnSalir;
 	public JButton btnRegistrar;
-	private JTextField txtPassword2;
+	public JTextField txtPassword2;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

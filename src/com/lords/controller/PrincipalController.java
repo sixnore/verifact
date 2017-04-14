@@ -18,7 +18,6 @@ public class PrincipalController implements ActionListener, KeyListener {
 	
 	MenuAdmin vistaMenu;
 	MenuAdminController menuController;
-	
 	UsuarioModel usuarioModel = new UsuarioModel();
 	UsuarioBo usuarioBo = new UsuarioBo();
 
@@ -98,7 +97,6 @@ public class PrincipalController implements ActionListener, KeyListener {
 				}
 			}
 		}
-		JOptionPane.showMessageDialog(null, resultado+" "+usuarioModel.getUsername());
 	}
 
 }

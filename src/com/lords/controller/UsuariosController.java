@@ -3,6 +3,8 @@ package com.lords.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import com.lords.views.ControlUsuarios;
 import com.lords.views.MenuAdmin;
 import com.lords.views.RegistroUsuarios;
@@ -33,16 +35,34 @@ public class UsuariosController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(usuariosView.btnRegistrar)){
-			System.out.println("ok");
+			agregarUsuario();
 		}else if(e.getSource().equals(usuariosView.btnSalir)){
-			System.out.println("ok");
+			usuariosControlView.setVisible(true);
+			usuariosView.dispose();
 		}else if(e.getSource().equals(usuariosControlView.btnAgregar)){
-			System.out.println("ok");
+			usuariosControlView.setVisible(false);
+			usuariosControlView.dispose();
+			usuariosView.setLocationRelativeTo(null);
+			usuariosView.setUndecorated(true);
+			usuariosView.setVisible(true);
 		}else if(e.getSource().equals(usuariosControlView.btnBuscar)){
 			System.out.println("ok");
 		}else if(e.getSource().equals(usuariosControlView.btnSalir)){
-			System.out.println("ok");
+			
 		}
 		
+	}
+
+	private void agregarUsuario() {
+		if(usuariosView.txtNombre.getText().isEmpty()
+				|| usuariosView.txtApPaterno.getText().isEmpty()
+				|| usuariosView.txtApMaterno.getText().isEmpty()
+				|| usuariosView.txtPassword.getText().isEmpty()
+				|| usuariosView.txtUsername.getText().isEmpty()
+				|| usuariosView.txtPassword.getText().isEmpty()){
+			JOptionPane.showMessageDialog(null, "Campos vacios");
+		}else if (usuariosView.txtPassword.getText()!=usuariosView.txtPassword2.getText()){
+			JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+		}
 	}
 }
