@@ -32,6 +32,10 @@ public class RegistroUsuarios extends JFrame {
 	public JButton btnSalir;
 	public JButton btnRegistrar;
 	public JTextField txtPassword2;
+	public JRadioButton rdbtnSi,rdbtnNo;
+	public JComboBox jcbRoll;
+	public ButtonGroup grupo1;
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -126,17 +130,17 @@ public class RegistroUsuarios extends JFrame {
 		lblActivo.setBounds(13, 204, 55, 16);
 		jpDatos.add(lblActivo);
 		
-		JRadioButton rdbtnSi = new JRadioButton("Si",true);
+		rdbtnSi = new JRadioButton("Si",true);
 		rdbtnSi.setBackground(new Color(173, 216, 230));
 		rdbtnSi.setBounds(148, 200, 55, 24);
 		jpDatos.add(rdbtnSi);
 		
-		JRadioButton rdbtnNo = new JRadioButton("No",false);
+		rdbtnNo = new JRadioButton("No",false);
 		rdbtnNo.setBackground(new Color(173, 216, 230));
 		rdbtnNo.setBounds(220, 200, 62, 24);
 		jpDatos.add(rdbtnNo);
 		
-		ButtonGroup grupo1 = new ButtonGroup();
+		grupo1 = new ButtonGroup();
 		grupo1.add(rdbtnSi);
 		grupo1.add(rdbtnNo);
 
@@ -149,8 +153,8 @@ public class RegistroUsuarios extends JFrame {
 		jpDatos.add(txtPassword2);
 		txtPassword2.setColumns(10);
 		
-		JComboBox jcbRoll = new JComboBox();
-		jcbRoll.setModel(new DefaultComboBoxModel(new String[] {"Roll...."}));
+		jcbRoll = new JComboBox();
+		jcbRoll.setModel(new DefaultComboBoxModel(new String[] {"--Seleccione un rol--", "Administrador", "Capturista", "Secretaria"}));
 		jcbRoll.setBounds(12, 283, 306, 25);
 		panel.add(jcbRoll);
 		
