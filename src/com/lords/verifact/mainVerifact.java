@@ -45,6 +45,6 @@ public class mainVerifact {
 			usuarioModel.setPassword(null);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}//CATCH
+		}
 	}
 }

@@ -282,54 +282,7 @@ public class CapturaFacturas extends JFrame {
 	}
 	
 	private void validacionCampos(){
-		String folioFact =  txtFolioFactura.getText();
-		String fecha =  jdcFecha_Recep.getDateFormatString();
-		String quincena = (String)  jcbQuincena.getSelectedItem();
-		String estado = (String)  jcbEstado.getSelectedItem();
 		
-		String proveedor = (String)  jcbProveedores.getSelectedItem();
-		String servicio = (String)  jcbServicios.getSelectedItem();
-		
-		String pago = (String)  jcbMetodoPago.getSelectedItem();
-		
-		if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() ||  txtSubtotal.getText().isEmpty() ||  txtIva.getText().isEmpty() ||  txtTotal.getText().isEmpty() || estado.equals("Estado...") || proveedor.equals("Proveedores...") || servicio.equals("Servicios...") || pago.equals("Pago...")){
-			JOptionPane.showMessageDialog(null, "Algun campo se encuentra vacio o no selecciona algo");
-		}else{
-			String fechaS = null;
-			try { 
-				Date date = jdcFecha_Recep.getDate(); 
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
-				fechaS = String.valueOf(sdf.format(date));
-				
-				Date actual = new Date();
-				
-				
-				if(date.after(actual)){
-					throw new NullPointerException();
-				}
-				
-				} catch(NullPointerException ex) { 
-					JOptionPane.showMessageDialog(this, "Fecha no valida", "Error", JOptionPane.INFORMATION_MESSAGE); 
-				}
-			float subtotal = Float.parseFloat(txtSubtotal.getText() );
-			float iva = Float.parseFloat(txtIva.getText());
-			float total = Float.parseFloat(txtTotal.getText());
-			facturaModel.setFolioFactura(folioFact);
-			facturaModel.setFechaRecep(fechaS);
-			facturaModel.setQuicena(quincena);
-			facturaModel.setEstadoFactura(estado);
-			facturaModel.setSubtotal(subtotal);
-			facturaModel.setIva(iva);
-			facturaModel.setTotal(total);
-			
-			proveedorModel.setProveedor(proveedor);
-			servicioModel.setServicio(servicio);
-			
-			ordenPago.setTipoPago(pago);
-			
-			String mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
-			JOptionPane.showMessageDialog(null, mensaje);
-		}
 	}
 		
 	
@@ -381,19 +334,6 @@ public class CapturaFacturas extends JFrame {
 	
 	
 	private static void llenarProveedores(){
-		Connection accesodb = (Connection) conexion.conectandobd();
-		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbProveedores.getModel();
-		try {
-			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("select proveedor from proveedor");
-			ResultSet rs = ps.executeQuery();
-			jcbProveedores.setModel(modelo);
-			while(rs.next()){
-				modelo.addElement(rs.getObject(1));
-				jcbProveedores.setModel(modelo);
-			}
-			ps.close();
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Error cargando datos");
-		}
+		
 	}
 }
