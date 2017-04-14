@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -14,6 +13,7 @@ import java.awt.Toolkit;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -126,16 +126,20 @@ public class RegistroUsuarios extends JFrame {
 		lblActivo.setBounds(13, 204, 55, 16);
 		jpDatos.add(lblActivo);
 		
-		JRadioButton rdbtnSi = new JRadioButton("Si");
+		JRadioButton rdbtnSi = new JRadioButton("Si",true);
 		rdbtnSi.setBackground(new Color(173, 216, 230));
 		rdbtnSi.setBounds(148, 200, 55, 24);
 		jpDatos.add(rdbtnSi);
 		
-		JRadioButton rdbtnNo = new JRadioButton("No");
+		JRadioButton rdbtnNo = new JRadioButton("No",false);
 		rdbtnNo.setBackground(new Color(173, 216, 230));
 		rdbtnNo.setBounds(220, 200, 62, 24);
 		jpDatos.add(rdbtnNo);
 		
+		ButtonGroup grupo1 = new ButtonGroup();
+		grupo1.add(rdbtnSi);
+		grupo1.add(rdbtnNo);
+
 		JLabel lblRepetirPassword = new JLabel("Repetir password:");
 		lblRepetirPassword.setBounds(12, 179, 111, 14);
 		jpDatos.add(lblRepetirPassword);
@@ -165,5 +169,6 @@ public class RegistroUsuarios extends JFrame {
 		lblFondo.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/fondo2.jpg")));
 		lblFondo.setBounds(0, 0, 331, 357);
 		panel.add(lblFondo);
+		
 	}
 }
