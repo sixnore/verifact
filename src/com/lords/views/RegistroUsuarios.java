@@ -23,16 +23,15 @@ import javax.swing.SwingConstants;
 
 public class RegistroUsuarios extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtNombre;
-	private JTextField txtApPaterno;
-	private JTextField txtApMaterno;
-	private JTextField txtUsername;
-	private JTextField txtPassword;
-
-	/**
-	 * Launch the application.
-	 */
+	public JPanel contentPane;
+	public JTextField txtNombre;
+	public JTextField txtApPaterno;
+	public JTextField txtApMaterno;
+	public JTextField txtUsername;
+	public JTextField txtPassword;
+	public JButton btnSalir;
+	public JButton btnRegistrar;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -139,12 +138,12 @@ public class RegistroUsuarios extends JFrame {
 		jcbRoll.setBounds(12, 267, 306, 25);
 		panel.add(jcbRoll);
 		
-		JButton btnRegistrar = new JButton("");
+		btnRegistrar = new JButton("");
 		btnRegistrar.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnRegistrar.setBounds(119, 304, 105, 20);
 		panel.add(btnRegistrar);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
 		btnSalir.setBounds(119, 336, 105, 20);
 		panel.add(btnSalir);
