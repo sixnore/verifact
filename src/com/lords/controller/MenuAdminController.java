@@ -15,6 +15,7 @@ public class MenuAdminController implements ActionListener{
 	//Inicializacion de objetos
 	MenuAdmin vistaMenu;
 	
+	ControlUsuarios vistaControlUsuarios;
 	CapturaFacturas vistaFacturas;
 	RegistroUsuarios vistaUsuarios;
 	Proveedores vistaProveedores;
@@ -92,10 +93,11 @@ public class MenuAdminController implements ActionListener{
 			menu.setVisible(false);
 			try{
 				vistaUsuarios = new RegistroUsuarios();
-				vistaUsuarios.setLocationRelativeTo(null);
-				vistaUsuarios.setUndecorated(true);
-				vistaUsuarios.setVisible(true);
-				controllerUsuario = new UsuariosController(vistaUsuarios);
+				vistaControlUsuarios = new ControlUsuarios();
+				vistaControlUsuarios.setLocationRelativeTo(null);
+				vistaControlUsuarios.setUndecorated(true);
+				vistaControlUsuarios.setVisible(true);
+				controllerUsuario = new UsuariosController(vistaUsuarios, vistaControlUsuarios);
 			}catch(Exception ex){
 				
 			}

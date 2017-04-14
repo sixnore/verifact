@@ -23,12 +23,15 @@ import javax.swing.SwingConstants;
 
 public class ControlUsuarios extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtNombre;
-	private JTextField txtApPaterno;
-	private JTextField txtApMaterno;
-	private JTextField txtUsername;
-	private JTable jtUsuarios;
+	public JPanel contentPane;
+	public JTextField txtNombre;
+	public JTextField txtApPaterno;
+	public JTextField txtApMaterno;
+	public JTextField txtUsername;
+	public JTable jtUsuarios;
+	public JButton btnBuscar;
+	public JButton btnAgregar;
+	public JButton btnSalir;
 
 	/**
 	 * Launch the application.
@@ -118,17 +121,17 @@ public class ControlUsuarios extends JFrame {
 		jpPrincipal.add(jpOpciones);
 		jpOpciones.setLayout(null);
 		
-		JButton btnBuscar = new JButton("");
+		btnBuscar = new JButton("");
 		btnBuscar.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
 		btnBuscar.setBounds(20, 23, 105, 20);
 		jpOpciones.add(btnBuscar);
 		
-		JButton btnAgregar = new JButton("");
+		btnAgregar = new JButton("");
 		btnAgregar.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
 		btnAgregar.setBounds(20, 81, 105, 20);
 		jpOpciones.add(btnAgregar);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
 		btnSalir.setBounds(20, 143, 105, 20);
 		jpOpciones.add(btnSalir);
