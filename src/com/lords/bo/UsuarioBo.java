@@ -17,9 +17,9 @@ public class UsuarioBo {
 		
 		
 		if(!(username.length()>=6&&username.length()<=20)){
-			mensaje = "No se cumple condiciones de usuario\n";
+			mensaje = "No se cumple condiciones de usuario";
 		}else if(!(password.length()>=8&&password.length()<=20)){
-				mensaje = "No se cumple condiciones de contraseña";
+				mensaje = "No se cumple condiciones de password";
 		}else{
 			mensaje=usuarioDao.acceder(usuarioModelo);
 		}

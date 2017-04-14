@@ -86,6 +86,10 @@ public class PrincipalController implements ActionListener, KeyListener {
 			usuarioModel.setUsername(usuario);
 			usuarioModel.setPassword(password);
 			resultado = usuarioBo.acceder(usuarioModel);
+			if(resultado=="No se cumple condiciones de usuario"||resultado=="No se cumple condiciones de password"){
+				JOptionPane.showMessageDialog(null, resultado);
+				return;
+			}
 			if (!usuarioModel.getUsername().equals("")) {
 				vistaLogin.setVisible(false);
 				try {
@@ -96,6 +100,7 @@ public class PrincipalController implements ActionListener, KeyListener {
 					ex.printStackTrace();
 				}
 			}
+			JOptionPane.showMessageDialog(null, resultado);
 		}
 	}
 

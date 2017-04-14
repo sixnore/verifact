@@ -30,7 +30,7 @@ public class UsuarioDao {
 				usuarioModelo.setUsername(rs.getString(1));
 				usuarioModelo.setPassword(rs.getString(2));
 				usuarioModelo.setRol(rs.getString(3));
-				return mensaje = "Encontrado " + usuarioModelo.getUsername() + " " + usuarioModelo.getPassword() + " "
+				return mensaje = "Encontrado " + usuarioModelo.getUsername() + " " 
 						+ usuarioModelo.getRol();
 			}else{
 				mensaje="No existe usuario";
