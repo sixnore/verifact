@@ -53,12 +53,15 @@ public class UsuariosController implements ActionListener{
 		}else if(e.getSource().equals(usuariosControlView.btnSalir)){
 			usuariosControlView.setVisible(false);
 			usuariosControlView.dispose();
-			vistaMenu = new MenuAdmin();
-			vistaMenu.setLocationRelativeTo(null);
-			vistaMenu.setUndecorated(true);
-			vistaMenu.setVisible(true);
-			controllerMenu = new MenuAdminController(vistaMenu);
-			
+			try{
+				vistaMenu = new MenuAdmin();
+				vistaMenu.setLocationRelativeTo(null);
+				vistaMenu.setUndecorated(true);
+				vistaMenu.setVisible(true);
+				controllerMenu = new MenuAdminController(vistaMenu);
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}	
 		}
 		
 	}

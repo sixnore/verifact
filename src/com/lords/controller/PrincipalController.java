@@ -15,9 +15,11 @@ import com.lords.views.MenuAdmin;
 public class PrincipalController implements ActionListener, KeyListener {
 
 	Login vistaLogin = new Login();
+	Login log;
 	
 	MenuAdmin vistaMenu;
 	MenuAdminController menuController;
+	
 	UsuarioModel usuarioModel = new UsuarioModel();
 	UsuarioBo usuarioBo = new UsuarioBo();
 
@@ -25,16 +27,14 @@ public class PrincipalController implements ActionListener, KeyListener {
 
 		this.usuarioBo = usuarioBo;
 		this.usuarioModel = usuarioModel;
+		
 		this.vistaLogin = vistaLogin;
 		
 		vistaLogin.btnAcceder.addActionListener(this);
 		vistaLogin.btnSalir.addActionListener(this);
+		
 		vistaLogin.jpfPassword.addKeyListener(this);
 		vistaLogin.jtfUsuario.addKeyListener(this);
-		
-		
-		vistaMenu = new MenuAdmin();
-		menuController = new MenuAdminController(vistaMenu);
 	}
 
 	public PrincipalController(UsuarioModel usuarioModel, Login vistaLogin) {
@@ -44,9 +44,11 @@ public class PrincipalController implements ActionListener, KeyListener {
 		vistaLogin.btnAcceder.addActionListener(this);
 		vistaLogin.btnSalir.addActionListener(this);
 		
+		vistaLogin.jpfPassword.addKeyListener(this);
+		vistaLogin.jtfUsuario.addKeyListener(this);
 		
-		vistaMenu = new MenuAdmin();
-		menuController = new MenuAdminController(vistaMenu);
+		//vistaMenu = new MenuAdmin();
+		//menuController = new MenuAdminController(vistaMenu);
 	}
 
 	@Override
@@ -92,10 +94,13 @@ public class PrincipalController implements ActionListener, KeyListener {
 			}
 			if (!usuarioModel.getUsername().equals("")) {
 				vistaLogin.setVisible(false);
+				vistaLogin.dispose();
 				try {
+					vistaMenu = new MenuAdmin();
 					vistaMenu.setLocationRelativeTo(null);
 					vistaMenu.setUndecorated(true);
 					vistaMenu.setVisible(true);
+					menuController = new MenuAdminController(vistaMenu);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}

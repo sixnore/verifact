@@ -10,17 +10,17 @@ import com.lords.views.*;
 
 public class MenuAdminController implements ActionListener{
 
-	MenuAdmin menu = new MenuAdmin();
+	MenuAdmin menuView = new MenuAdmin();
+	MenuAdmin menu;
 	
 	//Inicializacion de objetos
-	MenuAdmin vistaMenu;
 	
 	ControlUsuarios vistaControlUsuarios;
 	CapturaFacturas vistaFacturas;
 	RegistroUsuarios vistaUsuarios;
 	Proveedores vistaProveedores;
 	OrdenPago vistaPago;
-	Login log;
+	Login login;
 	
 	FacturaModel facturaModel;
 	UsuarioModel usuarioModel;
@@ -34,21 +34,21 @@ public class MenuAdminController implements ActionListener{
 	OrdenesPagoController controllerPago;
 	UsuariosController controllerUsuario;
 
-	public MenuAdminController(MenuAdmin vistaMenu){
-		this.vistaMenu = vistaMenu;
-		vistaMenu.btnFacturas.addActionListener(this);
-		vistaMenu.btnOrdenesPago.addActionListener(this);
-		vistaMenu.btnProveedores.addActionListener(this);
-		vistaMenu.btnServicios.addActionListener(this);
-		vistaMenu.btnUsuarios.addActionListener(this);
-		vistaMenu.btnSalir.addActionListener(this);
+	public MenuAdminController(MenuAdmin menuView){
+		this.menuView = menuView;
+		menuView.btnFacturas.addActionListener(this);
+		menuView.btnOrdenesPago.addActionListener(this);
+		menuView.btnProveedores.addActionListener(this);
+		menuView.btnServicios.addActionListener(this);
+		menuView.btnUsuarios.addActionListener(this);
+		menuView.btnSalir.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource().equals(vistaMenu.btnFacturas)){
-			vistaMenu.dispose();
-			menu.setVisible(false);
+		if(e.getSource().equals(menuView.btnFacturas)){
+			menuView.dispose();
+			menuView.setVisible(false);
 			try{
 				vistaFacturas = new CapturaFacturas();
 				vistaFacturas.setLocationRelativeTo(null);
@@ -60,9 +60,9 @@ public class MenuAdminController implements ActionListener{
 			}
 		}
 		
-		if(e.getSource().equals(vistaMenu.btnOrdenesPago)){
-			vistaMenu.dispose();
-			menu.setVisible(false);
+		if(e.getSource().equals(menuView.btnOrdenesPago)){
+			menuView.dispose();
+			menuView.setVisible(false);
 			try{
 				pagoModel = new OrdenPagoModel();
 				servicioModel = new ServicioModel();
@@ -78,9 +78,9 @@ public class MenuAdminController implements ActionListener{
 			}
 		}
 		
-		if(e.getSource().equals(vistaMenu.btnProveedores)){
-			vistaMenu.dispose();
-			menu.setVisible(false);
+		if(e.getSource().equals(menuView.btnProveedores)){
+			menuView.dispose();
+			menuView.setVisible(false);
 			try{
 				vistaProveedores = new Proveedores();
 				vistaProveedores.setLocationRelativeTo(null);
@@ -92,9 +92,9 @@ public class MenuAdminController implements ActionListener{
 			}
 		}
 		
-		if(e.getSource().equals(vistaMenu.btnUsuarios)){
-			vistaMenu.dispose();
-			menu.setVisible(false);
+		if(e.getSource().equals(menuView.btnUsuarios)){
+			menuView.dispose();
+			menuView.setVisible(false);
 			try{
 				vistaUsuarios = new RegistroUsuarios();
 				vistaControlUsuarios = new ControlUsuarios();
@@ -107,16 +107,16 @@ public class MenuAdminController implements ActionListener{
 			}
 		}
 		
-		if(e.getSource().equals(vistaMenu.btnSalir)){
-			vistaMenu.dispose();
-			menu.setVisible(false);
+		if(e.getSource().equals(menuView.btnSalir)){
+			menuView.dispose();
+			menuView.setVisible(false);
 			try {
-				log=new Login();
-				usuarioModel=new UsuarioModel();
-	            log.setLocationRelativeTo(null);
-				log.setUndecorated(true);
-				log.setVisible(true);
-				controllerLogin =new PrincipalController(usuarioModel, log);
+				usuarioModel = new UsuarioModel();
+				login = new Login();
+	            login.setLocationRelativeTo(null);
+				login.setUndecorated(true);
+				login.setVisible(true);
+				controllerLogin =new PrincipalController(usuarioModel, login);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}//CATCH
