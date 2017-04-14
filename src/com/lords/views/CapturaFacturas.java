@@ -51,8 +51,8 @@ public class CapturaFacturas extends JFrame {
 	public JButton btnGuardar;
 	public JButton btnAgregarServ;
 	public JButton btnExaminar;
-	public static JComboBox jcbProveedores;
-	public static JComboBox jcbServicios;
+	public JComboBox jcbProveedores;
+	public JComboBox jcbServicios;
 	public JComboBox jcbMetodoPago;
 	public JPanel jpImg_factura;
 	public JDateChooser jdcFecha_Recep;
@@ -60,6 +60,7 @@ public class CapturaFacturas extends JFrame {
 	public JComboBox jcbQuincena;
 	public JComboBox jcbEstado;
 	public JButton btnAgregarProv;
+	public JButton btnSalir;
 
 	static Conexion conexion;
 	FacturaModel facturaModel = new FacturaModel();
@@ -68,7 +69,7 @@ public class CapturaFacturas extends JFrame {
 	ServicioModel servicioModel = new ServicioModel();
 	
 	FacturaDao facturaDao = new FacturaDao();
-	private JButton btnSalir;
+	
 	
 	/**
 	 * Launch the application.

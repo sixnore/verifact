@@ -44,6 +44,7 @@ public class MenuAdminController implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		if(e.getSource().equals(vistaMenu.btnFacturas)){
 			vistaMenu.dispose();
 			menu.setVisible(false);
@@ -57,6 +58,7 @@ public class MenuAdminController implements ActionListener{
 				
 			}
 		}
+		
 		if(e.getSource().equals(vistaMenu.btnOrdenesPago)){
 			vistaMenu.dispose();
 			menu.setVisible(false);
@@ -70,6 +72,7 @@ public class MenuAdminController implements ActionListener{
 				
 			}
 		}
+		
 		if(e.getSource().equals(vistaMenu.btnProveedores)){
 			vistaMenu.dispose();
 			menu.setVisible(false);
@@ -83,6 +86,7 @@ public class MenuAdminController implements ActionListener{
 				
 			}
 		}
+		
 		if(e.getSource().equals(vistaMenu.btnUsuarios)){
 			vistaMenu.dispose();
 			menu.setVisible(false);
@@ -96,6 +100,7 @@ public class MenuAdminController implements ActionListener{
 				
 			}
 		}
+		
 		if(e.getSource().equals(vistaMenu.btnSalir)){
 			vistaMenu.dispose();
 			menu.setVisible(false);
