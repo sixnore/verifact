@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -48,6 +51,8 @@ public class RegistroUsuarios extends JFrame {
 	 */
 	public RegistroUsuarios() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
+        this.setIconImage(icono); 
 		setBounds(100, 100, 331, 370);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));

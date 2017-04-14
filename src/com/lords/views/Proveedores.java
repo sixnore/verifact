@@ -19,20 +19,21 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollBar;
 
 public class Proveedores extends JFrame {
 
 	public JPanel contentPane;
-	public JTextField textField;
-	public JTable table;
+	public JTable jtServicios;
 	public JButton btnAgregar;
 	public JButton btnConsultar;
 	public JButton btnModificar;
-	public JButton btnAgregar_1;
-	public JButton btnConsultar_1;
-	public JButton btnModificar_1;
 	public JButton btnElimanar;
 	public JButton btnSalir;
+	private JComboBox jcbProveedores;
+	private JScrollBar jsbTabla;
 
 	/**
 	 * Launch the application.
@@ -69,83 +70,71 @@ public class Proveedores extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblControlDeProveedores = new JLabel("CONTROL DE PROVEEDORES");
-		lblControlDeProveedores.setForeground(Color.BLACK);
-		lblControlDeProveedores.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 20));
-		lblControlDeProveedores.setBounds(72, 11, 337, 14);
-		panel.add(lblControlDeProveedores);
+		JLabel jlbTitulo = new JLabel("CONTROL DE PROVEEDORES");
+		jlbTitulo.setForeground(Color.BLACK);
+		jlbTitulo.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 20));
+		jlbTitulo.setBounds(72, 11, 337, 14);
+		panel.add(jlbTitulo);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(173, 216, 230));
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proveedores", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(10, 120, 448, 85);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		JPanel jpProveedores = new JPanel();
+		jpProveedores.setBackground(new Color(173, 216, 230));
+		jpProveedores.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proveedores", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		jpProveedores.setBounds(10, 120, 448, 85);
+		panel.add(jpProveedores);
+		jpProveedores.setLayout(null);
 		
 		JLabel lblProveedor = new JLabel("Proveedor:");
 		lblProveedor.setBounds(10, 21, 72, 14);
-		panel_1.add(lblProveedor);
+		jpProveedores.add(lblProveedor);
 		
 		btnAgregar = new JButton("");
 		btnAgregar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnAgregar.setBounds(96, 54, 105, 20);
-		panel_1.add(btnAgregar);
+		btnAgregar.setBounds(116, 54, 105, 20);
+		jpProveedores.add(btnAgregar);
 		
 		btnConsultar = new JButton("");
 		btnConsultar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
-		btnConsultar.setBounds(215, 54, 105, 20);
-		panel_1.add(btnConsultar);
+		btnConsultar.setBounds(231, 54, 105, 20);
+		jpProveedores.add(btnConsultar);
 		
 		btnModificar = new JButton("");
 		btnModificar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-CAMBIOS.png")));
 		btnModificar.setBounds(333, 54, 105, 20);
-		panel_1.add(btnModificar);
+		jpProveedores.add(btnModificar);
 		
-		textField = new JTextField();
-		textField.setBackground(new Color(135, 206, 250));
-		textField.setBounds(96, 18, 342, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		btnElimanar = new JButton("");
+		btnElimanar.setBounds(10, 54, 105, 20);
+		jpProveedores.add(btnElimanar);
+		btnElimanar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-ELIMINAR.png")));
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(173, 216, 230));
-		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Servicios", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_2.setBounds(10, 216, 448, 166);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
+		jcbProveedores = new JComboBox();
+		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores...."}));
+		jcbProveedores.setBounds(125, 18, 313, 20);
+		jpProveedores.add(jcbProveedores);
 		
-		table = new JTable();
-		table.setBackground(new Color(255, 255, 224));
-		table.setBorder(new TitledBorder(null, "Servicios que brinda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		table.setModel(new DefaultTableModel(
+		JPanel jpServicios = new JPanel();
+		jpServicios.setBackground(new Color(173, 216, 230));
+		jpServicios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Servicios", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		jpServicios.setBounds(10, 216, 448, 166);
+		panel.add(jpServicios);
+		jpServicios.setLayout(null);
+		
+		jsbTabla = new JScrollBar();
+		jsbTabla.setBounds(421, 23, 17, 132);
+		jpServicios.add(jsbTabla);
+		
+		jtServicios = new JTable();
+		jtServicios.setBackground(new Color(255, 255, 224));
+		jtServicios.setBorder(new TitledBorder(null, "Servicios que brinda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		jtServicios.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Tipos de servicio"
 			}
 		));
-		table.setBounds(10, 23, 428, 94);
-		panel_2.add(table);
-		
-		btnAgregar_1 = new JButton("");
-		btnAgregar_1.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnAgregar_1.setBounds(10, 128, 105, 20);
-		panel_2.add(btnAgregar_1);
-		
-		btnConsultar_1 = new JButton("");
-		btnConsultar_1.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
-		btnConsultar_1.setBounds(115, 128, 105, 20);
-		panel_2.add(btnConsultar_1);
-		
-		btnModificar_1 = new JButton("");
-		btnModificar_1.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-CAMBIOS.png")));
-		btnModificar_1.setBounds(229, 128, 105, 20);
-		panel_2.add(btnModificar_1);
-		
-		btnElimanar = new JButton("");
-		btnElimanar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-ELIMINAR.png")));
-		btnElimanar.setBounds(333, 128, 105, 20);
-		panel_2.add(btnElimanar);
+		jtServicios.setBounds(10, 23, 428, 132);
+		jpServicios.add(jtServicios);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/logo.png")));
