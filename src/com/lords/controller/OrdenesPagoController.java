@@ -10,10 +10,15 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
+import com.lords.bo.OrdenPagoBo;
 import com.lords.conexion.Conexion;
+import com.lords.model.OrdenPagoModel;
+import com.lords.model.ProveedorModel;
+import com.lords.model.ServicioModel;
 import com.lords.views.MenuAdmin;
 import com.lords.views.OrdenPago;
 import com.mysql.jdbc.Connection;
@@ -28,13 +33,33 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	
 	OrdenPago pago;
 	
+	OrdenPagoModel pagoModel;
+	ProveedorModel provModel;
+	ServicioModel servicioModel;
+	
+	OrdenPagoBo ordenPagoBo = new OrdenPagoBo();
 	private Conexion conexion = null;
 	
 	
-	
-	
-	public OrdenesPagoController(OrdenPago vistaPago){
+	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel, OrdenPagoBo ordenPagoBo){
 		this.pagoView = vistaPago;
+		this.pagoModel = pagoModel;
+		this.provModel = provModel;
+		this.servicioModel = servicioModel;
+		this.ordenPagoBo = ordenPagoBo;
+		vistaPago.btnGuardar.addActionListener(this);
+		vistaPago.btnSalir.addActionListener(this);
+		vistaPago.addWindowListener(this);
+		vistaPago.jcbProveedores.addItemListener(this);
+		vistaPago.txtImporte.addKeyListener(this);
+		vistaPago.txtImporteLetra.addKeyListener(this);
+	}
+	
+	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel){
+		this.pagoView = vistaPago;
+		this.pagoModel = pagoModel;
+		this.provModel = provModel;
+		this.servicioModel = servicioModel;
 		
 		vistaPago.btnGuardar.addActionListener(this);
 		vistaPago.btnSalir.addActionListener(this);
@@ -59,7 +84,22 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 				
 			}
 		}else if(e.getSource().equals(pagoView.btnGuardar)){
-			
+			String mensaje = "";
+			if(pagoView.jcbProveedores.getSelectedItem().toString().equals("Proveedores...") || pagoView.txtImporte.getText().isEmpty() || pagoView.txtImporteLetra.getText().isEmpty() || pagoView.jcbAplicacion.getSelectedItem().toString().equals("...")){
+				mensaje = "Campos sin llenar";
+			}else{
+				pagoModel.setAplicContable(pagoView.jcbAplicacion.getSelectedItem().toString());
+				pagoModel.setImporteNumero(Float.parseFloat(pagoView.txtImporte.getText()));
+				pagoModel.setTipoPago(pagoView.grupoPago.getSelection().toString());
+				pagoModel.setImporteLetra(pagoView.txtImporteLetra.getText());
+				pagoModel.setFecharOrden(pagoView.jdcFechaOrden.getDate().toString());
+				servicioModel.setServicio(pagoView.jcbServicios.getSelectedItem().toString());
+				
+				provModel.setProveedor(pagoView.jcbProveedores.getSelectedItem().toString());
+				
+				mensaje = ordenPagoBo.registrarOrdenPago(pagoModel, servicioModel, provModel);
+			}
+			JOptionPane.showMessageDialog(null, mensaje);
 		}
 	}
 
@@ -121,9 +161,11 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) pagoView.jcbServicios.getModel();
-		System.out.println(pagoView.jcbProveedores.getSelectedItem());
 		if(pagoView.jcbProveedores.equals("Proveedores...")){
-			pagoView.jcbServicios.setEnabled(false);
+			modelo.removeAllElements();
+			modelo.addElement("Servicios...");
+			pagoView.jcbServicios.setModel(modelo);
+			pagoView.setEnabled(false);
 		}else{
 			pagoView.jcbServicios.setEnabled(true);
 			modelo.removeAllElements();

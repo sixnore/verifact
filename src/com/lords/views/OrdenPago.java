@@ -10,7 +10,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.border.TitledBorder;
@@ -18,12 +20,14 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.JRadioButton;
 
 public class OrdenPago extends JFrame {
 
@@ -35,7 +39,11 @@ public class OrdenPago extends JFrame {
 	public JButton btnGuardar;
 	public JComboBox jcbServicios;
 	public JComboBox jcbProveedores;
-	public JDateChooser dateChooser;
+	public JDateChooser jdcFechaOrden;
+	public JRadioButton rdbtnCheque;
+	public JRadioButton rdbtnTransferenciaBancaria;
+	public JComboBox jcbAplicacion;
+	public ButtonGroup grupoPago;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -69,13 +77,13 @@ public class OrdenPago extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		dateChooser = new JDateChooser();
-		dateChooser.setEnabled(false);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
-		dateChooser.setBackground(new Color(135, 206, 250));
-		dateChooser.setBounds(444, 82, 105, 20);
-		panel.add(dateChooser);
+		jdcFechaOrden = new JDateChooser();
+		jdcFechaOrden.setEnabled(false);
+		Date now = new Date();
+		jdcFechaOrden.setDate(now);
+		jdcFechaOrden.setBackground(new Color(135, 206, 250));
+		jdcFechaOrden.setBounds(444, 82, 105, 20);
+		panel.add(jdcFechaOrden);
 		
 		JLabel lblOrdenDePago = new JLabel("ORDEN DE PAGO");
 		lblOrdenDePago.setForeground(Color.BLACK);
@@ -101,16 +109,6 @@ public class OrdenPago extends JFrame {
 		JLabel lblTipoDeSalida = new JLabel("TIPO DE SALIDA DE EFECTIVO:");
 		lblTipoDeSalida.setBounds(10, 96, 172, 14);
 		jpSolicitudCheque.add(lblTipoDeSalida);
-		
-		JCheckBox chckbxCheque = new JCheckBox("CHEQUE");
-		chckbxCheque.setBackground(new Color(173, 216, 230));
-		chckbxCheque.setBounds(188, 92, 97, 23);
-		jpSolicitudCheque.add(chckbxCheque);
-		
-		JCheckBox chckbxTransferencia = new JCheckBox("TRANSFERENCIA");
-		chckbxTransferencia.setBackground(new Color(173, 216, 230));
-		chckbxTransferencia.setBounds(293, 92, 122, 23);
-		jpSolicitudCheque.add(chckbxTransferencia);
 		
 		JLabel lblChequeANombrede = new JLabel("CHEQUE A NOMBRE DE:");
 		lblChequeANombrede.setBounds(10, 129, 142, 14);
@@ -161,6 +159,19 @@ public class OrdenPago extends JFrame {
 		lblConstante2.setBounds(121, 64, 157, 14);
 		jpSolicitudCheque.add(lblConstante2);
 		
+		rdbtnCheque = new JRadioButton("Cheque");
+		rdbtnCheque.setBounds(186, 92, 109, 23);
+		jpSolicitudCheque.add(rdbtnCheque);
+		rdbtnCheque.setSelected(true);
+		
+		rdbtnTransferenciaBancaria = new JRadioButton("Transferencia Bancaria");
+		rdbtnTransferenciaBancaria.setBounds(322, 92, 157, 23);
+		jpSolicitudCheque.add(rdbtnTransferenciaBancaria);
+		
+		grupoPago = new ButtonGroup();
+		grupoPago.add(rdbtnCheque);
+		grupoPago.add(rdbtnTransferenciaBancaria);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(173, 216, 230));
 		panel_1.setBorder(new TitledBorder(null, "PARA USO DE CONTABILIDAD", TitledBorder.CENTER, TitledBorder.TOP, null, null));
@@ -172,11 +183,11 @@ public class OrdenPago extends JFrame {
 		lblAplicacinContable.setBounds(10, 27, 144, 14);
 		panel_1.add(lblAplicacinContable);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBackground(new Color(135, 206, 250));
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"...", "FAVOR DE PAGAR ANTES DEL D\u00CDA X", "SE ANEXA EL ESTADO BANCARIO DE LA CUENTA PARA SU PAGO"}));
-		comboBox_2.setBounds(164, 24, 365, 20);
-		panel_1.add(comboBox_2);
+		jcbAplicacion = new JComboBox();
+		jcbAplicacion.setBackground(new Color(135, 206, 250));
+		jcbAplicacion.setModel(new DefaultComboBoxModel(new String[] {"...", "FAVOR DE PAGAR ANTES DEL D\u00CDA X", "SE ANEXA EL ESTADO BANCARIO DE LA CUENTA PARA SU PAGO"}));
+		jcbAplicacion.setBounds(164, 24, 365, 20);
+		panel_1.add(jcbAplicacion);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(173, 216, 230));

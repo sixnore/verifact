@@ -33,7 +33,7 @@ public class FacturaDao {
 			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT * FROM factura WHERE folio_factura=?");
 			ps.setString(1, facturaModel.getFolioFactura());
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			if (!(rs==null)) {
 				String folioBase = rs.getString(1);
 				String fechaB = rs.getString(2);
 				String quincenaB = rs.getString(3);
@@ -52,7 +52,7 @@ public class FacturaDao {
 				float total = facturaModel.getTotal();
 				
 				if(folioBase.equals(folio) && fechaB.equals(fecha) && quincenaB.equals(quincena) && subtotalB == subtotal && ivaB == ivaB && totalB == total){
-					return mensaje ="Ya registrado";
+					return mensaje ="Ya registrado o datos incorrectos";
 				}else{
 					ps = (PreparedStatement) accesodb.prepareStatement("INSERT INTO factura VALUES(?,?,?,?,?,?,?,?)");
 					ps.setString(1, folio);
@@ -68,9 +68,8 @@ public class FacturaDao {
 					ps.close();
 					return mensaje = "Ok "+ subtotal + iva  + total;
 				}
-				
 			}else{
-				mensaje="Ya registrado o incorrecto";
+				mensaje="Ya registrado o datos incorrectos";
 			}
 		} catch (Exception e) {
 			mensaje="Error con la base "+e;

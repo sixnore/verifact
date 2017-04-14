@@ -64,11 +64,15 @@ public class MenuAdminController implements ActionListener{
 			vistaMenu.dispose();
 			menu.setVisible(false);
 			try{
+				pagoModel = new OrdenPagoModel();
+				servicioModel = new ServicioModel();
+				proveedorModel = new ProveedorModel();
+				
 				vistaPago = new OrdenPago();
 				vistaPago.setLocationRelativeTo(null);
 				vistaPago.setUndecorated(true);
 				vistaPago.setVisible(true);
-				controllerPago = new OrdenesPagoController(vistaPago);
+				controllerPago = new OrdenesPagoController(vistaPago, pagoModel, proveedorModel, servicioModel);
 			}catch(Exception ex){
 				
 			}

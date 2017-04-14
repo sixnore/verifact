@@ -16,6 +16,7 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
+import com.lords.bo.FacturaBo;
 import com.lords.conexion.Conexion;
 import com.lords.dao.FacturaDao;
 import com.lords.model.FacturaModel;
@@ -40,7 +41,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	
 	CapturaFacturas capturaView = new CapturaFacturas();
 	
-	FacturaDao facturaDao = new FacturaDao();
+	FacturaBo facturaBo = new FacturaBo();
 
 	private Conexion conexion = null;
 	
@@ -98,6 +99,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				float subtotal = Float.parseFloat(capturaView.txtSubtotal.getText() );
 				float iva = Float.parseFloat(capturaView.txtIva.getText());
 				float total = Float.parseFloat(capturaView.txtTotal.getText());
+				facturaModel = new FacturaModel();
 				facturaModel.setFolioFactura(folioFact);
 				facturaModel.setFechaRecep(fechaS);
 				facturaModel.setQuicena(quincena);
@@ -106,13 +108,22 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				facturaModel.setIva(iva);
 				facturaModel.setTotal(total);
 				
+				proveedorModel = new ProveedorModel();
 				proveedorModel.setProveedor(proveedor);
+				
+				servicioModel = new ServicioModel();
 				servicioModel.setServicio(servicio);
 				
+				ordenPago = new  OrdenPagoModel(); 
 				ordenPago.setTipoPago(pago);
 				
-				String mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
-				JOptionPane.showMessageDialog(null, mensaje);
+				String mensaje = facturaBo.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
+				
+				if(mensaje.equals("Ya registrado o datos incorrectos")){
+					JOptionPane.showMessageDialog(null, mensaje);
+				}else if(mensaje.equals("")){
+					JOptionPane.showMessageDialog(null, "Ok");
+				}
 			}
 		}else if(arg0.getSource().equals(capturaView.btnSalir)){
 			capturaView.dispose();
@@ -224,7 +235,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 			String proveedor = (String) capturaView.jcbProveedores.getSelectedItem();
 			
 			try {
-				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(" select servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
+				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
 				ps.setString(1, proveedor);
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()){
@@ -238,8 +249,4 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 			
 		}
 	}
-	
-	
-	
-	
 }

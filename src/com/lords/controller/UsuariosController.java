@@ -51,16 +51,23 @@ public class UsuariosController implements ActionListener{
 		}else if(e.getSource().equals(usuariosControlView.btnBuscar)){
 			System.out.println("ok");
 		}else if(e.getSource().equals(usuariosControlView.btnSalir)){
+			usuariosControlView.setVisible(false);
+			usuariosControlView.dispose();
+			vistaMenu = new MenuAdmin();
+			vistaMenu.setLocationRelativeTo(null);
+			vistaMenu.setUndecorated(true);
+			vistaMenu.setVisible(true);
+			controllerMenu = new MenuAdminController(vistaMenu);
 			
 		}
 		
 	}
 
 	private void agregarUsuario() {
-		String contraseña1,contraseña2;
+		String contrasena1,contrasena2;
 		int estatus=0;
-		contraseña1=usuariosView.txtPassword.getText();
-		contraseña2=usuariosView.txtPassword2.getText();
+		contrasena1=usuariosView.txtPassword.getText();
+		contrasena2=usuariosView.txtPassword2.getText();
 		if(usuariosView.rdbtnSi.isSelected()==true){
 			estatus=1;
 		}else if(usuariosView.rdbtnNo.isSelected()==true){
@@ -73,7 +80,7 @@ public class UsuariosController implements ActionListener{
 				|| usuariosView.txtUsername.getText().isEmpty()
 				|| usuariosView.txtPassword.getText().isEmpty()){
 			JOptionPane.showMessageDialog(null, "Campos vacios");
-		}else if (!contraseña1.equals(contraseña2)){
+		}else if (!contrasena1.equals(contrasena2)){
 			JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
 		}else if(usuariosView.jcbRoll.getSelectedItem().equals("--Seleccione un rol--")){
 			JOptionPane.showMessageDialog(null, "Seleccione un rol por favor");
@@ -94,6 +101,5 @@ public class UsuariosController implements ActionListener{
 					+""+usuarioModel.getRol()
 					+""+usuarioModel.getEnabled());
 		}
-		
 	}
 }
