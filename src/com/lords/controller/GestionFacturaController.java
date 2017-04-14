@@ -51,11 +51,6 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	this.ordenPago = pagoModel;
 	this.proveedorModel = proveedorModel;
 	
-	capturaView.btnAgregarProv.addActionListener(this);
-	capturaView.btnAgregarProv.addActionListener(this);
-	capturaView.btnAgregarProv.addActionListener(this);
-	capturaView.btnAgregarProv.addActionListener(this);
-	capturaView.btnAgregarProv.addActionListener(this);
 	
 	capturaView.txtSubtotal.addKeyListener(this);
 	capturaView.txtIva.addKeyListener(this);
@@ -66,8 +61,6 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	capturaFacturas.btnSalir.addActionListener(this);
 	capturaFacturas.btnGuardar.addActionListener(this);
 	capturaFacturas.btnExaminar.addActionListener(this);
-	capturaFacturas.btnAgregarProv.addActionListener(this);
-	capturaFacturas.btnAgregarServ.addActionListener(this);
 	}
 	
 	@Override
@@ -121,8 +114,6 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				String mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
 				JOptionPane.showMessageDialog(null, mensaje);
 			}
-		}else if(arg0.getSource().equals(capturaView.btnAgregarProv)){
-			System.out.println("ok");
 		}else if(arg0.getSource().equals(capturaView.btnSalir)){
 			capturaView.dispose();
 			capturaView.setVisible(false);
@@ -156,9 +147,9 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	@Override
 	public void keyTyped(KeyEvent e) {
 		char key = e.getKeyChar();
-		   if(Character.isLetter(key)) {          
-              e.consume();
-          } 
+	    if(Character.isLetter(key)) {
+	    	e.consume();
+        }
 	}
 
 	@Override
@@ -246,7 +237,6 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 		}else{
 			
 		}
-		
 	}
 	
 	

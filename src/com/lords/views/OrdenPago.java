@@ -25,16 +25,15 @@ import javax.swing.UIManager;
 
 public class OrdenPago extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JPanel jpSolicitudCheque;
-	private JButton btnSalir;
-	private JButton btnGuardar;
+	public JPanel contentPane;
+	public JTextField txtImporte;
+	public JTextField txtImporteLetra;
+	public JPanel jpSolicitudCheque;
+	public JButton btnSalir;
+	public JButton btnGuardar;
+	public JComboBox jcbServicios;
+	public JComboBox jcbProveedores;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -111,41 +110,42 @@ public class OrdenPago extends JFrame {
 		lblChequeANombrede.setBounds(10, 129, 142, 14);
 		jpSolicitudCheque.add(lblChequeANombrede);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(new Color(135, 206, 250));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Proveedores.."}));
-		comboBox.setBounds(162, 126, 367, 20);
-		jpSolicitudCheque.add(comboBox);
+		jcbProveedores = new JComboBox();
+		jcbProveedores.setBackground(new Color(135, 206, 250));
+		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
+		jcbProveedores.setBounds(162, 126, 367, 20);
+		jpSolicitudCheque.add(jcbProveedores);
 		
 		JLabel lblPorConceptoDe = new JLabel("POR CONCEPTO DE:");
 		lblPorConceptoDe.setBounds(10, 190, 122, 14);
 		jpSolicitudCheque.add(lblPorConceptoDe);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBackground(new Color(135, 206, 250));
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Servicios..."}));
-		comboBox_1.setBounds(162, 187, 367, 20);
-		jpSolicitudCheque.add(comboBox_1);
+		jcbServicios = new JComboBox();
+		jcbServicios.setEnabled(false);
+		jcbServicios.setBackground(new Color(135, 206, 250));
+		jcbServicios.setModel(new DefaultComboBoxModel(new String[] {"Servicios..."}));
+		jcbServicios.setBounds(162, 187, 367, 20);
+		jpSolicitudCheque.add(jcbServicios);
 		
 		JLabel lblPorElImporte = new JLabel("POR EL IMPORTE DE:");
 		lblPorElImporte.setBounds(10, 159, 122, 14);
 		jpSolicitudCheque.add(lblPorElImporte);
 		
-		textField_2 = new JTextField();
-		textField_2.setBackground(new Color(135, 206, 250));
-		textField_2.setBounds(161, 156, 44, 20);
-		jpSolicitudCheque.add(textField_2);
-		textField_2.setColumns(10);
+		txtImporte = new JTextField();
+		txtImporte.setBackground(new Color(135, 206, 250));
+		txtImporte.setBounds(161, 156, 44, 20);
+		jpSolicitudCheque.add(txtImporte);
+		txtImporte.setColumns(10);
 		
 		JLabel lblImporteletra = new JLabel("IMPORTE (LETRA):");
 		lblImporteletra.setBounds(215, 162, 114, 14);
 		jpSolicitudCheque.add(lblImporteletra);
 		
-		textField_3 = new JTextField();
-		textField_3.setBackground(new Color(135, 206, 250));
-		textField_3.setBounds(339, 156, 190, 20);
-		jpSolicitudCheque.add(textField_3);
-		textField_3.setColumns(10);
+		txtImporteLetra = new JTextField();
+		txtImporteLetra.setBackground(new Color(135, 206, 250));
+		txtImporteLetra.setBounds(339, 156, 190, 20);
+		jpSolicitudCheque.add(txtImporteLetra);
+		txtImporteLetra.setColumns(10);
 		
 		JLabel lblConstante1 = new JLabel("C.P. Armando Mendoza Delgado");
 		lblConstante1.setBounds(121, 35, 174, 14);
