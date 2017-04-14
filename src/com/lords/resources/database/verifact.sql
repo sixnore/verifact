@@ -101,7 +101,7 @@ NULL,
 'Lawliet',
 'sixnore',
 'password',
-01
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -111,7 +111,7 @@ NULL,
 'Pigmeo',
 'poortunic',
 'password',
-02
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -121,7 +121,7 @@ NULL,
 'El inge',
 'inge',
 'password',
-03
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -131,7 +131,7 @@ NULL,
 'Oscuras',
 'zero',
 '123456789',
-04
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -141,7 +141,7 @@ NULL,
 'Shade',
 'shade',
 'password',
-05
+1
 );
 
 -- _____________________________________________________________________________
