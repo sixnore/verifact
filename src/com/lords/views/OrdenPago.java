@@ -28,7 +28,6 @@ public class OrdenPago extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JButton btnAgregar;
 	private JPanel jpSolicitudCheque;
 	private JButton btnSalir;
 	private JButton btnGuardar;
@@ -115,7 +114,7 @@ public class OrdenPago extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(new Color(135, 206, 250));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Proveedores.."}));
-		comboBox.setBounds(162, 126, 253, 20);
+		comboBox.setBounds(162, 126, 367, 20);
 		jpSolicitudCheque.add(comboBox);
 		
 		JLabel lblPorConceptoDe = new JLabel("POR CONCEPTO DE:");
@@ -125,7 +124,7 @@ public class OrdenPago extends JFrame {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBackground(new Color(135, 206, 250));
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Servicios..."}));
-		comboBox_1.setBounds(162, 187, 253, 20);
+		comboBox_1.setBounds(162, 187, 367, 20);
 		jpSolicitudCheque.add(comboBox_1);
 		
 		JLabel lblPorElImporte = new JLabel("POR EL IMPORTE DE:");
@@ -147,16 +146,6 @@ public class OrdenPago extends JFrame {
 		textField_3.setBounds(339, 156, 190, 20);
 		jpSolicitudCheque.add(textField_3);
 		textField_3.setColumns(10);
-		
-		btnAgregar = new JButton("");
-		btnAgregar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnAgregar.setBounds(424, 126, 105, 20);
-		jpSolicitudCheque.add(btnAgregar);
-		
-		JButton btnAgregar_1 = new JButton("");
-		btnAgregar_1.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnAgregar_1.setBounds(425, 184, 105, 20);
-		jpSolicitudCheque.add(btnAgregar_1);
 		
 		JLabel lblConstante1 = new JLabel("C.P. Armando Mendoza Delgado");
 		lblConstante1.setBounds(121, 35, 174, 14);

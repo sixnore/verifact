@@ -49,7 +49,6 @@ public class CapturaFacturas extends JFrame {
 	public JTextField txtIva;
 	public JTextField txtTotal;
 	public JButton btnGuardar;
-	public JButton btnAgregarServ;
 	public JButton btnExaminar;
 	public JComboBox jcbProveedores;
 	public JComboBox jcbServicios;
@@ -59,7 +58,6 @@ public class CapturaFacturas extends JFrame {
 	private JLabel lblEstado;
 	public JComboBox jcbQuincena;
 	public JComboBox jcbEstado;
-	public JButton btnAgregarProv;
 	public JButton btnSalir;
 
 	static Conexion conexion;
@@ -141,7 +139,7 @@ public class CapturaFacturas extends JFrame {
 		jcbProveedores = new JComboBox();
 		jcbProveedores.setBackground(new Color(173, 216, 230));
 		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
-		jcbProveedores.setBounds(102, 175, 228, 20);
+		jcbProveedores.setBounds(88, 175, 357, 20);
 		panel.add(jcbProveedores);
 		
 		JLabel lblServicio = new JLabel("Servicio");
@@ -151,13 +149,8 @@ public class CapturaFacturas extends JFrame {
 		jcbServicios = new JComboBox();
 		jcbServicios.setBackground(new Color(173, 216, 230));
 		jcbServicios.setModel(new DefaultComboBoxModel(new String[] {"Servicios..."}));
-		jcbServicios.setBounds(102, 221, 228, 20);
+		jcbServicios.setBounds(88, 221, 357, 20);
 		panel.add(jcbServicios);
-		
-		btnAgregarServ = new JButton("");
-		btnAgregarServ.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnAgregarServ.setBounds(340, 220, 105, 20);
-		panel.add(btnAgregarServ);
 		
 		JLabel lblSubtotal = new JLabel("Subtotal");
 		lblSubtotal.setBounds(10, 269, 66, 14);
@@ -237,11 +230,6 @@ public class CapturaFacturas extends JFrame {
 		jcbQuincena.setModel(new DefaultComboBoxModel(new String[] {"1ERA", "2DA"}));
 		jcbQuincena.setBounds(316, 305, 129, 20);
 		panel.add(jcbQuincena);
-		
-		btnAgregarProv = new JButton("");
-		btnAgregarProv.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnAgregarProv.setBounds(340, 174, 105, 20);
-		panel.add(btnAgregarProv);
 		
 		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-SALIR2.png")));
