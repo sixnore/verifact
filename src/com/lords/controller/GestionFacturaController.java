@@ -3,6 +3,8 @@ package com.lords.controller;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -25,7 +27,7 @@ import com.lords.views.CapturaFacturas;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-public class GestionFacturaController implements ActionListener, KeyListener, WindowListener{
+public class GestionFacturaController implements ActionListener, KeyListener, WindowListener, ItemListener{
 
 	private CapturaFacturas view;
 	
@@ -50,6 +52,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	view.txtIva.addKeyListener(this);
 	view.txtTotal.addKeyListener(this);
 	view.addWindowListener(this);
+	view.jcbProveedores.addItemListener(this);
 	
 	capturaFacturas.btnGuardar.addActionListener(this);
 	}
@@ -191,6 +194,33 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) view.jcbServicios.getModel();
+		if(!(view.jcbProveedores.equals("Proveedores..."))){
+			modelo.removeAllElements();
+			modelo.addElement("Servicios...");
+			Connection accesodb = (Connection) conexion.conectandobd();
+			
+			String proveedor = (String) view.jcbProveedores.getSelectedItem();
+			
+			try {
+				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(" select servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
+				ps.setString(1, proveedor);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					modelo.addElement(rs.getObject(1));
+				}
+				view.jcbServicios.setModel(modelo);
+			} catch (Exception e) {
+				
+			}
+		}else{
+			
+		}
 		
 	}
 	
