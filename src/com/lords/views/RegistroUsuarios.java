@@ -37,10 +37,12 @@ public class RegistroUsuarios extends JFrame {
 			public void run() {
 				try {
 					RegistroUsuarios frame = new RegistroUsuarios();
+					frame.setLocationRelativeTo(null);
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}//catch
 			}
 		});
 	}
@@ -52,7 +54,7 @@ public class RegistroUsuarios extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 331, 370);
+		setBounds(100, 100, 331, 378);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -151,7 +153,7 @@ public class RegistroUsuarios extends JFrame {
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFondo.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/fondo2.jpg")));
-		lblFondo.setBounds(0, 0, 331, 370);
+		lblFondo.setBounds(0, 0, 331, 378);
 		panel.add(lblFondo);
 	}
 }
