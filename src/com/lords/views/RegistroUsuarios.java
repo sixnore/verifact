@@ -31,6 +31,7 @@ public class RegistroUsuarios extends JFrame {
 	public JTextField txtPassword;
 	public JButton btnSalir;
 	public JButton btnRegistrar;
+	private JTextField txtPassword2;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,7 +55,7 @@ public class RegistroUsuarios extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 331, 378);
+		setBounds(100, 100, 331, 357);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -71,7 +72,7 @@ public class RegistroUsuarios extends JFrame {
 		
 		JPanel jpDatos = new JPanel();
 		jpDatos.setBackground(new Color(173, 216, 230));
-		jpDatos.setBounds(12, 55, 306, 200);
+		jpDatos.setBounds(12, 41, 306, 231);
 		jpDatos.setBorder(new TitledBorder(null, "Datos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.add(jpDatos);
 		jpDatos.setLayout(null);
@@ -122,38 +123,47 @@ public class RegistroUsuarios extends JFrame {
 		txtPassword.setColumns(10);
 		
 		JLabel lblActivo = new JLabel("Activo: ");
-		lblActivo.setBounds(12, 175, 55, 16);
+		lblActivo.setBounds(13, 204, 55, 16);
 		jpDatos.add(lblActivo);
 		
 		JRadioButton rdbtnSi = new JRadioButton("Si");
 		rdbtnSi.setBackground(new Color(173, 216, 230));
-		rdbtnSi.setBounds(147, 171, 55, 24);
+		rdbtnSi.setBounds(148, 200, 55, 24);
 		jpDatos.add(rdbtnSi);
 		
 		JRadioButton rdbtnNo = new JRadioButton("No");
 		rdbtnNo.setBackground(new Color(173, 216, 230));
-		rdbtnNo.setBounds(219, 171, 62, 24);
+		rdbtnNo.setBounds(220, 200, 62, 24);
 		jpDatos.add(rdbtnNo);
+		
+		JLabel lblRepetirPassword = new JLabel("Repetir password:");
+		lblRepetirPassword.setBounds(12, 179, 111, 14);
+		jpDatos.add(lblRepetirPassword);
+		
+		txtPassword2 = new JTextField();
+		txtPassword2.setBounds(147, 176, 135, 20);
+		jpDatos.add(txtPassword2);
+		txtPassword2.setColumns(10);
 		
 		JComboBox jcbRoll = new JComboBox();
 		jcbRoll.setModel(new DefaultComboBoxModel(new String[] {"Roll...."}));
-		jcbRoll.setBounds(12, 267, 306, 25);
+		jcbRoll.setBounds(12, 283, 306, 25);
 		panel.add(jcbRoll);
 		
 		btnRegistrar = new JButton("");
 		btnRegistrar.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnRegistrar.setBounds(119, 304, 105, 20);
+		btnRegistrar.setBounds(12, 319, 105, 20);
 		panel.add(btnRegistrar);
 		
 		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
-		btnSalir.setBounds(119, 336, 105, 20);
+		btnSalir.setBounds(200, 319, 105, 20);
 		panel.add(btnSalir);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFondo.setIcon(new ImageIcon(RegistroUsuarios.class.getResource("/com/lords/resources/img/fondo2.jpg")));
-		lblFondo.setBounds(0, 0, 331, 378);
+		lblFondo.setBounds(0, 0, 331, 357);
 		panel.add(lblFondo);
 	}
 }
