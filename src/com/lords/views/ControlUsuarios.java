@@ -2,6 +2,8 @@ package com.lords.views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -49,6 +51,8 @@ public class ControlUsuarios extends JFrame {
 	 */
 	public ControlUsuarios() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
+        this.setIconImage(icono); 
 		setBounds(100, 100, 577, 395);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
