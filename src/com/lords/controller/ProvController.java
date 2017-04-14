@@ -9,41 +9,38 @@ import com.lords.views.Proveedores;
 
 public class ProvController  implements ActionListener{
 	
-	Proveedores proveedor = new Proveedores();
+	Proveedores proveedorView = new Proveedores();
 	
-	
-	MenuAdminController principal;
-	
-	Proveedores proveedorView;
 	MenuAdmin vistaMenu;
+	MenuAdminController controllerMenu;
 	
+	Proveedores proveedor;
 	
 	public ProvController(Proveedores proveedorView){
-		this.proveedor = proveedorView;
+		this.proveedorView = proveedorView;
 		proveedorView.btnAgregar.addActionListener(this);
 		proveedorView.btnConsultar.addActionListener(this);
 		proveedorView.btnModificar.addActionListener(this);
 		proveedorView.btnSalir.addActionListener(this);
-		principal = new MenuAdminController(vistaMenu);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource().equals(proveedor.btnAgregar)){
+		if(arg0.getSource().equals(proveedorView.btnAgregar)){
 			System.out.println("ok");
-		}else if(arg0.getSource().equals(proveedor.btnConsultar)){
+		}else if(arg0.getSource().equals(proveedorView.btnConsultar)){
 			System.out.println("ok");
-		}else if(arg0.getSource().equals(proveedor.btnModificar)){
+		}else if(arg0.getSource().equals(proveedorView.btnModificar)){
 			System.out.println("ok");
-		}else if(arg0.getSource().equals(proveedor.btnSalir)){
-			proveedor.dispose();
-			proveedor.setVisible(false);
+		}else if(arg0.getSource().equals(proveedorView.btnSalir)){
+			proveedorView.dispose();
+			proveedorView.setVisible(false);
 			try{
 				vistaMenu = new MenuAdmin();
-				vistaMenu.setVisible(true);
-				vistaMenu.setUndecorated(false);
 				vistaMenu.setLocationRelativeTo(null);
-				principal = new MenuAdminController(vistaMenu);
+				vistaMenu.setUndecorated(true);
+				vistaMenu.setVisible(true);
+				controllerMenu = new MenuAdminController(vistaMenu);
 			}catch(Exception ex){
 				
 			}

@@ -3,6 +3,8 @@ package com.lords.controller;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -22,57 +24,71 @@ import com.lords.model.PagoModel;
 import com.lords.model.ProveedorModel;
 import com.lords.model.ServicioModel;
 import com.lords.views.CapturaFacturas;
+import com.lords.views.MenuAdmin;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-public class GestionFacturaController implements ActionListener, KeyListener, WindowListener{
-
-	private CapturaFacturas view;
+public class GestionFacturaController implements ActionListener, KeyListener, WindowListener, ItemListener{
 	
 	FacturaModel facturaModel = new FacturaModel();
 	OrdenPagoModel ordenPago = new OrdenPagoModel();
 	ProveedorModel proveedorModel = new ProveedorModel();
 	ServicioModel servicioModel = new ServicioModel();
 	
+	MenuAdmin vistaMenu;
+	MenuAdminController controllerMenu;
+	
+	CapturaFacturas capturaView = new CapturaFacturas();
 	
 	FacturaDao facturaDao = new FacturaDao();
 
 	private Conexion conexion = null;
 	
 	public GestionFacturaController(CapturaFacturas capturaFacturas, FacturaModel facturaModel, OrdenPagoModel pagoModel, ProveedorModel proveedorModel, ServicioModel servicioModel){
-	this.view = capturaFacturas;
+	this.capturaView = capturaFacturas;
 	
 	this.facturaModel = facturaModel;
 	this.ordenPago = pagoModel;
 	this.proveedorModel = proveedorModel;
 	
-	view.txtSubtotal.addKeyListener(this);
-	view.txtIva.addKeyListener(this);
-	view.txtTotal.addKeyListener(this);
-	view.addWindowListener(this);
+	capturaView.btnAgregarProv.addActionListener(this);
+	capturaView.btnAgregarProv.addActionListener(this);
+	capturaView.btnAgregarProv.addActionListener(this);
+	capturaView.btnAgregarProv.addActionListener(this);
+	capturaView.btnAgregarProv.addActionListener(this);
 	
+	capturaView.txtSubtotal.addKeyListener(this);
+	capturaView.txtIva.addKeyListener(this);
+	capturaView.txtTotal.addKeyListener(this);
+	capturaView.addWindowListener(this);
+	capturaView.jcbProveedores.addItemListener(this);
+	
+	capturaFacturas.btnSalir.addActionListener(this);
 	capturaFacturas.btnGuardar.addActionListener(this);
+	capturaFacturas.btnExaminar.addActionListener(this);
+	capturaFacturas.btnAgregarProv.addActionListener(this);
+	capturaFacturas.btnAgregarServ.addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource().equals(view.btnGuardar)){
-			String folioFact =  view.txtFolioFactura.getText();
-			String fecha =  view.jdcFecha_Recep.getDateFormatString();
-			String quincena = (String)  view.jcbQuincena.getSelectedItem();
-			String estado = (String)  view.jcbEstado.getSelectedItem();
+		if(arg0.getSource().equals(capturaView.btnGuardar)){
+			String folioFact =  capturaView.txtFolioFactura.getText();
+			String fecha =  capturaView.jdcFecha_Recep.getDateFormatString();
+			String quincena = (String)  capturaView.jcbQuincena.getSelectedItem();
+			String estado = (String)  capturaView.jcbEstado.getSelectedItem();
 			
-			String proveedor = (String)  view.jcbProveedores.getSelectedItem();
-			String servicio = (String)  view.jcbServicios.getSelectedItem();
+			String proveedor = (String)  capturaView.jcbProveedores.getSelectedItem();
+			String servicio = (String)  capturaView.jcbServicios.getSelectedItem();
 			
-			String pago = (String)  view.jcbMetodoPago.getSelectedItem();
+			String pago = (String)  capturaView.jcbMetodoPago.getSelectedItem();
 			
-			if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() ||  view.txtSubtotal.getText().isEmpty() ||  view.txtIva.getText().isEmpty() ||  view.txtTotal.getText().isEmpty() || estado.equals("Estado...") || proveedor.equals("Proveedores...") || servicio.equals("Servicios...") || pago.equals("Pago...")){
+			if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() ||  capturaView.txtSubtotal.getText().isEmpty() ||  capturaView.txtIva.getText().isEmpty() ||  capturaView.txtTotal.getText().isEmpty() || estado.equals("Estado...") || proveedor.equals("Proveedores...") || servicio.equals("Servicios...") || pago.equals("Pago...")){
 				JOptionPane.showMessageDialog(null, "Algun campo se encuentra vacio o no selecciona algo");
 			}else{
 				String fechaS = null;
 				try { 
-					Date date = view.jdcFecha_Recep.getDate(); 
+					Date date = capturaView.jdcFecha_Recep.getDate(); 
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
 					fechaS = String.valueOf(sdf.format(date));
 					
@@ -86,9 +102,9 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 					} catch(NullPointerException ex) { 
 						JOptionPane.showMessageDialog(null, "Fecha no valida", "Error", JOptionPane.INFORMATION_MESSAGE); 
 					}
-				float subtotal = Float.parseFloat(view.txtSubtotal.getText() );
-				float iva = Float.parseFloat(view.txtIva.getText());
-				float total = Float.parseFloat(view.txtTotal.getText());
+				float subtotal = Float.parseFloat(capturaView.txtSubtotal.getText() );
+				float iva = Float.parseFloat(capturaView.txtIva.getText());
+				float total = Float.parseFloat(capturaView.txtTotal.getText());
 				facturaModel.setFolioFactura(folioFact);
 				facturaModel.setFechaRecep(fechaS);
 				facturaModel.setQuicena(quincena);
@@ -105,8 +121,20 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				String mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
 				JOptionPane.showMessageDialog(null, mensaje);
 			}
-		}else if(arg0.getSource().equals(view.btnAgregarProv)){
+		}else if(arg0.getSource().equals(capturaView.btnAgregarProv)){
 			System.out.println("ok");
+		}else if(arg0.getSource().equals(capturaView.btnSalir)){
+			capturaView.dispose();
+			capturaView.setVisible(false);
+			try{
+				vistaMenu = new MenuAdmin();
+				vistaMenu.setLocationRelativeTo(null);
+				vistaMenu.setUndecorated(true);
+				vistaMenu.setVisible(true);
+				controllerMenu = new MenuAdminController(vistaMenu);
+			}catch (Exception ex){
+				
+			}
 		}
 	}
 
@@ -137,14 +165,14 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	public void windowOpened(WindowEvent arg0) {
 		conexion = new Conexion();
 		Connection accesodb = (Connection) conexion.conectandobd();
-		DefaultComboBoxModel modelo = (DefaultComboBoxModel) view.jcbProveedores.getModel();
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) capturaView.jcbProveedores.getModel();
 		try {
 			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("select proveedor from proveedor");
 			ResultSet rs = ps.executeQuery();
-			view.jcbProveedores.setModel(modelo);
+			capturaView.jcbProveedores.setModel(modelo);
 			while(rs.next()){
 				modelo.addElement(rs.getObject(1));
-				view.jcbProveedores.setModel(modelo);
+				capturaView.jcbProveedores.setModel(modelo);
 			}
 			ps.close();
 		} catch (Exception e) {
@@ -191,6 +219,33 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) capturaView.jcbServicios.getModel();
+		if(!(capturaView.jcbProveedores.equals("Proveedores..."))){
+			modelo.removeAllElements();
+			modelo.addElement("Servicios...");
+			Connection accesodb = (Connection) conexion.conectandobd();
+			
+			String proveedor = (String) capturaView.jcbProveedores.getSelectedItem();
+			
+			try {
+				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(" select servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
+				ps.setString(1, proveedor);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					modelo.addElement(rs.getObject(1));
+				}
+				capturaView.jcbServicios.setModel(modelo);
+			} catch (Exception e) {
+				
+			}
+		}else{
+			
+		}
 		
 	}
 	

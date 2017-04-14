@@ -51,8 +51,8 @@ public class CapturaFacturas extends JFrame {
 	public JButton btnGuardar;
 	public JButton btnAgregarServ;
 	public JButton btnExaminar;
-	public static JComboBox jcbProveedores;
-	public static JComboBox jcbServicios;
+	public JComboBox jcbProveedores;
+	public JComboBox jcbServicios;
 	public JComboBox jcbMetodoPago;
 	public JPanel jpImg_factura;
 	public JDateChooser jdcFecha_Recep;
@@ -60,6 +60,7 @@ public class CapturaFacturas extends JFrame {
 	public JComboBox jcbQuincena;
 	public JComboBox jcbEstado;
 	public JButton btnAgregarProv;
+	public JButton btnSalir;
 
 	static Conexion conexion;
 	FacturaModel facturaModel = new FacturaModel();
@@ -68,7 +69,7 @@ public class CapturaFacturas extends JFrame {
 	ServicioModel servicioModel = new ServicioModel();
 	
 	FacturaDao facturaDao = new FacturaDao();
-	private JButton btnSalir;
+	
 	
 	/**
 	 * Launch the application.
@@ -95,13 +96,6 @@ public class CapturaFacturas extends JFrame {
 		
 		conexion = new Conexion();
 		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowOpened(WindowEvent arg0) {
-			//llenarServicios();
-			llenarProveedores();
-			}
-		});
 		setTitle("Gestion de facturas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
@@ -146,11 +140,6 @@ public class CapturaFacturas extends JFrame {
 		
 		jcbProveedores = new JComboBox();
 		jcbProveedores.setBackground(new Color(173, 216, 230));
-		jcbProveedores.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				seleccionServicios();
-			}
-		});
 		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
 		jcbProveedores.setBounds(102, 175, 228, 20);
 		panel.add(jcbProveedores);
@@ -221,11 +210,6 @@ public class CapturaFacturas extends JFrame {
 		
 		btnGuardar = new JButton("");
 		btnGuardar.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				validacionCampos();
-			}
-		});
 		btnGuardar.setBounds(150, 431, 117, 36);
 		panel.add(btnGuardar);
 		
@@ -281,59 +265,4 @@ public class CapturaFacturas extends JFrame {
 		panel.add(lblFondo);
 	}
 	
-	private void validacionCampos(){
-		
-	}
-		
-	
-	
-	private void seleccionServicios(){
-		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbServicios.getModel();
-		if(!(jcbProveedores.equals("Proveedores..."))){
-			modelo.removeAllElements();
-			modelo.addElement("Servicios...");
-			Connection accesodb = (Connection) conexion.conectandobd();
-			
-			String proveedor = (String) jcbProveedores.getSelectedItem();
-			
-			try {
-				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(" select servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
-				ps.setString(1, proveedor);
-				ResultSet rs = ps.executeQuery();
-				while(rs.next()){
-					modelo.addElement(rs.getObject(1));
-				}
-				jcbServicios.setModel(modelo);
-			} catch (Exception e) {
-				
-			}
-		}else{
-			
-		}
-		
-	}
-	
-	/*
-	private static void llenarServicios(){
-		Connection accesodb = (Connection) conexion.conectandobd();
-		DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcbServicios.getModel();
-		try {
-			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("select servicio from servicio");
-			ResultSet rs = ps.executeQuery();
-			jcbServicios.setModel(modelo);
-			while(rs.next()){
-				modelo.addElement(rs.getObject(1));
-				jcbServicios.setModel(modelo);
-			}
-			ps.close();
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Error cargando datos");
-		}
-	}
-	*/
-	
-	
-	private static void llenarProveedores(){
-		
-	}
 }
