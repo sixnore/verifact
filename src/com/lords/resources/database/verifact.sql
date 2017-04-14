@@ -1,5 +1,5 @@
--- Crecion de la base de datos: INFINITELINES03
--- 17/03/2017
+-- Crecion de la base de datos: VERIFACT
+-- 14/04/2017
 -- Burgueño Sanchez Ivan Samuel
 -- Clemente Aguirre Daniel
 -- Palacios Oviedo Victor
@@ -101,7 +101,7 @@ NULL,
 'Lawliet',
 'sixnore',
 'password',
-01
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -111,7 +111,7 @@ NULL,
 'Pigmeo',
 'poortunic',
 'password',
-02
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -121,7 +121,7 @@ NULL,
 'El inge',
 'inge',
 'password',
-03
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -131,7 +131,7 @@ NULL,
 'Oscuras',
 'zero',
 '123456789',
-04
+1
 );
 
 INSERT INTO usuario VALUES(
@@ -141,7 +141,7 @@ NULL,
 'Shade',
 'shade',
 'password',
-05
+1
 );
 
 -- _____________________________________________________________________________
@@ -183,40 +183,103 @@ NULL,
 );
 
 -- ______________________________________________________________________________
--- DESCRIPCION DE TABLAS
+-- REGISTROS DE
 
-DESC servicio;
-DESC pago;
-DESC factura;
-DESC cheque;
 
--- ______________________________________________________________________________
--- VISUALIZACION DE TODOS LOS REGISTROS
-
-SELECT * FROM servicio;
-SELECT * FROM pago;
-SELECT * FROM factura;
-SELECT * FROM cheque;
-
--- ______________________________________________________________________________
 -- INSERCCION DATOS
 
-insert into proveedor values(1,'APASCO');
-insert into proveedor values(2,'PIPAS ENRIQUE');
-insert into proveedor values(3,'SERVICIO DE COMIDA RAPIDA TOMMY`S');
-insert into proveedor values(4,'COCA-COLA');
-insert into proveedor values(5,'LIMPIEZA ZERO');
 
-insert into servicio values(null,'PALAS',1);
-insert into servicio values(null,'PICOS',1);
-insert into servicio values(null,'AGUA PARA BAÑOS',2);
-insert into servicio values(null,'AGUA POTABLE',2);
-insert into servicio values(null,'HAMBURGUESAS',3);
-insert into servicio values(null,'QUESADILLAS',3);
-insert into servicio values(null,'LOTE DE REFRESCOS EN LATA',4);
-insert into servicio values(null,'LOTE DE REFRESCOS EN ENVASE DE VIDRIO',4);
-insert into servicio values(null,'LIMPIEZA DE LA CANCHA',5);
-insert into servicio values(null,'LIMPIEZA DE BAÑOS',5);
 
-insert into factura values('12042017FAC1','2017-04-01','1ERA',NULL,3500.42,500.01,4000.43);
+insert into proveedor values(NULL,'MIGUEL ÁNGEL LÓPEZ MARTÍNEZ');
+
+insert into proveedor values(NULL,'SANSPOWER S.A. DE C.V.');
+
+insert into proveedor values(NULL,'OPERADORA CENTRAL DE ESTACIONAMIENTOS SAPI DE C.V.');
+
+insert into proveedor values(NULL,'OPERADORA DE CENTROS DE ESPECTÁCULOS S.A. DE C.V.');
+
+insert into proveedor values(NULL,'CIA. OPERADORA DE ESTACIONAMIENTOS MEXICANOS S.A. DE C.V.');
+
+
+insert into proveedor values(NULL,'SERVICIOS DE PROTECCIÓN PRIVADA LOBO S.A. DE C.V.');
+
+
+insert into proveedor values(NULL,'GOBIERNO DEL DISTRITO FEDERAL');
+
+
+insert into proveedor values(NULL,'LIBERTAD SATÉLITE S.A. DE C.V.');
+
+
+insert into proveedor values(NULL,'DISTRIBUIDORA DE HIELO S.A. DE C.V.');
+
+
+insert into proveedor values(NULL,'MARDE ECOLOGY S.A DE C.V.');
+
+
+insert into proveedor values(NULL,'MIGUEL ÁNGEL LÓPEZ MARTÍNEZ');
+
+
+
+-- ______________________________________________________________________________
+
+
+
+insert into servicio values(NULL,'SERVICIO DE PIPAS DE AGUA PARA BAÑOS',1);
+
+insert into servicio values(NULL,'SERVICIO DE RENTA DE PLANTAS DE LUZ',2);
+
+insert into servicio values(NULL,'SERVICIO DE VALET PARKING',3);
+
+insert into servicio values(NULL,'SERVICIO A PALCOS',4);
+
+insert into servicio values(NULL,'SERVICIO DE ESTACIONAMIENTOS',5);
+
+insert into servicio values(NULL,'SERVICIO DE OPERADORES DE AUDIO',4);
+
+insert into servicio values(NULL,'SERVICIO DE ANFITRIONES',4);
+
+insert into servicio values(NULL,'SERVICIO DE TAQUILLEROS',4);
+
+insert into servicio values(NULL,'SERVICIO DE BOLETEROS',4);
+
+insert into servicio values(NULL,'SERVICIO DE SEGURIDAD PRIVADA',6);
+
+
+insert into servicio values(NULL,'SERVICIO DE ACOMODADORES',4);
+
+insert into servicio values(NULL,'SERVICIO DE A Y B.',4);
+
+insert into servicio values(NULL,'SERVICIO DE SEGURIDAD Y VIGILANCIA',7);
+
+insert into servicio values(NULL,'SERVICIO DE PROTECCION PRIVADA',6);
+insert into servicio values(NULL,'SERVICIO DE PARTICIPACIÓN Y VENTA DE ABONO FREEDOM EN TEMPORADA DE CLAUSURA',8);
+
+insert into servicio values(NULL,'SERVICIO DE COMPRA DE HIELO PARA PARTIDOS Y ENTRENAMIENTO',9);
+insert into servicio values(NULL,'SERVICIO DE CONTENEDORES DE BASURA',10);
+
+-- ______________________________________________________________________________
+insert into factura values('12042017FAC1','2017-04-01','1ERA','EN ESPERA','com.lords.resources.img/Factura01.jpg',3500.42,500.01,4000.43);
+
+
+insert into factura values('12042018FAC1','2017-04-03','1ERA','ENTREGADA','com.lords.resources.img/Factura01.jpg',4500.42,500.01,5000.43);
+
+
+insert into factura values('12042019FAC1','2017-04-07','2DA','ENTREGADA','com.lords.resources.img/Factura01.jpg',2500.42,500.01,3000.43);
+
+
+insert into factura values('12042020FAC1','2017-04-05','1ERA','EN ESPERA','com.lords.resources.img/Factura01.jpg',5500.42,500.01,6000.43);
+
+
+insert into factura values('12042021FAC1','2017-04-10','2DA','ENTREGADA','com.lords.resources.img/Factura01.jpg',1500.42,500.01,2000.43);
+
+
+
+-- ______________________________________________________________________________
+
+-- insert into orden_pago values(NULL,NULL,'2017-04-01',NULL,'TRANSFERENCIA',21588.88,'VENTIUN MIL QUINIENTOS OCHENTA Y OCHO PESOS 88/100 M.N.','FAVOR DE PAGAR ANTES DEL DÍA X',NULL,NULL);
+
+
+-- insert into orden_pago values(NULL, ,'2017-04-01', ,'TRANSFERENCIA',21588.88,'VENTIUN MIL QUINIENTOS OCHENTA Y OCHO PESOS 88/100 M.N.','FAVOR DE PAGAR ANTES DEL DÍA X', , );
+
+
 
