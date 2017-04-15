@@ -39,7 +39,6 @@ public class MenuAdminController implements ActionListener{
 		menuView.btnFacturas.addActionListener(this);
 		menuView.btnOrdenesPago.addActionListener(this);
 		menuView.btnProveedores.addActionListener(this);
-		menuView.btnServicios.addActionListener(this);
 		menuView.btnUsuarios.addActionListener(this);
 		menuView.btnSalir.addActionListener(this);
 	}

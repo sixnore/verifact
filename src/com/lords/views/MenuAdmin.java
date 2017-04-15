@@ -28,7 +28,6 @@ public class MenuAdmin extends JFrame {
 	public JLabel label;
 	public JPanel contentPane;
 	public JButton btnFacturas;
-	public JButton btnServicios;
 	public JButton btnUsuarios;
 	public JButton btnProveedores;
 	public JButton btnOrdenesPago;
@@ -37,10 +36,6 @@ public class MenuAdmin extends JFrame {
 	
 	public JButton getBtnFacturas() {
 		return btnFacturas;
-	}
-
-	public JButton getBtnServicios() {
-		return btnServicios;
 	}
 
 	public JButton getBtnUsuarios() {
@@ -113,12 +108,6 @@ public class MenuAdmin extends JFrame {
 		btnUsuarios.setBounds(239, 45, 194, 38);
 		panel.add(btnUsuarios);
 		
-		btnServicios = new JButton("");
-		btnServicios.setBackground(Color.WHITE);
-		btnServicios.setIcon(new ImageIcon(MenuAdmin.class.getResource("/com/lords/resources/img/boton-SERVICIOS.png")));
-		btnServicios.setBounds(10, 103, 194, 38);
-		panel.add(btnServicios);
-		
 		btnProveedores = new JButton("");
 		btnProveedores.setBackground(Color.WHITE);
 		btnProveedores.setIcon(new ImageIcon(MenuAdmin.class.getResource("/com/lords/resources/img/boton-PROVEEDORES.png")));
@@ -128,13 +117,13 @@ public class MenuAdmin extends JFrame {
 		btnOrdenesPago = new JButton("");
 		btnOrdenesPago.setBackground(Color.WHITE);
 		btnOrdenesPago.setIcon(new ImageIcon(MenuAdmin.class.getResource("/com/lords/resources/img/boton-ORDENES_PAGO.png")));
-		btnOrdenesPago.setBounds(10, 161, 194, 38);
+		btnOrdenesPago.setBounds(10, 103, 194, 38);
 		panel.add(btnOrdenesPago);
 		
 		btnSalir = new JButton("");
 		btnSalir.setBackground(Color.WHITE);
 		btnSalir.setIcon(new ImageIcon(MenuAdmin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
-		btnSalir.setBounds(239, 162, 194, 38);
+		btnSalir.setBounds(133, 162, 194, 38);
 		panel.add(btnSalir);
 		
 		label = new JLabel("");

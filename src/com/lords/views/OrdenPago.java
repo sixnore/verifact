@@ -160,11 +160,13 @@ public class OrdenPago extends JFrame {
 		jpSolicitudCheque.add(lblConstante2);
 		
 		rdbtnCheque = new JRadioButton("Cheque");
+		rdbtnCheque.setBackground(new Color(173, 216, 230));
 		rdbtnCheque.setBounds(186, 92, 109, 23);
 		jpSolicitudCheque.add(rdbtnCheque);
 		rdbtnCheque.setSelected(true);
 		
 		rdbtnTransferenciaBancaria = new JRadioButton("Transferencia Bancaria");
+		rdbtnTransferenciaBancaria.setBackground(new Color(173, 216, 230));
 		rdbtnTransferenciaBancaria.setBounds(322, 92, 157, 23);
 		jpSolicitudCheque.add(rdbtnTransferenciaBancaria);
 		
