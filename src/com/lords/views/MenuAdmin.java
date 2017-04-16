@@ -32,6 +32,7 @@ public class MenuAdmin extends JFrame {
 	public JButton btnProveedores;
 	public JButton btnOrdenesPago;
 	public JButton btnSalir;
+	private JButton btnPagos;
 	
 	
 	public JButton getBtnFacturas() {
@@ -123,8 +124,13 @@ public class MenuAdmin extends JFrame {
 		btnSalir = new JButton("");
 		btnSalir.setBackground(Color.WHITE);
 		btnSalir.setIcon(new ImageIcon(MenuAdmin.class.getResource("/com/lords/resources/img/boton-SALIR.png")));
-		btnSalir.setBounds(133, 162, 194, 38);
+		btnSalir.setBounds(239, 162, 194, 38);
 		panel.add(btnSalir);
+		
+		btnPagos = new JButton("");
+		btnPagos.setIcon(new ImageIcon(MenuAdmin.class.getResource("/com/lords/resources/img/boton-PAGOS.png")));
+		btnPagos.setBounds(10, 166, 189, 37);
+		panel.add(btnPagos);
 		
 		label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
