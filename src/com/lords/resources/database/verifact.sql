@@ -185,10 +185,7 @@ NULL,
 -- ______________________________________________________________________________
 -- REGISTROS DE
 
-
 -- INSERCCION DATOS
-
-
 
 insert into proveedor values(NULL,'MIGUEL ÁNGEL LÓPEZ MARTÍNEZ');
 
@@ -200,29 +197,18 @@ insert into proveedor values(NULL,'OPERADORA DE CENTROS DE ESPECTÁCULOS S.A. DE 
 
 insert into proveedor values(NULL,'CIA. OPERADORA DE ESTACIONAMIENTOS MEXICANOS S.A. DE C.V.');
 
-
 insert into proveedor values(NULL,'SERVICIOS DE PROTECCIÓN PRIVADA LOBO S.A. DE C.V.');
-
 
 insert into proveedor values(NULL,'GOBIERNO DEL DISTRITO FEDERAL');
 
-
 insert into proveedor values(NULL,'LIBERTAD SATÉLITE S.A. DE C.V.');
-
 
 insert into proveedor values(NULL,'DISTRIBUIDORA DE HIELO S.A. DE C.V.');
 
-
 insert into proveedor values(NULL,'MARDE ECOLOGY S.A DE C.V.');
 
-
 insert into proveedor values(NULL,'MIGUEL ÁNGEL LÓPEZ MARTÍNEZ');
-
-
-
 -- ______________________________________________________________________________
-
-
 
 insert into servicio values(NULL,'SERVICIO DE PIPAS DE AGUA PARA BAÑOS',1);
 
@@ -244,7 +230,6 @@ insert into servicio values(NULL,'SERVICIO DE BOLETEROS',4);
 
 insert into servicio values(NULL,'SERVICIO DE SEGURIDAD PRIVADA',6);
 
-
 insert into servicio values(NULL,'SERVICIO DE ACOMODADORES',4);
 
 insert into servicio values(NULL,'SERVICIO DE A Y B.',4);
@@ -252,34 +237,42 @@ insert into servicio values(NULL,'SERVICIO DE A Y B.',4);
 insert into servicio values(NULL,'SERVICIO DE SEGURIDAD Y VIGILANCIA',7);
 
 insert into servicio values(NULL,'SERVICIO DE PROTECCION PRIVADA',6);
+
 insert into servicio values(NULL,'SERVICIO DE PARTICIPACIÓN Y VENTA DE ABONO FREEDOM EN TEMPORADA DE CLAUSURA',8);
 
 insert into servicio values(NULL,'SERVICIO DE COMPRA DE HIELO PARA PARTIDOS Y ENTRENAMIENTO',9);
-insert into servicio values(NULL,'SERVICIO DE CONTENEDORES DE BASURA',10);
-
--- ______________________________________________________________________________
-insert into factura values('12042017FAC1','2017-04-01','1ERA','EN ESPERA','com.lords.resources.img/Factura01.jpg',3500.42,500.01,4000.43);
 
-
-insert into factura values('12042018FAC1','2017-04-03','1ERA','ENTREGADA','com.lords.resources.img/Factura01.jpg',4500.42,500.01,5000.43);
-
-
-insert into factura values('12042019FAC1','2017-04-07','2DA','ENTREGADA','com.lords.resources.img/Factura01.jpg',2500.42,500.01,3000.43);
-
-
-insert into factura values('12042020FAC1','2017-04-05','1ERA','EN ESPERA','com.lords.resources.img/Factura01.jpg',5500.42,500.01,6000.43);
-
-
-insert into factura values('12042021FAC1','2017-04-10','2DA','ENTREGADA','com.lords.resources.img/Factura01.jpg',1500.42,500.01,2000.43);
-
-
-
+insert into servicio values(NULL,'SERVICIO DE CONTENEDORES DE BASURA',10);
 -- ______________________________________________________________________________
 
--- insert into orden_pago values(NULL,NULL,'2017-04-01',NULL,'TRANSFERENCIA',21588.88,'VENTIUN MIL QUINIENTOS OCHENTA Y OCHO PESOS 88/100 M.N.','FAVOR DE PAGAR ANTES DEL DÍA X',NULL,NULL);
+insert into factura values('12042017FAC1','2017-04-01','1ERA','EN ESPERA', null,3500.42,500.01,4000.43);
 
 
--- insert into orden_pago values(NULL, ,'2017-04-01', ,'TRANSFERENCIA',21588.88,'VENTIUN MIL QUINIENTOS OCHENTA Y OCHO PESOS 88/100 M.N.','FAVOR DE PAGAR ANTES DEL DÍA X', , );
+insert into factura values('12042018FAC1','2017-04-03','1ERA','ENTREGADA', null,4500.42,500.01,5000.43);
+
+
+insert into factura values('12042019FAC1','2017-04-07','2DA','ENTREGADA', null ,2500.42,500.01,3000.43);
+
+
+insert into factura values('12042020FAC1','2017-04-05','1ERA','EN ESPERA', null ,5500.42,500.01,6000.43);
+
+
+insert into factura values('12042021FAC1','2017-04-10','2DA','ENTREGADA', null ,1500.42,500.01,2000.43);
 
 
 
+-- ______________________________________________________________________________
+
+insert into orden_pago values(null, 'C.P. Armando Mendoza Delgado', '2017-04-15', 'Estadio Azul', 'TRANSFERENCIA', 5000.00, 'CINCO MIL PESOS MEXICANOS', 'SE ANEXA EL ESTADO BANCARIO DE LA CUENTA PARA SU PAGO', 'Lic. Pedro Ruiz Isunza', 'C.P. Isaac Velasco Alcantara');
+
+insert into orden_pago values(null, 'C.P. Armando Mendoza Delgado', '2017-04-14', 'Estadio Azul', 'CHEQUE', 4500.00, 'CUATRO MIL QUINIENTOS PESOS MEXICANOS', 'SE ANEXA EL ESTADO BANCARIO DE LA CUENTA PARA SU PAGO', 'Lic. Pedro Ruiz Isunza', 'C.P. Isaac Velasco Alcantara');
+
+insert into orden_pago values(null, 'C.P. Armando Mendoza Delgado', '2017-04-15', 'Estadio Azul', 'TRANSFERENCIA', 5000.00, 'CINCO MIL PESOS MEXICANOS', 'SE ANEXA EL ESTADO BANCARIO DE LA CUENTA PARA SU PAGO', 'Lic. Pedro Ruiz Isunza', 'C.P. Isaac Velasco Alcantara');
+
+-- ______________________________________________________________________________
+
+insert into pago values(null, 1, 'EN ESPERA', 10, '12042017FAC1');
+
+insert into pago values(null, 2, 'EN ESPERA', 1, '12042021FAC1');
+
+insert into pago values(null, 3, 'EN ESPERA', 5, '12042020FAC1');

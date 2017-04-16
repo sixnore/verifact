@@ -75,9 +75,43 @@ public class FacturaDao {
 			}else{
 				mensaje = "Ya registrado en la base de datos";
 			}
-		} catch (FileNotFoundException | NullPointerException | SQLException ex) {
-			mensaje="Ya registrado en la base de datos o error en la carga de datos: "+ex + url;
+		}catch(NullPointerException ex){
+			String folio = facturaModel.getFolioFactura();
+			String fecha = facturaModel.getFechaRecep();
+			String quincena = facturaModel.getQuicena();
+			String estado = facturaModel.getEstadoFactura();
+			
+			
+			float subtotal = facturaModel.getSubtotal();
+			float iva = facturaModel.getIva();
+			float total = facturaModel.getTotal();
+			
+			PreparedStatement ps;
+			try {
+				ps = (PreparedStatement) accesodb.prepareStatement("INSERT INTO factura VALUES(?,?,?,?,?,?,?,?)");
+				ps.setString(1, folio);
+				ps.setString(2, fecha);
+				ps.setString(3, quincena);
+				ps.setString(4, estado);
+				ps.setBinaryStream(5, null);
+				ps.setFloat(6, subtotal);
+				ps.setFloat(7, iva);
+				ps.setFloat(8, total);
+				
+				ps.execute();
+				
+				ps.close();
+			} catch (SQLException e) {
+				mensaje = "Error cargando datos "+ e;
+			}
+			
+			
+			mensaje = "Registrado";
+		}catch (FileNotFoundException | SQLException ex) {
+			mensaje = "Ya registrado en la base de datos o error en la carga de datos";
 		}
+			
+		
 		return mensaje;
 	}
 }

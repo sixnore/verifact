@@ -17,12 +17,17 @@ import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Pagos extends JFrame {
 
-	private JPanel contentPane;
-	private JTable jtRegistros;
-	private JTextField txtFolioFactura;
+	public JPanel contentPane;
+	public JTable jtRegistros;
+	public JComboBox jcbFolioFactura;
+	public JTextField txtFolioFactura;
+	public JButton btnSalir;
+	public JButton btnBuscar;
 
 	/**
 	 * Launch the application.
@@ -45,7 +50,7 @@ public class Pagos extends JFrame {
 	 */
 	public Pagos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 490, 415);
+		setBounds(100, 100, 850, 410);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -59,60 +64,70 @@ public class Pagos extends JFrame {
 		lblPagos.setForeground(new Color(0, 0, 0));
 		lblPagos.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 20));
 		lblPagos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPagos.setBounds(176, 11, 107, 24);
+		lblPagos.setBounds(379, 11, 107, 24);
 		jpPrincipal.add(lblPagos);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Pagos.class.getResource("/com/lords/resources/img/logo.png")));
-		lblLogo.setBounds(30, 37, 55, 55);
+		lblLogo.setBounds(227, 33, 55, 55);
 		jpPrincipal.add(lblLogo);
 		
 		JLabel lblTitulo = new JLabel("Titulo");
 		lblTitulo.setIcon(new ImageIcon(Pagos.class.getResource("/com/lords/resources/img/titulo-CRUZAZUL.png")));
-		lblTitulo.setBounds(94, 37, 324, 51);
+		lblTitulo.setBounds(291, 33, 324, 51);
 		jpPrincipal.add(lblTitulo);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(435, 149, 17, 161);
-		jpPrincipal.add(scrollBar);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 149, 804, 161);
+		jpPrincipal.add(scrollPane);
 		
 		jtRegistros = new JTable();
-		jtRegistros.setBounds(10, 149, 444, 161);
-		jpPrincipal.add(jtRegistros);
+		jtRegistros.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"#", "M\u00E9todo de pago", "Folio de Factura", "Servicio", "Estado del pago"
+			}
+		));
+		jtRegistros.getColumnModel().getColumn(0).setPreferredWidth(60);
+		jtRegistros.getColumnModel().getColumn(1).setPreferredWidth(145);
+		jtRegistros.getColumnModel().getColumn(2).setPreferredWidth(150);
+		scrollPane.setViewportView(jtRegistros);
 		
 		JLabel lblPorIndice = new JLabel("Por indice");
-		lblPorIndice.setBounds(10, 115, 75, 14);
+		lblPorIndice.setBounds(151, 115, 75, 14);
 		jpPrincipal.add(lblPorIndice);
 		
-		JComboBox jcbFolioFactura = new JComboBox();
+		jcbFolioFactura = new JComboBox();
 		jcbFolioFactura.setBackground(new Color(173, 216, 230));
 		jcbFolioFactura.setModel(new DefaultComboBoxModel(new String[] {"Folio de la factura...."}));
-		jcbFolioFactura.setBounds(91, 112, 166, 20);
+		jcbFolioFactura.setBounds(227, 112, 189, 20);
 		jpPrincipal.add(jcbFolioFactura);
 		
 		JLabel lblEscribaFolio = new JLabel("Escriba el folio");
-		lblEscribaFolio.setBounds(261, 115, 91, 14);
+		lblEscribaFolio.setBounds(440, 115, 91, 14);
 		jpPrincipal.add(lblEscribaFolio);
 		
 		txtFolioFactura = new JTextField();
 		txtFolioFactura.setBackground(new Color(173, 216, 230));
-		txtFolioFactura.setBounds(354, 110, 98, 20);
+		txtFolioFactura.setBounds(541, 112, 200, 20);
 		jpPrincipal.add(txtFolioFactura);
 		txtFolioFactura.setColumns(10);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(Pagos.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
-		btnSalir.setBounds(10, 322, 100, 20);
+		btnSalir.setBounds(268, 321, 100, 20);
 		jpPrincipal.add(btnSalir);
 		
-		JButton btnBuscar = new JButton("");
+		btnBuscar = new JButton("");
 		btnBuscar.setIcon(new ImageIcon(Pagos.class.getResource("/com/lords/resources/img/boton-BUSCAR.png")));
-		btnBuscar.setBounds(356, 322, 100, 20);
+		btnBuscar.setBounds(507, 321, 100, 20);
 		jpPrincipal.add(btnBuscar);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(Pagos.class.getResource("/com/lords/resources/img/fondo2.jpg")));
-		lblFondo.setBounds(0, 0, 464, 366);
+		lblFondo.setBounds(0, 0, 824, 366);
 		jpPrincipal.add(lblFondo);
 	}
 }

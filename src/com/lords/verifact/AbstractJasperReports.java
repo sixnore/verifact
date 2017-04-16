@@ -14,10 +14,10 @@ public abstract class AbstractJasperReports {
 	private static JasperPrint reportFilled;
 	private static JasperViewer viewer;
 	
-	public static void createReport(Connection conn, String path){
+	public static void createReport(Connection conexion, String path){
 		try{
 			report = (JasperReport) JRLoader.loadObjectFromFile(path);
-			reportFilled = JasperFillManager.fillReport(report,null,conn);
+			reportFilled = JasperFillManager.fillReport(report,null,conexion);
 		}catch (JRException ex){
 			ex.printStackTrace();
 		}

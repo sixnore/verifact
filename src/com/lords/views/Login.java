@@ -36,10 +36,7 @@ public class Login extends JFrame {
 	UsuarioModel usuarioModelo = new UsuarioModel();
 	UsuarioBo usuarioBo = new UsuarioBo();
 	MenuAdmin menu_admin = new MenuAdmin();
-
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -55,9 +52,6 @@ public class Login extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
@@ -114,34 +108,4 @@ public class Login extends JFrame {
 		label.setBounds(0, 0, 376, 476);
 		panel.add(label);
 	}
-	
-//	private void acceder() {
-//		String username = jtfUsuario.getText();
-//		char[] getPass = jpfPassword.getPassword();
-//		String password = new String(getPass);
-//		if(username.equals(null)|| password.equals(null)|| password.equals("")|| username.equals("")){
-//			JOptionPane.showMessageDialog(null, "Usuario/Contraseña vacíos");
-//		}else{
-//			String mensaje="";
-//			usuarioModelo.setUsername(username);
-//			usuarioModelo.setPassword(password);
-//			usuarioModelo.setRol("");
-//			mensaje=usuarioBo.acceder(usuarioModelo);
-//			JOptionPane.showMessageDialog(null, mensaje);
-//			if(!mensaje.equals("No existe usuario")){
-//				if(usuarioModelo.getRol().equals("admon")){
-//					
-//					this.setVisible(false);
-//					menu_admin.setVisible(true);
-//					menu_admin.setLocationRelativeTo(null);
-//				}else if(usuarioModelo.getRol().equals("secretary")){
-//					
-//				}else{
-//					
-//				}
-//			}else{
-//				JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrectos");
-//			}
-//		}
-//	}
 }
