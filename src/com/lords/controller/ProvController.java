@@ -129,9 +129,21 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 		DefaultTableModel modelo = (DefaultTableModel) proveedorView.jtServicios.getModel();
 		
 		if(arg0.getSource().equals(proveedorView.jcbProveedores)){
+			
 			String item = proveedorView.jcbProveedores.getSelectedItem().toString();
+			
 			if(!item.equals("Proveedores...")){
-				//proveedor.jtServicios.setModel(new DefaultTableModel());
+				
+				try {
+					
+		            int filas = proveedorView.jtServicios.getRowCount();
+		            for (int i = 0;filas>i; i++) {
+		                modelo.removeRow(0);
+		            }
+		            
+				} catch (Exception e) {
+		            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+		        }
 				
 				Connection accesodb = (Connection) conexion.conectandobd();
 				
@@ -142,7 +154,7 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 					Object sqlInfo[] = new Object[1];
 					
 					while(rs.next()){
-						for(int x = 0; x < 1 ; x++){
+						for(int x = 0; x < proveedorView.jtServicios.getColumnCount() ; x++){
 							sqlInfo[x] = rs.getString(x+1);
 						}
 					}
@@ -152,7 +164,11 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 					
 				}
 			}else{
-				proveedor.jtServicios.setModel(new DefaultTableModel());
+				int total = modelo.getRowCount();
+				for(int x = total; x == 0 ; x -- ){
+					modelo.removeRow(x-1);
+				}
+				proveedor.jtServicios.setModel(modelo);
 			}
 		}
 	}
