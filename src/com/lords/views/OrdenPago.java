@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.lords.verifact.AbstractJasperReports;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -29,8 +31,14 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.JRadioButton;
 
+import java.sql.Connection;
+
 public class OrdenPago extends JFrame {
 
+	public OrdenPago(Connection conn){
+		AbstractJasperReports.createReport(conn,"C:\\Users\\Samuel\\JaspersoftWorkspace\\Verifact\\OrdenPago.jasper");
+	}
+	
 	public JPanel contentPane;
 	public JTextField txtImporte;
 	public JTextField txtImporteLetra;
