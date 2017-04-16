@@ -118,7 +118,7 @@ public class MenuAdmin extends JFrame {
 		btnOrdenesPago = new JButton("");
 		btnOrdenesPago.setBackground(Color.WHITE);
 		btnOrdenesPago.setIcon(new ImageIcon(MenuAdmin.class.getResource("/com/lords/resources/img/boton-ORDENES_PAGO.png")));
-		btnOrdenesPago.setBounds(10, 103, 194, 38);
+		btnOrdenesPago.setBounds(10, 103, 189, 37);
 		panel.add(btnOrdenesPago);
 		
 		btnSalir = new JButton("");
