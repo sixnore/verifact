@@ -51,6 +51,8 @@ public class OrdenPago extends JFrame {
 	public JRadioButton rdbtnTransferenciaBancaria;
 	public JComboBox jcbAplicacion;
 	public ButtonGroup grupoPago;
+	public JButton btnGenerar;
+	public JButton btnExportar;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -277,12 +279,12 @@ public class OrdenPago extends JFrame {
 		btnGuardar.setBounds(432, 509, 117, 36);
 		panel.add(btnGuardar);
 		
-		JButton btnExportar = new JButton("");
+		btnExportar = new JButton("");
 		btnExportar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-EXPORTAR.png")));
 		btnExportar.setBounds(148, 509, 117, 36);
 		panel.add(btnExportar);
 		
-		JButton btnGenerar = new JButton("");
+		btnGenerar = new JButton("");
 		btnGenerar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-GENERAR.png")));
 		btnGenerar.setBounds(294, 509, 117, 36);
 		panel.add(btnGenerar);

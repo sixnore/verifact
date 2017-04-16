@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -23,6 +25,8 @@ import com.lords.views.MenuAdmin;
 import com.lords.views.OrdenPago;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+
+import com.lords.verifact.AbstractJasperReports;
 
 public class OrdenesPagoController implements ActionListener, WindowListener, ItemListener, KeyListener{
 
@@ -41,14 +45,19 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	private Conexion conexion = null;
 	
 	
-	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel, OrdenPagoBo ordenPagoBo){
+	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel, OrdenPagoBo ordenPagoBo, Connection con){
 		this.pagoView = vistaPago;
 		this.pagoModel = pagoModel;
 		this.provModel = provModel;
 		this.servicioModel = servicioModel;
 		this.ordenPagoBo = ordenPagoBo;
+		
+		AbstractJasperReports.createReport(con,"C:\\Verifact\\OrdenPago.jasper");
+		
 		vistaPago.btnGuardar.addActionListener(this);
 		vistaPago.btnSalir.addActionListener(this);
+		vistaPago.btnGenerar.addActionListener(this);
+		vistaPago.btnExportar.addActionListener(this);
 		vistaPago.addWindowListener(this);
 		vistaPago.jcbProveedores.addItemListener(this);
 		vistaPago.txtImporte.addKeyListener(this);
@@ -88,11 +97,23 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 			if(pagoView.jcbProveedores.getSelectedItem().toString().equals("Proveedores...") || pagoView.txtImporte.getText().isEmpty() || pagoView.txtImporteLetra.getText().isEmpty() || pagoView.jcbAplicacion.getSelectedItem().toString().equals("...")){
 				mensaje = "Campos sin llenar";
 			}else{
+				
+				if(pagoView.rdbtnCheque.isSelected()){
+					pagoModel.setTipoPago("CHEQUE");
+				}else if(pagoView.rdbtnTransferenciaBancaria.isSelected()){
+					pagoModel.setTipoPago("TRANSFERENCIA");
+				}
+				
+				Date date = pagoView.jdcFechaOrden.getDate();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+				String fechaO = String.valueOf(sdf.format(date));
+				
+				pagoModel.setFecharOrden(fechaO);
 				pagoModel.setAplicContable(pagoView.jcbAplicacion.getSelectedItem().toString());
 				pagoModel.setImporteNumero(Float.parseFloat(pagoView.txtImporte.getText()));
-				pagoModel.setTipoPago(pagoView.grupoPago.getSelection().toString());
-				pagoModel.setImporteLetra(pagoView.txtImporteLetra.getText());
-				pagoModel.setFecharOrden(pagoView.jdcFechaOrden.getDate().toString());
+				pagoModel.setImporteLetra(pagoView.txtImporteLetra.getText().toUpperCase()+" PESOS MEXICANOS");
+				
+				
 				servicioModel.setServicio(pagoView.jcbServicios.getSelectedItem().toString());
 				
 				provModel.setProveedor(pagoView.jcbProveedores.getSelectedItem().toString());
@@ -100,6 +121,10 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 				mensaje = ordenPagoBo.registrarOrdenPago(pagoModel, servicioModel, provModel);
 			}
 			JOptionPane.showMessageDialog(null, mensaje);
+		}else if(e.getSource().equals(pagoView.btnGenerar)){
+			AbstractJasperReports.showView();
+		}else if(e.getSource().equals(pagoView.btnExportar)){
+			AbstractJasperReports.exportToPDF("C:\\Reportes\\Reporte.pdf");
 		}
 	}
 

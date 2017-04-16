@@ -16,10 +16,13 @@ public class OrdenPagoBo {
 		float importeNumero = pagoModel.getImporteNumero();
 		String importeLetra = pagoModel.getImporteLetra();		
 		String tipoPago = pagoModel.getTipoPago();
+		String fechaO = pagoModel.getFecharOrden();
 		
 		String proveedor = provModel.getProveedor();
 		
 		String servicio = servicioModel.getServicio();
+		
+		
 		
 		mensaje = OrdenPagoDao.registrarOrdenPago(pagoModel, servicioModel, provModel);
 		return mensaje;
