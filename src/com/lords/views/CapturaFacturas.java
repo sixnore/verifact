@@ -53,12 +53,13 @@ public class CapturaFacturas extends JFrame {
 	public JComboBox jcbProveedores;
 	public JComboBox jcbServicios;
 	public JComboBox jcbMetodoPago;
-	public JPanel jpImg_factura;
 	public JDateChooser jdcFecha_Recep;
-	private JLabel lblEstado;
+	public JLabel lblEstado;
 	public JComboBox jcbQuincena;
 	public JComboBox jcbEstado;
 	public JButton btnSalir;
+	public JLabel jlblImagen;
+	private JLabel lblTotal;
 
 	static Conexion conexion;
 	FacturaModel facturaModel = new FacturaModel();
@@ -67,6 +68,7 @@ public class CapturaFacturas extends JFrame {
 	ServicioModel servicioModel = new ServicioModel();
 	
 	FacturaDao facturaDao = new FacturaDao();
+	
 	
 	
 	/**
@@ -98,7 +100,7 @@ public class CapturaFacturas extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 454, 481);
+		setBounds(100, 100, 450, 476);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -172,7 +174,7 @@ public class CapturaFacturas extends JFrame {
 		panel.add(txtIva);
 		txtIva.setColumns(10);
 		
-		JLabel lblTotal = new JLabel("Total");
+		lblTotal = new JLabel("Total");
 		lblTotal.setBounds(311, 269, 33, 14);
 		panel.add(lblTotal);
 		
@@ -206,11 +208,6 @@ public class CapturaFacturas extends JFrame {
 		btnGuardar.setBounds(150, 431, 117, 36);
 		panel.add(btnGuardar);
 		
-		jpImg_factura = new JPanel();
-		jpImg_factura.setBorder(new TitledBorder(null, "Imagen de la factura", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		jpImg_factura.setBounds(289, 336, 156, 133);
-		panel.add(jpImg_factura);
-		
 		lblEstado = new JLabel("Estado");
 		lblEstado.setBounds(10, 310, 46, 14);
 		panel.add(lblEstado);
@@ -236,6 +233,11 @@ public class CapturaFacturas extends JFrame {
 		btnSalir.setBounds(10, 431, 117, 36);
 		panel.add(btnSalir);
 		
+		jlblImagen = new JLabel("");
+		jlblImagen.setBackground(Color.WHITE);
+		jlblImagen.setBounds(289, 336, 155, 135);
+		panel.add(jlblImagen);
+		
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setIcon(new ImageIcon(CapturaFacturas.class.getResource("/com/lords/resources/img/titulo-CRUZAZUL.png")));
 		lblTitulo.setBounds(88, 42, 324, 51);
@@ -252,5 +254,4 @@ public class CapturaFacturas extends JFrame {
 		lblFondo.setBounds(0, 0, 454, 481);
 		panel.add(lblFondo);
 	}
-	
 }

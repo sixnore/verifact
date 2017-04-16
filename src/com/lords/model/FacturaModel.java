@@ -13,10 +13,17 @@ public class FacturaModel {
 	String quicena;
 	String estadoFactura;
 	Image facturaImg;
+	String urlImg;
 	float subtotal;
 	float iva;
 	float total;
 	
+	public String getUrlImg() {
+		return urlImg;
+	}
+	public void setUrlImg(String urlImg) {
+		this.urlImg = urlImg;
+	}
 	public String getFolioFactura() {
 		return folioFactura;
 	}

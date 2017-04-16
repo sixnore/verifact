@@ -1,5 +1,7 @@
 package com.lords.controller;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,12 +11,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.lords.bo.FacturaBo;
 import com.lords.conexion.Conexion;
@@ -44,6 +50,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 	FacturaBo facturaBo = new FacturaBo();
 
 	private Conexion conexion = null;
+	private String url;
 	
 	public GestionFacturaController(CapturaFacturas capturaFacturas, FacturaModel facturaModel, OrdenPagoModel pagoModel, ProveedorModel proveedorModel, ServicioModel servicioModel){
 	this.capturaView = capturaFacturas;
@@ -80,6 +87,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 			if(folioFact.isEmpty() || fecha.isEmpty() || quincena.isEmpty() ||  capturaView.txtSubtotal.getText().isEmpty() ||  capturaView.txtIva.getText().isEmpty() ||  capturaView.txtTotal.getText().isEmpty() || estado.equals("Estado...") || proveedor.equals("Proveedores...") || servicio.equals("Servicios...") || pago.equals("Pago...")){
 				JOptionPane.showMessageDialog(null, "Algun campo se encuentra vacio o no selecciona algo");
 			}else{
+				
 				String fechaS = null;
 				try { 
 					Date date = capturaView.jdcFecha_Recep.getDate(); 
@@ -99,6 +107,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				float subtotal = Float.parseFloat(capturaView.txtSubtotal.getText() );
 				float iva = Float.parseFloat(capturaView.txtIva.getText());
 				float total = Float.parseFloat(capturaView.txtTotal.getText());
+				
 				facturaModel = new FacturaModel();
 				facturaModel.setFolioFactura(folioFact);
 				facturaModel.setFechaRecep(fechaS);
@@ -107,6 +116,7 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				facturaModel.setSubtotal(subtotal);
 				facturaModel.setIva(iva);
 				facturaModel.setTotal(total);
+				facturaModel.setUrlImg(this.url);
 				
 				proveedorModel = new ProveedorModel();
 				proveedorModel.setProveedor(proveedor);
@@ -119,11 +129,48 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				
 				String mensaje = facturaBo.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
 				
-				if(mensaje.equals("Ya registrado o datos incorrectos")){
-					JOptionPane.showMessageDialog(null, mensaje);
-				}else if(mensaje.equals("")){
-					JOptionPane.showMessageDialog(null, "Ok");
-				}
+				JOptionPane.showMessageDialog(null, "Estado : "+mensaje);
+				
+				limpiezaView();
+				
+				/*
+				try {
+					Date date  = capturaView.jdcFecha_Recep.getDate();;
+					Date actual  = new Date();
+					if(date.after(actual)){
+						throw new NullPointerException();
+					}else{
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+						String fechaS  = String.valueOf(sdf.format(date));
+						 
+						float subtotal = Float.parseFloat(capturaView.txtSubtotal.getText() );
+						float iva = Float.parseFloat(capturaView.txtIva.getText());
+						float total = Float.parseFloat(capturaView.txtTotal.getText());
+						//facturaModel = new FacturaModel();
+						facturaModel.setFolioFactura(folioFact);
+						facturaModel.setFechaRecep(fechaS);
+						facturaModel.setQuicena(quincena);
+						facturaModel.setEstadoFactura(estado);
+						facturaModel.setSubtotal(subtotal);
+						facturaModel.setIva(iva);
+						facturaModel.setTotal(total);
+						
+						//proveedorModel = new ProveedorModel();
+						proveedorModel.setProveedor(proveedor);
+						
+						servicioModel = new ServicioModel();
+						servicioModel.setServicio(servicio);
+						
+						//ordenPago = new  OrdenPagoModel(); 
+						ordenPago.setTipoPago(pago);
+						
+						String mensaje = facturaBo.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
+						
+						JOptionPane.showMessageDialog(null, "Estado: "+mensaje);
+					}
+				}catch(NullPointerException ex) { 
+					JOptionPane.showMessageDialog(null, "Fecha no valida \n"+ex, "Error", JOptionPane.INFORMATION_MESSAGE); 
+				}*/				
 			}
 		}else if(arg0.getSource().equals(capturaView.btnSalir)){
 			capturaView.dispose();
@@ -135,6 +182,32 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 				vistaMenu.setVisible(true);
 				controllerMenu = new MenuAdminController(vistaMenu);
 			}catch (Exception ex){
+				
+			}
+		}else if(arg0.getSource().equals(capturaView.btnExaminar)){
+			
+			FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formato de archivos tipo imagen JPEG(*.JPG, *.JPEG)", "jpg", "jpeg");
+			JFileChooser imagen = new JFileChooser();
+			imagen.addChoosableFileFilter(filtro);
+			imagen.setDialogTitle("Elegir imagen de factura");
+			File url = new File("C:/");
+			imagen.setCurrentDirectory(url);
+			
+			int window = imagen.showOpenDialog(null);
+			if(window == JFileChooser.APPROVE_OPTION){
+				File factura = imagen.getSelectedFile();
+				String urlFact = String.valueOf(factura);
+				
+				Image facturaPan = Toolkit.getDefaultToolkit().getImage(urlFact);
+				facturaPan = facturaPan.getScaledInstance(155, 135, Image.SCALE_DEFAULT);
+				
+				capturaView.jlblImagen.setIcon(new ImageIcon(facturaPan));
+				
+				try{
+					this.url = urlFact;
+				}catch(Exception ex){
+					
+				}
 				
 			}
 		}
@@ -248,5 +321,19 @@ public class GestionFacturaController implements ActionListener, KeyListener, Wi
 		}else{
 			
 		}
+	}
+	
+	private void limpiezaView(){
+		capturaView.jdcFecha_Recep.setDate(null);
+		capturaView.txtFolioFactura.setText(null);
+		capturaView.txtSubtotal.setText(null);
+		capturaView.txtIva.setText(null);
+		capturaView.txtTotal.setText(null);
+		capturaView.jlblImagen.setIcon(null);
+		capturaView.jcbProveedores.setSelectedIndex(0);
+		capturaView.jcbServicios.setSelectedIndex(0);
+		capturaView.jcbEstado.setSelectedIndex(0);
+		capturaView.jcbQuincena.setSelectedIndex(0);
+		capturaView.jcbMetodoPago.setSelectedIndex(0);
 	}
 }

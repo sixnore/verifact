@@ -15,13 +15,11 @@ public class FacturaBo {
 		
 		String folio = facturaModel.getFolioFactura();
 		
-		if(folio.length()<50){
-			mensaje = "Ya registrado o datos incorrectos";
+		if(folio.length()>50){
+			mensaje = "Formato de factura demasiado largo";
 		}else{
 			mensaje = facturaDao.registrarFact(ordenPago, facturaModel, proveedorModel, servicioModel);
 		}
 		return mensaje;
-	}
-
-	
+	}	
 }

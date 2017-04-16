@@ -22,6 +22,7 @@ import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class Proveedores extends JFrame {
 
@@ -32,8 +33,8 @@ public class Proveedores extends JFrame {
 	public JButton btnModificar;
 	public JButton btnElimanar;
 	public JButton btnSalir;
-	private JComboBox jcbProveedores;
-	private JScrollBar jsbTabla;
+	public JComboBox jcbProveedores;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -119,22 +120,23 @@ public class Proveedores extends JFrame {
 		panel.add(jpServicios);
 		jpServicios.setLayout(null);
 		
-		jsbTabla = new JScrollBar();
-		jsbTabla.setBounds(421, 23, 17, 132);
-		jpServicios.add(jsbTabla);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 23, 428, 132);
+		jpServicios.add(scrollPane);
 		
 		jtServicios = new JTable();
+		scrollPane.setViewportView(jtServicios);
 		jtServicios.setBackground(new Color(255, 255, 224));
-		jtServicios.setBorder(new TitledBorder(null, "Servicios que brinda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		jtServicios.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null},
 			},
 			new String[] {
-				"Tipos de servicio"
+				"Servicios"
 			}
 		));
-		jtServicios.setBounds(10, 23, 428, 132);
-		jpServicios.add(jtServicios);
+		jtServicios.getColumnModel().getColumn(0).setPreferredWidth(425);
+		jtServicios.getColumnModel().getColumn(0).setMinWidth(425);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/logo.png")));
