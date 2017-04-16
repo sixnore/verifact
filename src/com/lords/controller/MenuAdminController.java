@@ -20,6 +20,7 @@ public class MenuAdminController implements ActionListener{
 	RegistroUsuarios vistaUsuarios;
 	Proveedores vistaProveedores;
 	OrdenPago vistaPago;
+	Pagos vistaPagos;
 	Login login;
 	
 	FacturaModel facturaModel;
@@ -33,6 +34,7 @@ public class MenuAdminController implements ActionListener{
 	ProvController controllerProveedor;
 	OrdenesPagoController controllerPago;
 	UsuariosController controllerUsuario;
+	PagosController pagosController;
 
 	public MenuAdminController(MenuAdmin menuView){
 		this.menuView = menuView;
@@ -41,6 +43,7 @@ public class MenuAdminController implements ActionListener{
 		menuView.btnProveedores.addActionListener(this);
 		menuView.btnUsuarios.addActionListener(this);
 		menuView.btnSalir.addActionListener(this);
+		menuView.btnPagos.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -118,7 +121,21 @@ public class MenuAdminController implements ActionListener{
 				controllerLogin =new PrincipalController(usuarioModel, login);
 			} catch (Exception ex) {
 				ex.printStackTrace();
-			}//CATCH
+			}
+		}
+		
+		if(e.getSource().equals(menuView.btnPagos)){
+			menuView.dispose();
+			menuView.setVisible(false);
+			try{
+				vistaPagos = new Pagos();
+				vistaPagos.setLocationRelativeTo(null);
+				vistaPagos.setUndecorated(true);
+				vistaPagos.setVisible(true);
+				pagosController = new PagosController(vistaPagos);
+			}catch(Exception ex){
+				
+			}
 		}
 	}
 }

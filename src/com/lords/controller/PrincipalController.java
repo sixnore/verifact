@@ -105,7 +105,6 @@ public class PrincipalController implements ActionListener, KeyListener {
 					ex.printStackTrace();
 				}
 			}
-			JOptionPane.showMessageDialog(null, resultado);
 		}
 	}
 

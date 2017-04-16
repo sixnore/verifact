@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import com.lords.conexion.Conexion;
+import com.lords.views.MenuAdmin;
 import com.lords.views.Pagos;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -20,6 +21,10 @@ import com.mysql.jdbc.PreparedStatement;
 public class PagosController implements ActionListener, ItemListener, WindowListener{
 	
 	Pagos pagosVerView = new Pagos();
+	
+	
+	MenuAdmin menuAdmin;
+	MenuAdminController menuController;
 	
 	private Conexion conexion = null;
 	
@@ -37,8 +42,34 @@ public class PagosController implements ActionListener, ItemListener, WindowList
 
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
-		
-		
+		DefaultTableModel modelo = (DefaultTableModel) pagosVerView.jtRegistros.getModel();
+		if(arg0.getSource().equals(pagosVerView.jcbFolioFactura)){
+			String item = pagosVerView.jcbFolioFactura.getSelectedItem().toString();
+				try {
+		            int filas = pagosVerView.jtRegistros.getRowCount();
+		            for (int i = 0;filas>i; i++) {
+		                modelo.removeRow(0);
+		            }
+				} catch (Exception e) {
+		            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+		        }
+				Connection accesodb = (Connection) conexion.conectandobd();
+				try {
+					PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT id_pago,(SELECT  tipo_pago FROM orden_pago op WHERE op.no_orden_pago=p.no_orden_pago) as tipo, folio_factura, (SELECT servicio FROM servicio s WHERE s.id_servicio=p.id_servicio) as servicio from pago p WHERE folio_factura=?"); 
+					ps.setString(1, item);
+					ResultSet rs = ps.executeQuery();
+					Object sqlInfo[] = new Object[4];
+					while(rs.next()){
+						for(int x = 0; x < 4; x++){
+							sqlInfo[x] = rs.getObject(x+1);
+						}
+						modelo.addRow(sqlInfo);
+					}
+					pagosVerView.jtRegistros.setModel(modelo);
+				} catch (Exception e) {
+					
+				}
+		}
 	}
 
 	@Override
@@ -83,7 +114,7 @@ public class PagosController implements ActionListener, ItemListener, WindowList
 		Connection accesodb = (Connection) conexion.conectandobd();
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) pagosVerView.jcbFolioFactura.getModel();
 		try {
-			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT folio_factua FROM pago");
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT folio_factura FROM pago");
 			ResultSet rs = ps.executeQuery();
 			pagosVerView.jcbFolioFactura.setModel(modelo);
 			while(rs.next()){
@@ -99,12 +130,19 @@ public class PagosController implements ActionListener, ItemListener, WindowList
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource().equals(pagosVerView.btnSalir)){
-			
+			pagosVerView.dispose();
+			pagosVerView.setVisible(false);
+			try{
+				menuAdmin = new MenuAdmin();
+				menuAdmin.setLocationRelativeTo(null);
+				menuAdmin.setUndecorated(true);
+				menuAdmin.setVisible(true);
+				menuController = new MenuAdminController(menuAdmin);
+			}catch(Exception ex){
+				
+			}
 		}else if(arg0.getSource().equals(pagosVerView.btnBuscar)){
-			
-		}
-		
+			pagosVerView.txtFolioFactura.getText();
+		}		
 	}
-
-	
 }

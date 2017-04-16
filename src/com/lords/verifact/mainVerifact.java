@@ -25,15 +25,11 @@ public class mainVerifact {
 	public static void main(String[] args) {
 		//Vistas 
 		Login vistaLogin = new Login();
-		
-		
-		//BoS
+
 		UsuarioBo usuarioBo=new UsuarioBo();
 
-		//Modelos
 		UsuarioModel usuarioModel=new UsuarioModel();
 		
-		//Controladores
 		PrincipalController principalController=new PrincipalController(usuarioModel, vistaLogin, usuarioBo);
 				
 		try {

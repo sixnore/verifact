@@ -44,7 +44,6 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	OrdenPagoBo ordenPagoBo = new OrdenPagoBo();
 	private Conexion conexion = null;
 	
-	
 	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel, OrdenPagoBo ordenPagoBo, Connection con){
 		this.pagoView = vistaPago;
 		this.pagoModel = pagoModel;
@@ -72,6 +71,8 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 		
 		vistaPago.btnGuardar.addActionListener(this);
 		vistaPago.btnSalir.addActionListener(this);
+		vistaPago.btnGenerar.addActionListener(this);
+		vistaPago.btnExportar.addActionListener(this);
 		vistaPago.addWindowListener(this);
 		vistaPago.jcbProveedores.addItemListener(this);
 		vistaPago.txtImporte.addKeyListener(this);
@@ -122,9 +123,9 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 			}
 			JOptionPane.showMessageDialog(null, mensaje);
 		}else if(e.getSource().equals(pagoView.btnGenerar)){
-			AbstractJasperReports.showView();
+			
 		}else if(e.getSource().equals(pagoView.btnExportar)){
-			AbstractJasperReports.exportToPDF("C:\\Reportes\\Reporte.pdf");
+			
 		}
 	}
 

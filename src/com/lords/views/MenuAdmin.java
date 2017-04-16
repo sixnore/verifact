@@ -32,29 +32,8 @@ public class MenuAdmin extends JFrame {
 	public JButton btnProveedores;
 	public JButton btnOrdenesPago;
 	public JButton btnSalir;
-	private JButton btnPagos;
+	public JButton btnPagos;
 	
-	
-	public JButton getBtnFacturas() {
-		return btnFacturas;
-	}
-
-	public JButton getBtnUsuarios() {
-		return btnUsuarios;
-	}
-
-	public JButton getBtnProveedores() {
-		return btnProveedores;
-	}
-
-	public JButton getBtnOrdenesPago() {
-		return btnOrdenesPago;
-	}
-
-	public JButton getBtnSalir() {
-		return btnSalir;
-	}
-
 	/**
 	 * Launch the application.
 	 */

@@ -50,7 +50,7 @@ public class Pagos extends JFrame {
 	 */
 	public Pagos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 850, 410);
+		setBounds(100, 100, 824, 383);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -84,10 +84,10 @@ public class Pagos extends JFrame {
 		jtRegistros = new JTable();
 		jtRegistros.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"#", "M\u00E9todo de pago", "Folio de Factura", "Servicio", "Estado del pago"
+				"#", "M\u00E9todo de pago", "Folio de Factura", "Servicio"
 			}
 		));
 		jtRegistros.getColumnModel().getColumn(0).setPreferredWidth(60);
