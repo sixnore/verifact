@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.lords.verifact.AbstractJasperReports;
+
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -22,7 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+
 import javax.swing.ButtonGroup;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -34,10 +37,6 @@ import javax.swing.JRadioButton;
 import java.sql.Connection;
 
 public class OrdenPago extends JFrame {
-
-	public OrdenPago(Connection conn){
-		AbstractJasperReports.createReport(conn,"C:\\Users\\Samuel\\JaspersoftWorkspace\\Verifact\\OrdenPago.jasper");
-	}
 	
 	public JPanel contentPane;
 	public JTextField txtImporte;
@@ -270,13 +269,23 @@ public class OrdenPago extends JFrame {
 		
 		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-REGRESAR.png")));
-		btnSalir.setBounds(62, 509, 117, 36);
+		btnSalir.setBounds(10, 509, 117, 36);
 		panel.add(btnSalir);
 		
 		btnGuardar = new JButton("");
 		btnGuardar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-GUARDAR.png")));
-		btnGuardar.setBounds(365, 509, 117, 36);
+		btnGuardar.setBounds(432, 509, 117, 36);
 		panel.add(btnGuardar);
+		
+		JButton btnExportar = new JButton("");
+		btnExportar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-EXPORTAR.png")));
+		btnExportar.setBounds(148, 509, 117, 36);
+		panel.add(btnExportar);
+		
+		JButton btnGenerar = new JButton("");
+		btnGenerar.setIcon(new ImageIcon(OrdenPago.class.getResource("/com/lords/resources/img/boton-GENERAR.png")));
+		btnGenerar.setBounds(294, 509, 117, 36);
+		panel.add(btnGenerar);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.RIGHT);
