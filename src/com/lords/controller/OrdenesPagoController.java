@@ -42,16 +42,18 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	ServicioModel servicioModel;
 	
 	OrdenPagoBo ordenPagoBo = new OrdenPagoBo();
-	private Conexion conexion = null;
+	private Conexion conexion;
 	
-	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel, OrdenPagoBo ordenPagoBo, Connection con){
+	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel, OrdenPagoBo ordenPagoBo){
 		this.pagoView = vistaPago;
 		this.pagoModel = pagoModel;
 		this.provModel = provModel;
 		this.servicioModel = servicioModel;
 		this.ordenPagoBo = ordenPagoBo;
 		
-		AbstractJasperReports.createReport(con,"C:\\Verifact\\OrdenPago.jasper");
+		//this.conexion = new Conexion();
+		
+		//AbstractJasperReports.createReport(conexion,"C:\\Verifact\\OrdenPago.jasper");
 		
 		vistaPago.btnGuardar.addActionListener(this);
 		vistaPago.btnSalir.addActionListener(this);
@@ -63,11 +65,15 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 		vistaPago.txtImporteLetra.addKeyListener(this);
 	}
 	
-	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel){
+	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel
+			//, Connection con
+			){
 		this.pagoView = vistaPago;
 		this.pagoModel = pagoModel;
 		this.provModel = provModel;
 		this.servicioModel = servicioModel;
+		
+		//AbstractJasperReports.createReport(conexion,"C:\\Verifact\\OrdenPago.jasper");
 		
 		vistaPago.btnGuardar.addActionListener(this);
 		vistaPago.btnSalir.addActionListener(this);
@@ -123,9 +129,9 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 			}
 			JOptionPane.showMessageDialog(null, mensaje);
 		}else if(e.getSource().equals(pagoView.btnGenerar)){
-			
+			AbstractJasperReports.showViewer();
 		}else if(e.getSource().equals(pagoView.btnExportar)){
-			
+			AbstractJasperReports.exportToPDF("C:\\Reportes\\Reporte.pdf");
 		}
 	}
 
@@ -166,8 +172,7 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	}
 
 	@Override
-	public void windowOpened(WindowEvent arg0) {
-		conexion = new Conexion();
+	public void windowOpened(WindowEvent arg0) {	
 		Connection accesodb = (Connection) conexion.conectandobd();
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) pagoView.jcbProveedores.getModel();
 		try {
@@ -208,6 +213,7 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 					modelo.addElement(rs.getObject(1));
 				}
 				pagoView.jcbServicios.setModel(modelo);
+				ps.close();
 			} catch (Exception e) {
 				
 			}

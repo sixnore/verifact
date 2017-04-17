@@ -1,5 +1,8 @@
 package com.lords.verifact;
 import java.sql.Connection;
+
+import com.lords.conexion.Conexion;
+
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -14,16 +17,16 @@ public abstract class AbstractJasperReports {
 	private static JasperPrint reportFilled;
 	private static JasperViewer viewer;
 	
-	public static void createReport(Connection conexion, String path){
+	public static void createReport(Conexion conexion, String path){
 		try{
 			report = (JasperReport) JRLoader.loadObjectFromFile(path);
-			reportFilled = JasperFillManager.fillReport(report,null,conexion);
+			reportFilled = JasperFillManager.fillReport(report,null,(Connection) conexion);
 		}catch (JRException ex){
 			ex.printStackTrace();
 		}
 	}
 	
-	public static void showView(){
+	public static void showViewer(){
 		viewer = new JasperViewer(reportFilled);
 		viewer.setVisible(true);
 	}

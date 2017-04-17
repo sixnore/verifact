@@ -31,7 +31,7 @@ public class Proveedores extends JFrame {
 	public JButton btnAgregar;
 	public JButton btnConsultar;
 	public JButton btnModificar;
-	public JButton btnElimanar;
+	public JButton btnEliminar;
 	public JButton btnSalir;
 	public JComboBox jcbProveedores;
 	private JScrollPane scrollPane;
@@ -103,10 +103,10 @@ public class Proveedores extends JFrame {
 		btnModificar.setBounds(333, 54, 105, 20);
 		jpProveedores.add(btnModificar);
 		
-		btnElimanar = new JButton("");
-		btnElimanar.setBounds(10, 54, 105, 20);
-		jpProveedores.add(btnElimanar);
-		btnElimanar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-ELIMINAR.png")));
+		btnEliminar = new JButton("");
+		btnEliminar.setBounds(10, 54, 105, 20);
+		jpProveedores.add(btnEliminar);
+		btnEliminar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-ELIMINAR.png")));
 		
 		jcbProveedores = new JComboBox();
 		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores...."}));

@@ -31,7 +31,7 @@ public class Gestionbd {
         }
     }
     public ResultSet ejecutarsentencia(String sentenciabd){
-        ResultSet rs=null;
+        ResultSet rs = null;
         try{
             sentencia=lineaconexion.createStatement();
             rs=sentencia.executeQuery(sentenciabd);

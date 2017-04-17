@@ -6,10 +6,7 @@
 package com.lords.conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
-/**
- *
- * @author macbookpro
- */
+
 public class Conexion {
     String bd="verifact";
     String login="root";

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import com.lords.conexion.Conexion;
 import com.lords.model.*;
 import com.lords.views.*;
 
@@ -35,7 +36,9 @@ public class MenuAdminController implements ActionListener{
 	OrdenesPagoController controllerPago;
 	UsuariosController controllerUsuario;
 	PagosController pagosController;
-
+	
+	//Conexion conexion;
+	
 	public MenuAdminController(MenuAdmin menuView){
 		this.menuView = menuView;
 		menuView.btnFacturas.addActionListener(this);
@@ -70,11 +73,15 @@ public class MenuAdminController implements ActionListener{
 				servicioModel = new ServicioModel();
 				proveedorModel = new ProveedorModel();
 				
+				//conexion = new Conexion();
+				
 				vistaPago = new OrdenPago();
 				vistaPago.setLocationRelativeTo(null);
 				vistaPago.setUndecorated(true);
 				vistaPago.setVisible(true);
-				controllerPago = new OrdenesPagoController(vistaPago, pagoModel, proveedorModel, servicioModel);
+				controllerPago = new OrdenesPagoController(vistaPago, pagoModel, proveedorModel, servicioModel
+						//, conexion
+						);
 			}catch(Exception ex){
 				
 			}
@@ -88,7 +95,7 @@ public class MenuAdminController implements ActionListener{
 				vistaProveedores.setLocationRelativeTo(null);
 				vistaProveedores.setUndecorated(true);
 				vistaProveedores.setVisible(true);
-				controllerProveedor = new ProvController(vistaProveedores);
+				controllerProveedor = new ProvController(vistaProveedores, proveedorModel);
 			}catch(Exception ex){
 				
 			}
