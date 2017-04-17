@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -20,18 +21,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
+import javax.swing.border.EtchedBorder;
+import java.awt.Font;
 
 public class ControlUsuarios extends JFrame {
 
 	public JPanel contentPane;
 	public JTextField txtNombre;
-	public JTextField txtApPaterno;
-	public JTextField txtApMaterno;
 	public JTextField txtUsername;
-	public JTable jtUsuarios;
 	public JButton btnBuscar;
 	public JButton btnAgregar;
 	public JButton btnSalir;
+	public JTable table;
 
 	/**
 	 * Launch the application.
@@ -56,7 +58,7 @@ public class ControlUsuarios extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icono = Toolkit.getDefaultToolkit().getImage("src/com/lords/resources/img/icono-VERIFACT.png");
         this.setIconImage(icono); 
-		setBounds(100, 100, 577, 395);
+		setBounds(100, 100, 613, 488);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -68,56 +70,42 @@ public class ControlUsuarios extends JFrame {
 		
 		JPanel jpInformacionPersonal = new JPanel();
 		jpInformacionPersonal.setBackground(new Color(173, 216, 230));
-		jpInformacionPersonal.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n personal", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		jpInformacionPersonal.setBounds(21, 11, 392, 187);
+		jpInformacionPersonal.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Parametros de busqueda", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		jpInformacionPersonal.setBounds(21, 28, 421, 158);
 		jpPrincipal.add(jpInformacionPersonal);
 		jpInformacionPersonal.setLayout(null);
-		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(10, 41, 73, 14);
+		JLabel lblNombre = new JLabel("Nombre y/o apellidos:");
+		lblNombre.setBounds(10, 65, 147, 17);
 		jpInformacionPersonal.add(lblNombre);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(128, 38, 100, 20);
+		txtNombre.setBounds(156, 63, 246, 20);
 		jpInformacionPersonal.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JLabel lblApellidoPaterno = new JLabel("Apellido paterno:");
-		lblApellidoPaterno.setBounds(10, 71, 108, 14);
-		jpInformacionPersonal.add(lblApellidoPaterno);
-		
-		txtApPaterno = new JTextField();
-		txtApPaterno.setBounds(128, 69, 100, 20);
-		jpInformacionPersonal.add(txtApPaterno);
-		txtApPaterno.setColumns(10);
-		
-		JLabel lblApellidoMaterno = new JLabel("Apellido materno:");
-		lblApellidoMaterno.setBounds(10, 108, 108, 14);
-		jpInformacionPersonal.add(lblApellidoMaterno);
-		
-		txtApMaterno = new JTextField();
-		txtApMaterno.setBounds(128, 105, 100, 20);
-		jpInformacionPersonal.add(txtApMaterno);
-		txtApMaterno.setColumns(10);
-		
 		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setBounds(10, 143, 73, 14);
+		lblUsername.setBounds(10, 111, 73, 14);
 		jpInformacionPersonal.add(lblUsername);
 		
 		txtUsername = new JTextField();
-		txtUsername.setBounds(128, 140, 100, 20);
+		txtUsername.setBounds(95, 108, 113, 20);
 		jpInformacionPersonal.add(txtUsername);
 		txtUsername.setColumns(10);
 		
 		JComboBox jcbRoll = new JComboBox();
-		jcbRoll.setModel(new DefaultComboBoxModel(new String[] {"Roll...."}));
-		jcbRoll.setBounds(255, 38, 120, 20);
+		jcbRoll.setModel(new DefaultComboBoxModel(new String[] {"--Seleccione un rol--", "Administrador", "Capturista", "Secretaria"}));
+		jcbRoll.setBounds(220, 109, 195, 20);
 		jpInformacionPersonal.add(jcbRoll);
+		
+		JLabel lblNewLabel = new JLabel("Los parametros de busqueda funcionan en conjunto o de manera independiente.");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.ITALIC, 10));
+		lblNewLabel.setBounds(10, 29, 405, 16);
+		jpInformacionPersonal.add(lblNewLabel);
 		
 		JPanel jpOpciones = new JPanel();
 		jpOpciones.setBackground(new Color(173, 216, 230));
 		jpOpciones.setBorder(new TitledBorder(null, "Opciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		jpOpciones.setBounds(423, 11, 139, 187);
+		jpOpciones.setBounds(454, 28, 139, 158);
 		jpPrincipal.add(jpOpciones);
 		jpOpciones.setLayout(null);
 		
@@ -128,27 +116,40 @@ public class ControlUsuarios extends JFrame {
 		
 		btnAgregar = new JButton("");
 		btnAgregar.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
-		btnAgregar.setBounds(20, 81, 105, 20);
+		btnAgregar.setBounds(20, 69, 105, 20);
 		jpOpciones.add(btnAgregar);
 		
 		btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/boton-SALIR3.png")));
-		btnSalir.setBounds(20, 143, 105, 20);
+		btnSalir.setBounds(20, 116, 105, 20);
 		jpOpciones.add(btnSalir);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(547, 210, 17, 160);
-		jpPrincipal.add(scrollBar);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(21, 213, 577, 218);
+		jpPrincipal.add(panel_1);
+		panel_1.setLayout(null);
 		
-		jtUsuarios = new JTable();
-		jtUsuarios.setColumnSelectionAllowed(true);
-		jtUsuarios.setBounds(21, 212, 542, 158);
-		jpPrincipal.add(jtUsuarios);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 565, 203);
+		panel_1.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Nombre completo", "Username", "Estatus", "Modificar", "Eliminar"
+			}
+		));
+		scrollPane.setViewportView(table);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblFondo.setIcon(new ImageIcon(ControlUsuarios.class.getResource("/com/lords/resources/img/fondo1.jpg")));
-		lblFondo.setBounds(0, 0, 577, 395);
+		lblFondo.setBounds(0, 0, 615, 468);
 		jpPrincipal.add(lblFondo);
 	}
 }

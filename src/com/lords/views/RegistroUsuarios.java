@@ -20,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.JPasswordField;
 
 public class RegistroUsuarios extends JFrame {
 
@@ -28,13 +29,13 @@ public class RegistroUsuarios extends JFrame {
 	public JTextField txtApPaterno;
 	public JTextField txtApMaterno;
 	public JTextField txtUsername;
-	public JTextField txtPassword;
 	public JButton btnSalir;
 	public JButton btnRegistrar;
-	public JTextField txtPassword2;
 	public JRadioButton rdbtnSi,rdbtnNo;
 	public JComboBox jcbRoll;
 	public ButtonGroup grupo1;
+	public JPasswordField txtPassword;
+	public JPasswordField txtPassword2;
 	
 	
 	public static void main(String[] args) {
@@ -121,11 +122,6 @@ public class RegistroUsuarios extends JFrame {
 		jpDatos.add(txtUsername);
 		txtUsername.setColumns(10);
 		
-		txtPassword = new JTextField();
-		txtPassword.setBounds(147, 145, 135, 20);
-		jpDatos.add(txtPassword);
-		txtPassword.setColumns(10);
-		
 		JLabel lblActivo = new JLabel("Activo: ");
 		lblActivo.setBounds(13, 204, 55, 16);
 		jpDatos.add(lblActivo);
@@ -148,10 +144,13 @@ public class RegistroUsuarios extends JFrame {
 		lblRepetirPassword.setBounds(12, 179, 111, 14);
 		jpDatos.add(lblRepetirPassword);
 		
-		txtPassword2 = new JTextField();
-		txtPassword2.setBounds(147, 176, 135, 20);
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(147, 142, 135, 26);
+		jpDatos.add(txtPassword);
+		
+		txtPassword2 = new JPasswordField();
+		txtPassword2.setBounds(147, 173, 135, 26);
 		jpDatos.add(txtPassword2);
-		txtPassword2.setColumns(10);
 		
 		jcbRoll = new JComboBox();
 		jcbRoll.setModel(new DefaultComboBoxModel(new String[] {"--Seleccione un rol--", "Administrador", "Capturista", "Secretaria"}));
