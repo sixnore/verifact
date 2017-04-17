@@ -1,7 +1,13 @@
 package com.lords.bo;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.lords.dao.ProveedorDao;
 import com.lords.model.ProveedorModel;
+import com.lords.model.ServicioModel;
+import com.lords.model.UsuarioModel;
 
 public class ProveedorBo {
 	
@@ -33,6 +39,35 @@ public class ProveedorBo {
 		mensaje = ProveedorDao.buscar(provModel);
 		
 		return mensaje;
+	}
+
+	public static List<ServicioModel> consultaGeneral()throws SQLException {
+		List<ServicioModel> listaUsuarios=new ArrayList<ServicioModel>();
+		try {
+			listaUsuarios = ProveedorDao.consultaGeneral();
+		} catch (SQLException t) {
+			throw new SQLException(t.getMessage());
+		}
+		return listaUsuarios;
+	}
+
+	public static ServicioModel consultaEditar(String servicio)throws SQLException {
+		ServicioModel ServicioModel=new ServicioModel();
+		try{
+			ServicioModel=ProveedorDao.consultaEditar(servicio);
+		}catch(Exception e){
+			throw new SQLException(e.getMessage());
+		}
+		return ServicioModel;
+	}
+
+	public static String eliminarServicio(String servicio){
+		String resultado="correcto editar";
+		try{
+			resultado=ProveedorDao.eliminarServicio(servicio);
+		}catch(Exception e){
+		}		
+		return resultado;
 	}
 
 }

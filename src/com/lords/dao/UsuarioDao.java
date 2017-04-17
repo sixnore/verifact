@@ -205,7 +205,7 @@ public class UsuarioDao {
 
 			int correcto = ps.executeUpdate();
 			if (correcto > 0) {
-				resultado = "El usuario fue dado de baja correctamente!";
+				resultado = "El usuario fue dado de baja correctamente";
 			}
 
 		} catch (Exception e) {

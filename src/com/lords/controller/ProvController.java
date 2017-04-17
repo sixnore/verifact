@@ -1,20 +1,32 @@
 package com.lords.controller;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import com.lords.bo.ProveedorBo;
 import com.lords.conexion.Conexion;
 import com.lords.model.ProveedorModel;
+import com.lords.model.ServicioModel;
+import com.lords.model.UsuarioModel;
 import com.lords.views.Login;
 import com.lords.views.MenuAdmin;
 import com.lords.views.Proveedores;
@@ -31,6 +43,8 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 	ProveedorModel provModel;
 	
 	Proveedores proveedor;
+	
+	ServicioModel servicioModel = new ServicioModel();
 	
 	private Conexion conexion = null;
 	
@@ -146,6 +160,7 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
+		consultaGeneral();
 		fillComboBox();
 	}
 
@@ -201,11 +216,117 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 	private void removeElementsTable(){
 		DefaultTableModel modelo = (DefaultTableModel) proveedorView.jtServicios.getModel();
 		int total = modelo.getRowCount();
-		for(int x = total; x == 0 ; x -- ){
-			modelo.removeRow(x-1);
+		for(int x = total; x < total ; x -- ){
+			modelo.removeRow(x);
 			proveedor.jtServicios.setModel(modelo);
 		}
 		
+	}
+
+
+	private void consultaGeneral() {
+		List<ServicioModel> listaServicios = new ArrayList<ServicioModel>();
+		try {
+			listaServicios = ProveedorBo.consultaGeneral();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		Iterator<ServicioModel> itrUsuarios = listaServicios.iterator();
+		String[] columnNames = {"Servicio", "Modificar", "Eliminar" };
+
+		final Class[] tiposColumnas = new Class[] { java.lang.String.class, java.lang.String.class,java.lang.Integer.class, JButton.class,
+				JButton.class };
+
+		proveedorView.jtServicios.setModel(new javax.swing.table.DefaultTableModel() {
+			Class[] tipos = tiposColumnas;
+
+			@SuppressWarnings("unchecked")
+			public Class getColumnClass(int columnIndex) {
+				return tipos[columnIndex];
+			}
+
+			public boolean isCellEdijtServicios(int row, int column) {
+				return false;
+			}
+		});
+
+		proveedorView.jtServicios.setDefaultRenderer(JButton.class, new TableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable jjtServicios, Object objeto, boolean estaSeleccionado,boolean tieneElFoco, int fila, int columna){
+				return (Component) objeto;
+			}
+		});
+		if (proveedorView.jtServicios.getMouseListeners().length == 2) {
+
+			proveedorView.jtServicios.addMouseListener(new MouseAdapter() {
+				String servicio;
+				Object boton;
+				private String delete;
+
+				public void mouseClicked(MouseEvent e) {
+					int fila = proveedorView.jtServicios.rowAtPoint(e.getPoint());
+					int columna = proveedorView.jtServicios.columnAtPoint(e.getPoint());
+
+					if (proveedorView.jtServicios.getModel().getColumnClass(columna).equals(JButton.class)) {
+						boton = proveedorView.jtServicios.getModel().getValueAt(fila, columna);
+						StringBuilder sb = new StringBuilder();
+						for (int i = 0; i < proveedorView.jtServicios.getModel().getColumnCount(); i++) {
+							if (!proveedorView.jtServicios.getModel().getColumnClass(i).equals(JButton.class)) {
+								sb.append("\n").append(proveedorView.jtServicios.getModel().getColumnName(i)).append(": ")
+										.append(proveedorView.jtServicios.getModel().getValueAt(fila, i));
+								if (proveedorView.jtServicios.getModel().getColumnName(i) == "Servicio") {
+									servicio = proveedorView.jtServicios.getModel().getValueAt(fila, i).toString();
+								}
+							}
+						}
+						// Boton Editar--------
+						if (boton.toString().contains("Modificar") == true) {
+
+							try {
+								servicioModel = ProveedorBo.consultaEditar(servicio);
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+							return;
+							
+							// Boton Eliminar------
+						} else if (boton.toString().contains("Eliminar") == true) {
+							if (JOptionPane.showConfirmDialog(null, "Seguro de Eliminar el Usuario :" + servicio) == 0) {
+								delete = ProveedorBo.eliminarServicio(servicio);
+								if (delete.equals("El usuario fue eliminado correctamente!")) {
+									JOptionPane.showMessageDialog(null, delete, "Eliminar usuario",
+											JOptionPane.INFORMATION_MESSAGE);
+								} else {
+									JOptionPane.showMessageDialog(null, delete, "Eliminar usuario",
+											JOptionPane.WARNING_MESSAGE);
+								}
+								consultaGeneral();
+							}
+							return;
+						}
+					}
+				}
+			});
+		}
+
+		DefaultTableModel modelo = (DefaultTableModel) proveedorView.jtServicios.getModel();
+		modelo.setColumnIdentifiers(columnNames);
+		Object[] fila = new Object[modelo.getColumnCount()];
+//		String status="";
+		while (itrUsuarios.hasNext()) {
+			ServicioModel ServicioModeloitr = itrUsuarios.next();
+//			status= Integer.toString(ServicioModeloitr.getEnabled());
+			JButton btn = new JButton("Modificar");
+			JButton btn2 = new JButton("Eliminar");
+			fila[0] = ServicioModeloitr.getServicio();
+			fila[1] = btn;
+			fila[2] = btn2;
+			modelo.addRow(fila);
+		}
+		proveedorView.jtServicios.getColumnModel().getColumn(0).setPreferredWidth(300);
+		proveedorView.jtServicios.getColumnModel().getColumn(1).setPreferredWidth(100);
+		proveedorView.jtServicios.getColumnModel().getColumn(2).setPreferredWidth(100);
 	}
 	
 	private void fillComboBox(){

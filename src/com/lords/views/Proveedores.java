@@ -129,14 +129,14 @@ public class Proveedores extends JFrame {
 		jtServicios.setBackground(new Color(255, 255, 224));
 		jtServicios.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
 			},
 			new String[] {
-				"Servicios"
+				"Servicio", "Modificar", "Eliminar"
 			}
 		));
-		jtServicios.getColumnModel().getColumn(0).setPreferredWidth(425);
-		jtServicios.getColumnModel().getColumn(0).setMinWidth(425);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/logo.png")));
