@@ -119,7 +119,7 @@ NULL,
 'Victor',
 'Alias',
 'El inge',
-'inge',
+'ingevictor',
 'password',
 1
 );
@@ -129,7 +129,7 @@ NULL,
 'Zero',
 'Metralletas',
 'Oscuras',
-'zero',
+'zerometra',
 '123456789',
 1
 );
@@ -139,7 +139,7 @@ NULL,
 'Pau',
 'Alias',
 'Shade',
-'shade',
+'shadeshade',
 'password',
 1
 );
@@ -151,35 +151,35 @@ INSERT INTO rollusuario VALUES(
 NULL,
 1,
 'sixnore',
-'admon'
+'Administrador'
 );
 
 INSERT INTO rollusuario VALUES(
 NULL,
 2,
 'poortunic',
-'admon'
+'Administrador'
 );
 
 INSERT INTO rollusuario VALUES(
 NULL,
 3,
-'inge',
-'admon'
+'ingevictor',
+'Capturista'
 );
 
 INSERT INTO rollusuario VALUES(
 NULL,
 4,
-'zero',
-'admon'
+'zerometra',
+'Administrador'
 );
 
 INSERT INTO rollusuario VALUES(
 NULL,
 5,
-'shade',
-'admon'
+'paulashade',
+'Secretaria'
 );
 
 -- ______________________________________________________________________________

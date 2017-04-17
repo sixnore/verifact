@@ -180,7 +180,7 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
 				ps.setString(1, item);
 				ResultSet rs = ps.executeQuery();
-				Object sqlInfo[] = new Object[1];
+				Object sqlInfo[] = new Object[3];
 				
 				while(rs.next()){
 					for(int x = 0; x < proveedorView.jtServicios.getColumnCount() ; x++){
@@ -203,8 +203,9 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 		int total = modelo.getRowCount();
 		for(int x = total; x == 0 ; x -- ){
 			modelo.removeRow(x-1);
+			proveedor.jtServicios.setModel(modelo);
 		}
-		proveedor.jtServicios.setModel(modelo);
+		
 	}
 	
 	private void fillComboBox(){

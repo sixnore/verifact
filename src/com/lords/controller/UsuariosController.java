@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,7 +24,7 @@ import com.lords.views.ControlUsuarios;
 import com.lords.views.MenuAdmin;
 import com.lords.views.RegistroUsuarios;
 
-public class UsuariosController implements ActionListener {
+public class UsuariosController implements ActionListener, WindowListener {
 	String resultado = "";
 
 	RegistroUsuarios usuariosView = new RegistroUsuarios();
@@ -46,6 +48,8 @@ public class UsuariosController implements ActionListener {
 		vistaControlUsuarios.btnAgregar.addActionListener(this);
 		vistaControlUsuarios.btnBuscar.addActionListener(this);
 		vistaControlUsuarios.btnSalir.addActionListener(this);
+		
+		vistaControlUsuarios.addWindowListener(this);
 	}
 
 	@Override
@@ -85,7 +89,7 @@ public class UsuariosController implements ActionListener {
 			}
 
 			Iterator<UsuarioModel> itrUsuarios = listaUsuarios.iterator();
-			String[] columnNames = {"Nombre completo", "Username", "Estatus", "Modificar", "Eliminar" };
+			String[] columnNames = {"Nombre completo", "Nombre usuario", "Estatus", "Modificar", "Eliminar" };
 
 			final Class[] tiposColumnas = new Class[] { java.lang.String.class, java.lang.String.class,java.lang.Integer.class, JButton.class,
 					JButton.class };
@@ -268,6 +272,7 @@ public class UsuariosController implements ActionListener {
 		}
 		return resultado;
 	}
+	
 	private void limpiarContenido() {
 		usuarioModel.setAmatUsuario(null);
 		usuarioModel.setApatUsuario(null);
@@ -284,5 +289,46 @@ public class UsuariosController implements ActionListener {
 		usuariosView.txtPassword2.setText("");
 		usuariosView.txtUsername.setText("");
 		usuariosView.jcbRoll.setSelectedIndex(0);
+	}
+
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		consultaGeneral();
 	}
 }
