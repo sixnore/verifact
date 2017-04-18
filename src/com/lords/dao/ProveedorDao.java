@@ -84,9 +84,8 @@ public class ProveedorDao {
 		return mensaje;
 	}
 
-	public static String buscar(ProveedorModel provModel) {
-		String mensaje = "";
-		String proveedor = provModel.getProveedor();
+	public static ServicioModel buscar(String proveedor) {
+		ServicioModel servicioModel = new ServicioModel();
 		
 		conexion = new Conexion();
 		
@@ -94,20 +93,24 @@ public class ProveedorDao {
 		
 		try {
 
-			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT servicio.servicio FROM servicio WHERE proveedor.proveedor=?");
-			ps.setString(1, provModel.getProveedor());
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(" SELECT servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor WHERE proveedor.proveedor LIKE ?");
+			ps.setString(1, "%"+proveedor+"%");
 
 			ResultSet rs = ps.executeQuery();
 			
 			
 			
+			if(rs.next()){
+				String servicio = rs.getString(1);
+				servicioModel.setServicio(servicio);
+			}else{
+				servicioModel.setServicio(null);
+			}
+			
 		} catch (Exception e) {
-			mensaje="Error con la base "+e;
+			
 		}
-		
-		
-		
-		return mensaje;
+		return servicioModel;
 	}
 
 	public static List<ServicioModel> consultaGeneral() throws SQLException {

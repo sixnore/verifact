@@ -11,7 +11,6 @@ import com.lords.model.UsuarioModel;
 
 public class ProveedorBo {
 	
-	
 	public static String registrar(ProveedorModel provModel) {
 		String mensaje = "";
 		String proveedor = provModel.getProveedor();
@@ -33,12 +32,14 @@ public class ProveedorBo {
 		return mensaje;
 	}
 
-	public static String buscar(ProveedorModel provModel) {
-		String mensaje = "";
-		
-		mensaje = ProveedorDao.buscar(provModel);
-		
-		return mensaje;
+	public static ServicioModel buscar(String proveedor) {
+		ServicioModel servicioModel = new ServicioModel();
+		try{
+			servicioModel= ProveedorDao.buscar(proveedor);
+		}catch(Exception e){
+			
+		}
+		return servicioModel;
 	}
 
 	public static List<ServicioModel> consultaGeneral()throws SQLException {
