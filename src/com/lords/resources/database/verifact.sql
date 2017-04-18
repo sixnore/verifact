@@ -25,7 +25,7 @@ CREATE TABLE servicio(
 id_servicio INT(5) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 servicio VARCHAR(100) NOT NULL,
 id_proveedor INT(5),
-FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor)
+FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor) on delete cascade
 )Engine=Innodb;
 
 -- TABLA FACTURA

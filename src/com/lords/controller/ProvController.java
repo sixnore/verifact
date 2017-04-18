@@ -59,7 +59,7 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 		proveedorView.btnModificar.addActionListener(this);
 		proveedorView.btnSalir.addActionListener(this);
 		proveedorView.btnEliminar.addActionListener(this);
-		
+		proveedorView.btnAgregarSer.addActionListener(this);
 		proveedorView.jcbProveedores.addItemListener(this);
 		
 		proveedorView.addWindowListener(this);
@@ -67,9 +67,10 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		if(arg0.getSource().equals(proveedorView.btnEliminar)){
 			String mensaje = "";
-			if(proveedorView.jcbProveedores.getSelectedItem().toString().equals("Proveedores....")){
+			if(proveedorView.jcbProveedores.getSelectedItem().toString().equals("Proveedores...")){
 				mensaje = "Elije un proveedor antes";
 			}else{
 				if (JOptionPane.showConfirmDialog(null, "Seguro de eliminar proveedor :" + proveedorView.jcbProveedores.getSelectedItem().toString() ) == 0){
@@ -83,6 +84,7 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 			}
 			JOptionPane.showMessageDialog(null, mensaje);
 		}
+		
 		if(arg0.getSource().equals(proveedorView.btnAgregar)){
 			String mensaje = "";
 			String proveedor = JOptionPane.showInputDialog(null, "Ingresar nuevo proveedor", "Registro nuevo proveedor", JOptionPane.INFORMATION_MESSAGE);
@@ -97,25 +99,54 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 			}
 			fillComboBox();
 			JOptionPane.showMessageDialog(null, mensaje);
-		}else if(arg0.getSource().equals(proveedorView.btnConsultar)){
-			ServicioModel servicioModel;
-			
+		}else if(arg0.getSource().equals(proveedorView.btnAgregarSer)){
 			String mensaje = "";
-			String proveedorSearch = JOptionPane.showInputDialog(null, "Ingresar nombre de proveedor", "Busqueda de proveedores", JOptionPane.INFORMATION_MESSAGE);
-			
-			servicioModel = ProveedorBo.buscar(proveedorSearch);
-			System.out.println("Contrler: "+servicioModel.getServicio());
+			String servicio = null;
 			try{
-				if(servicioModel.getServicio().equals(null) || servicioModel.getServicio().equals("null")){
-					mensaje = "No se encontro proveedor";
+				servicio = JOptionPane.showInputDialog(null, "Ingresar nuevo servicio", "Registro nuevo servicio", JOptionPane.INFORMATION_MESSAGE);
+				if(servicio.equals(null) || servicio.isEmpty() || servicio.equals("") || servicio.equals("null")){
+					mensaje = "Datos vacios";
 				}else{
-					proveedorView.jcbProveedores.setSelectedItem(servicioModel.getServicio());
+					provModel = new ProveedorModel();
+					provModel.setProveedor(proveedorView.jcbProveedores.getSelectedItem().toString());
+					mensaje = ProveedorBo.registrarServ(provModel, servicio);
 					fillTable();
 				}
+				JOptionPane.showMessageDialog(null, mensaje);
 			}catch(NullPointerException ex){
-				mensaje = "No se encontro proveedor";
+				
 			}
 			
+		}else if(arg0.getSource().equals(proveedorView.btnConsultar)){
+			ProveedorModel provModel = new ProveedorModel();
+			
+			String mensaje = "";
+			
+			if(proveedorView.jcbProveedores.getSelectedItem().toString().equals("Proveedores...")){
+				mensaje = "Seleccione un proveedor antes";
+			}else{
+				
+			String proveedorSearch = JOptionPane.showInputDialog(null, "Ingresar nombre de proveedor", "Busqueda de proveedores", JOptionPane.INFORMATION_MESSAGE);
+			
+			provModel = ProveedorBo.buscar(proveedorSearch);
+				try{
+					if(provModel.getProveedor().equals(null) || provModel.getProveedor().equals("null")){
+						mensaje = "No se encontro proveedor";
+					}else{
+						proveedorView.dispose();
+						proveedorView.setVisible(false);
+						proveedorView = new Proveedores();
+						proveedorView.setLocationRelativeTo(null);
+						proveedorView.setUndecorated(true);
+						proveedorView.setVisible(true);
+						ProveedorModel proveedorModel = new ProveedorModel();
+						
+						ProvController provController = new ProvController(proveedorView, proveedorModel);
+					}
+				}catch(NullPointerException ex){
+					mensaje = "No se pudo modificar";
+				}
+			}
 			
 //			if(proveedorSearch.equals(null)||proveedorSearch.equals("")||proveedorSearch.isEmpty()){
 //				mensaje = "No ingreso proveedor";
@@ -129,7 +160,27 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 //			}
 			
 		}else if(arg0.getSource().equals(proveedorView.btnModificar)){
-			System.out.println("ok");
+			
+			String mensaje = "";
+			ProveedorModel provModel = new ProveedorModel();
+			String provAct = proveedorView.jcbProveedores.getSelectedItem().toString();
+			provModel.setProveedor(provAct);
+			String newVal = null;
+			try{
+				newVal = JOptionPane.showInputDialog(null, "Ingresar la modificacion", "Modificacion proveedor", JOptionPane.INFORMATION_MESSAGE);
+				if(newVal.equals(null) || newVal.isEmpty() || newVal.equals("") || newVal.equals("null")){
+					mensaje = "Datos vacios";
+				}else{
+					provModel = new ProveedorModel();
+					provModel.setProveedor(proveedorView.jcbProveedores.getSelectedItem().toString());
+					mensaje = ProveedorBo.modificarProv(provModel, newVal, provAct);
+					proveedorView.jcbProveedores.setSelectedIndex(0);
+				}
+				JOptionPane.showMessageDialog(null, mensaje);
+			}catch(NullPointerException ex){
+			}
+			fillTable();
+			fillComboBox();
 		}else if(arg0.getSource().equals(proveedorView.btnSalir)){
 			proveedorView.dispose();
 			proveedorView.setVisible(false);
@@ -147,38 +198,26 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void windowIconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void windowIconified(WindowEvent arg0) {	
 	}
 
 	@Override
@@ -199,15 +238,10 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 		DefaultTableModel modelo = (DefaultTableModel) proveedorView.jtServicios.getModel();
 		String item = proveedorView.jcbProveedores.getSelectedItem().toString();
 		
-		if(!item.equals("Proveedores....")){
+		if(!item.equals("Proveedores...")){
 			
 			try {
-				
-	            int filas = proveedorView.jtServicios.getRowCount();
-	            for (int i = 0;filas>i; i++) {
-	                modelo.removeRow(0);
-	            }
-	            
+	            removeElementsTable();
 			} catch (Exception e) {
 	            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
 	        }
@@ -218,14 +252,12 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 				PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("SELECT servicio from servicio inner join proveedor on servicio.id_proveedor=proveedor.id_proveedor where proveedor=?"); 
 				ps.setString(1, item);
 				ResultSet rs = ps.executeQuery();
-				Object sqlInfo[] = new Object[1];
-				
+				int fila = 0;
 				while(rs.next()){
-					for(int x = 0; x < proveedorView.jtServicios.getColumnCount() ; x++){
-						sqlInfo[x] = rs.getString(x+1);
-					}
+					modelo.addRow(new Object[1]);
+					modelo.setValueAt(rs.getString(1), fila, 0);
+					fila++;
 				}
-				modelo.addRow(sqlInfo);
 				proveedorView.jtServicios.setModel(modelo);
 			} catch (Exception e) {
 				
@@ -238,12 +270,10 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 	
 	private void removeElementsTable(){
 		DefaultTableModel modelo = (DefaultTableModel) proveedorView.jtServicios.getModel();
-		int total = modelo.getRowCount();
-		for(int x = total; x < total ; x -- ){
+		for(int x = 0; x < modelo.getRowCount() ; x++){
 			modelo.removeRow(x);
-			proveedor.jtServicios.setModel(modelo);
+			proveedorView.jtServicios.setModel(modelo);
 		}
-		
 	}
 
 //
@@ -357,7 +387,7 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 		Connection accesodb = (Connection) conexion.conectandobd();
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) proveedorView.jcbProveedores.getModel();
 		try {
-			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("select proveedor from proveedor");
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement("select proveedor.proveedor from proveedor");
 			ResultSet rs = ps.executeQuery();
 			proveedorView.jcbProveedores.setModel(modelo);
 			while(rs.next()){
@@ -369,5 +399,4 @@ public class ProvController  implements ActionListener, ItemListener, WindowList
 			JOptionPane.showMessageDialog(null, "Error cargando datos");
 		}
 	}
-
 }

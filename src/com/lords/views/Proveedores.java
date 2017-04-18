@@ -35,6 +35,7 @@ public class Proveedores extends JFrame {
 	public JButton btnSalir;
 	public JComboBox jcbProveedores;
 	private JScrollPane scrollPane;
+	public JButton btnAgregarSer;
 
 	/**
 	 * Launch the application.
@@ -109,7 +110,7 @@ public class Proveedores extends JFrame {
 		btnEliminar.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-ELIMINAR.png")));
 		
 		jcbProveedores = new JComboBox();
-		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores...."}));
+		jcbProveedores.setModel(new DefaultComboBoxModel(new String[] {"Proveedores..."}));
 		jcbProveedores.setBounds(125, 18, 313, 20);
 		jpProveedores.add(jcbProveedores);
 		
@@ -129,14 +130,17 @@ public class Proveedores extends JFrame {
 		jtServicios.setBackground(new Color(255, 255, 224));
 		jtServicios.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{null},
 			},
 			new String[] {
-				"Servicio", "Modificar", "Eliminar"
+				"Servicio"
 			}
 		));
+		
+		btnAgregarSer = new JButton("");
+		btnAgregarSer.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/boton-AGREGAR.png")));
+		btnAgregarSer.setBounds(337, 393, 105, 20);
+		panel.add(btnAgregarSer);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Proveedores.class.getResource("/com/lords/resources/img/logo.png")));
