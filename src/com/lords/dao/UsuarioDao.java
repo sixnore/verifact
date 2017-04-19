@@ -31,18 +31,17 @@ public class UsuarioDao {
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				
+
 				usuarioModelo.setUsername(rs.getString(1));
 				usuarioModelo.setPassword(rs.getString(2));
 				usuarioModelo.setRol(rs.getString(3));
 				usuarioModelo.setEnabled(rs.getInt(4));
-				if(usuarioModelo.getEnabled()== 0){
+				if (usuarioModelo.getEnabled() == 0) {
 					return mensaje = "Cuenta desactivada";
-				}else{
-					return mensaje = "Bienvenido "+usuarioModelo.getRol() ;
+				} else {
+					return mensaje = "Bienvenido " + usuarioModelo.getRol();
 				}
-				
-				
+
 			} else {
 				mensaje = "No existe usuario";
 				usuarioModelo.setUsername("");
@@ -146,14 +145,14 @@ public class UsuarioDao {
 
 		try {
 			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(
-					"select id_usuario,concat(nombre_usuario,' ',apatUsuario,' ',amatUsuario)as nombre,username,enabled from usuario");
+					"select id_usuario,concat(nombre_usuario,' ',apatUsuario,' ',amatUsuario)as nombre,username,estatus from usuario INNER JOIN estatus on usuario.enabled=estatus.enabled");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				UsuarioModel usuarioModel = new UsuarioModel();
 				usuarioModel.setIdUsuario(rs.getInt(1));
 				usuarioModel.setNombreUsuario(rs.getString(2));
 				usuarioModel.setUsername(rs.getString(3));
-				usuarioModel.setEnabled(rs.getInt(4));
+				usuarioModel.setEstatus(rs.getString(4));
 				listaUsuarios.add(usuarioModel);
 			}
 		} catch (SQLException ex) {
@@ -165,12 +164,11 @@ public class UsuarioDao {
 	}
 
 	public UsuarioModel consultaEditar(String username) throws SQLException {
-		UsuarioModel usuarioModel=new UsuarioModel();
+		UsuarioModel usuarioModel = new UsuarioModel();
 		Connection accesodb = (Connection) conexion.conectandobd();
 		try {
 			PreparedStatement ps = (PreparedStatement) accesodb
-					.prepareStatement("select usuario.id_usuario,"
-							+ "usuario.nombre_usuario,usuario.apatUsuario,"
+					.prepareStatement("select usuario.id_usuario," + "usuario.nombre_usuario,usuario.apatUsuario,"
 							+ "usuario.amatUsuario,usuario.username,usuario.password,"
 							+ "usuario.enabled,rollusuario.roll from usuario "
 							+ "INNER JOIN rollusuario on usuario.id_usuario=usuario.id_usuario "
@@ -187,16 +185,16 @@ public class UsuarioDao {
 				usuarioModel.setPassword(rs.getString(6));
 				usuarioModel.setEnabled(rs.getInt(7));
 				usuarioModel.setRol(rs.getString(8));
-			} 
+			}
 		} catch (Exception e) {
-			System.out.println("Existe un error en la base de datos "+ e);
+			System.out.println("Existe un error en la base de datos " + e);
 			throw new SQLException("Existe un problema con la base de datos\n" + "No se pudo realizar la consulta!");
 		}
 		return usuarioModel;
-		}
+	}
 
-	public String eliminarUsuario(String username)throws SQLException{
-		String resultado="";
+	public String eliminarUsuario(String username) throws SQLException {
+		String resultado = "";
 		try {
 			Connection accesodb = (Connection) conexion.conectandobd();
 			String insertUser = "UPDATE usuario SET usuario.enabled=0 WHERE usuario.username=?";
@@ -211,6 +209,50 @@ public class UsuarioDao {
 		} catch (Exception e) {
 			resultado = "Existio un error en la transaccion " + e;
 			throw new SQLException("Existe un problema con la base de datos\n" + "No se pudo realizar la consulta!");
+		}
+		return resultado;
+	}
+
+	public String modificarUsuario(UsuarioModel usuarioModel) {
+		String resultado = "";
+		try {
+			Connection accesodb = (Connection) conexion.conectandobd();
+			String insertUser = "UPDATE usuario SET nombre_usuario=?,apatUsuario=?,amatUsuario=?,password=?,enabled=? WHERE usuario.id_usuario=?";
+
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(insertUser);
+			ps.setString(1, usuarioModel.getNombreUsuario());
+			ps.setString(2, usuarioModel.getApatUsuario());
+			ps.setString(3, usuarioModel.getAmatUsuario());
+			ps.setString(4, usuarioModel.getPassword());
+			ps.setInt(5, usuarioModel.getEnabled());
+			ps.setInt(6, usuarioModel.getIdUsuario());
+
+			int correcto = ps.executeUpdate();
+			if (correcto > 0) {
+				resultado = "Modificacion exitosa del usuario " + usuarioModel.getUsername();
+			}
+		} catch (Exception e) {
+			resultado = "Existio un error en la transaccion " + e;
+		}
+		return resultado;
+	}
+
+	public String modificarRolUsuario(UsuarioModel usuarioModel) {
+		String resultado = "";
+		try {
+			Connection accesodb = (Connection) conexion.conectandobd();
+			String insertUser = "UPDATE rollusuario SET roll=? WHERE user_name=?";
+			PreparedStatement ps = (PreparedStatement) accesodb.prepareStatement(insertUser);
+			ps.setString(1, usuarioModel.getRol());
+			ps.setString(2, usuarioModel.getUsername());
+			int correcto = ps.executeUpdate();
+			if (correcto > 0) {
+				resultado = "Modificacion exitosa del usuario " + usuarioModel.getUsername() + " con permisos de "
+						+ usuarioModel.getRol();
+			}
+
+		} catch (Exception e) {
+			resultado = "Existio un error en la transaccion " + e;
 		}
 		return resultado;
 	}

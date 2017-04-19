@@ -99,6 +99,26 @@ public class UsuarioBo {
 		return resultado;
 	}
 
+	public String modificarUsuario(UsuarioModel usuarioModel) {
+		String resultado="";
+		try{
+			resultado=usuarioDao.modificarUsuario(usuarioModel);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return resultado;
+	}
+
+	public String modificarRolUsuario(UsuarioModel usuarioModel) {
+		String resultado="";
+		try{
+			resultado=usuarioDao.modificarRolUsuario(usuarioModel);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return resultado;
+	}
+
 	
 
 }

@@ -36,7 +36,7 @@ public class RegistroUsuarios extends JFrame {
 	public ButtonGroup grupo1;
 	public JPasswordField txtPassword;
 	public JPasswordField txtPassword2;
-	
+	public JLabel lblRegistro;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -69,8 +69,8 @@ public class RegistroUsuarios extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblRegistro = new JLabel("REGISTRO");
-		lblRegistro.setBounds(101, 12, 142, 31);
+		lblRegistro = new JLabel("REGISTRO");
+		lblRegistro.setBounds(111, 6, 115, 31);
 		lblRegistro.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 20));
 		lblRegistro.setForeground(new Color(0, 0, 0));
 		panel.add(lblRegistro);

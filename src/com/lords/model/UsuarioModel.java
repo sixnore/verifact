@@ -9,6 +9,7 @@ public class UsuarioModel {
 	private String username;
 	private String password;
 	private int enabled;
+	private String estatus;
 	
 	private int idRol;
 	private String rol;
@@ -65,6 +66,12 @@ public class UsuarioModel {
 	}
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+	public String getEstatus() {
+		return estatus;
+	}
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 	
 	
