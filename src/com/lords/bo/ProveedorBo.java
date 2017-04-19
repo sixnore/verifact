@@ -32,14 +32,14 @@ public class ProveedorBo {
 		return mensaje;
 	}
 
-	public static ServicioModel buscar(String proveedor) {
-		ServicioModel servicioModel = new ServicioModel();
+	public static ProveedorModel buscar(String proveedor) {
+		ProveedorModel provModel = new ProveedorModel();
 		try{
-			servicioModel= ProveedorDao.buscar(proveedor);
+			provModel = ProveedorDao.buscar(proveedor);
 		}catch(Exception e){
 			
 		}
-		return servicioModel;
+		return provModel;
 	}
 
 	public static List<ServicioModel> consultaGeneral()throws SQLException {
@@ -69,6 +69,22 @@ public class ProveedorBo {
 		}catch(Exception e){
 		}		
 		return resultado;
+	}
+
+	public static String registrarServ(ProveedorModel provModel, String servicio) {
+		String mensaje = "";
+		
+		mensaje = ProveedorDao.registrarServ(provModel, servicio);
+		
+		return mensaje;
+	}
+
+	public static String modificarProv(ProveedorModel provModel, String newVal, String provAct) {
+		String mensaje = "";
+		
+		mensaje = ProveedorDao.modificarProv(provModel, newVal, provAct);
+		
+		return mensaje;
 	}
 
 }

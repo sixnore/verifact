@@ -42,7 +42,7 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	ServicioModel servicioModel;
 	
 	OrdenPagoBo ordenPagoBo = new OrdenPagoBo();
-	private Conexion conexion;
+	private Conexion conexion = new Conexion();
 	
 	public OrdenesPagoController(OrdenPago vistaPago, OrdenPagoModel pagoModel, ProveedorModel provModel, ServicioModel servicioModel, OrdenPagoBo ordenPagoBo){
 		this.pagoView = vistaPago;
@@ -50,7 +50,6 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 		this.provModel = provModel;
 		this.servicioModel = servicioModel;
 		this.ordenPagoBo = ordenPagoBo;
-		
 		//this.conexion = new Conexion();
 		
 		//AbstractJasperReports.createReport(conexion,"C:\\Verifact\\OrdenPago.jasper");
@@ -73,8 +72,6 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 		this.provModel = provModel;
 		this.servicioModel = servicioModel;
 		
-		//AbstractJasperReports.createReport(conexion,"C:\\Verifact\\OrdenPago.jasper");
-		
 		vistaPago.btnGuardar.addActionListener(this);
 		vistaPago.btnSalir.addActionListener(this);
 		vistaPago.btnGenerar.addActionListener(this);
@@ -83,6 +80,8 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 		vistaPago.jcbProveedores.addItemListener(this);
 		vistaPago.txtImporte.addKeyListener(this);
 		vistaPago.txtImporteLetra.addKeyListener(this);
+		
+		AbstractJasperReports.createReport(conexion,"C:\\Verifact\\OrdenPago.jasper");
 	}
 
 	@Override
@@ -172,7 +171,8 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 	}
 
 	@Override
-	public void windowOpened(WindowEvent arg0) {	
+	public void windowOpened(WindowEvent arg0) {
+		conexion = new Conexion();
 		Connection accesodb = (Connection) conexion.conectandobd();
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) pagoView.jcbProveedores.getModel();
 		try {
@@ -191,6 +191,7 @@ public class OrdenesPagoController implements ActionListener, WindowListener, It
 
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
+		conexion = new Conexion();
 		DefaultComboBoxModel modelo = (DefaultComboBoxModel) pagoView.jcbServicios.getModel();
 		if(pagoView.jcbProveedores.equals("Proveedores...")){
 			modelo.removeAllElements();

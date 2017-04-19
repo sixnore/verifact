@@ -83,7 +83,6 @@ public class PrincipalController implements ActionListener, KeyListener {
 		String password=vistaLogin.jpfPassword.getText();
 		if(usuario.isEmpty()|| password.isEmpty()){
 			JOptionPane.showMessageDialog(null, "Completa los campos por favor");
-			return;
 		}else{
 			usuarioModel.setUsername(usuario);
 			usuarioModel.setPassword(password);
@@ -91,59 +90,60 @@ public class PrincipalController implements ActionListener, KeyListener {
 			JOptionPane.showMessageDialog(null, resultado, "Inicio sistema", JOptionPane.INFORMATION_MESSAGE);
 			if(resultado=="No se cumple condiciones de usuario"||resultado=="No se cumple condiciones de password"|| resultado=="Cuenta desactivada"){
 				clean();
-				return;
-			}
-			if (!usuarioModel.getUsername().equals("")) {
-				if(usuarioModel.getRol().equals("Administrador")){
-					vistaLogin.setVisible(false);
-					vistaLogin.dispose();
-					try {
-						vistaMenu = new MenuAdmin();
-						vistaMenu.setLocationRelativeTo(null);
-						vistaMenu.setUndecorated(true);
-						vistaMenu.setVisible(true);
-						menuController = new MenuAdminController(vistaMenu);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-				}else if(usuarioModel.getRol().equals("Capturista")){
-					vistaLogin.setVisible(false);
-					vistaLogin.dispose();
-					try {
-						vistaMenu = new MenuAdmin();
-						vistaMenu.setLocationRelativeTo(null);
-						vistaMenu.setUndecorated(true);
-						vistaMenu.setVisible(true);
-						vistaMenu.btnFacturas.setEnabled(false);
-						vistaMenu.btnOrdenesPago.setEnabled(false);
-						vistaMenu.btnPagos.setEnabled(false);
-						vistaMenu.btnUsuarios.setEnabled(false);
-						menuController = new MenuAdminController(vistaMenu);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-				}else if(usuarioModel.getRol().equals("Secretaria")){
-					vistaLogin.setVisible(false);
-					vistaLogin.dispose();
-					try {
-						vistaMenu = new MenuAdmin();
-						vistaMenu.setLocationRelativeTo(null);
-						vistaMenu.setUndecorated(true);
-						vistaMenu.setVisible(true);
-						vistaMenu.btnProveedores.setEnabled(false);
-						vistaMenu.btnUsuarios.setEnabled(false);
-						menuController = new MenuAdminController(vistaMenu);
-					} catch (Exception ex) {
-						ex.printStackTrace();
+			}else{
+				if (!usuarioModel.getUsername().equals("")) {
+					if(usuarioModel.getRol().equals("Administrador")){
+						vistaLogin.setVisible(false);
+						vistaLogin.dispose();
+						try {
+							vistaMenu = new MenuAdmin();
+							vistaMenu.setLocationRelativeTo(null);
+							vistaMenu.setUndecorated(true);
+							vistaMenu.setVisible(true);
+							menuController = new MenuAdminController(vistaMenu);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}else if(usuarioModel.getRol().equals("Capturista")){
+						vistaLogin.setVisible(false);
+						vistaLogin.dispose();
+						try {
+							vistaMenu = new MenuAdmin();
+							vistaMenu.setLocationRelativeTo(null);
+							vistaMenu.setUndecorated(true);
+							vistaMenu.setVisible(true);
+							vistaMenu.btnFacturas.setEnabled(false);
+							vistaMenu.btnOrdenesPago.setEnabled(false);
+							vistaMenu.btnPagos.setEnabled(false);
+							vistaMenu.btnUsuarios.setEnabled(false);
+							menuController = new MenuAdminController(vistaMenu);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}else if(usuarioModel.getRol().equals("Secretaria")){
+						vistaLogin.setVisible(false);
+						vistaLogin.dispose();
+						try {
+							vistaMenu = new MenuAdmin();
+							vistaMenu.setLocationRelativeTo(null);
+							vistaMenu.setUndecorated(true);
+							vistaMenu.setVisible(true);
+							vistaMenu.btnProveedores.setEnabled(false);
+							vistaMenu.btnUsuarios.setEnabled(false);
+							menuController = new MenuAdminController(vistaMenu);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
 					}
 				}
 			}
+			
 		}
 	}
 	
 	public void clean(){
-		log.jpfPassword.setText(null);
-		log.jtfUsuario.setText(null);
+		vistaLogin.jpfPassword.setText("");
+		vistaLogin.jtfUsuario.setText("");
 	}
 
 }
